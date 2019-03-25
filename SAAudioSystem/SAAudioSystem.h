@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for SAAudioPlayer.
-FOUNDATION_EXPORT double SAAudioPlayerVersionNumber;
+//! Project version number for SAAudioSystem.
+FOUNDATION_EXPORT double SAAudioSystemVersionNumber;
 
-//! Project version string for SAAudioPlayer.
-FOUNDATION_EXPORT const unsigned char SAAudioPlayerVersionString[];
+//! Project version string for SAAudioSystem.
+FOUNDATION_EXPORT const unsigned char SAAudioSystemVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SAAudioPlayer/PublicHeader.h>

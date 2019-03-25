@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, SAAudioPlayerState) {
 - (void)pauseWithError:(NSError **)error;
 - (void)resumeWithError:(NSError **)error;
 - (void)seekToTarget:(int64_t)targetTime withError:(NSError **)error;
+- (void)adjustEQ:(BOOL)adjust;
 - (void)terminateWithError:(NSError **)error;
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C908EEB223FB3E3002694BF /* SAAudioEqualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */; };
+		0C908EEC223FB3E3002694BF /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */; };
 		0CB919B42231806D009BDA52 /* SAAudioSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919B22231806D009BDA52 /* SAAudioSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB91A3A22318096009BDA52 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919BD22318092009BDA52 /* version.h */; };
 		0CB91A3B22318096009BDA52 /* buffersrc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919BE22318092009BDA52 /* buffersrc.h */; };
@@ -132,15 +134,21 @@
 		0CB91ADE22318551009BDA52 /* SAMetadataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91ADD22318551009BDA52 /* SAMetadataCollector.h */; };
 		0CB91AE02231856E009BDA52 /* SAMetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ADF2231856E009BDA52 /* SAMetadataCollector.m */; };
 		0CB91AE422318F76009BDA52 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */; };
-		0CB91AE822397359009BDA52 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AE722397359009BDA52 /* libz.tbd */; };
-		0CB91AEC2239739D009BDA52 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AEB2239739D009BDA52 /* AudioToolbox.framework */; };
-		0CB91AF722397426009BDA52 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AF1223973E9009BDA52 /* libiconv.tbd */; };
-		0CB91AF82239743A009BDA52 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AEF223973C2009BDA52 /* libbz2.tbd */; };
-		0CB91AFB22397463009BDA52 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AE92239737C009BDA52 /* VideoToolbox.framework */; };
-		0CB91AFD2239749E009BDA52 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91AFC2239749E009BDA52 /* CoreMedia.framework */; };
+		0CBDC8A02243BB740026D657 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC89F2243BB740026D657 /* libiconv.tbd */; };
+		0CBDC8A22243BB800026D657 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A12243BB800026D657 /* libz.tbd */; };
+		0CBDC8A42243BB880026D657 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A32243BB880026D657 /* libbz2.tbd */; };
+		0CBDC8A62243BB910026D657 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A52243BB910026D657 /* CoreVideo.framework */; };
+		0CBDC8A82243BB9A0026D657 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A72243BB9A0026D657 /* CoreAudio.framework */; };
+		0CBDC8B02243D0B20026D657 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8AF2243D0B20026D657 /* CoreMedia.framework */; };
+		0CBDC8B52243D31C0026D657 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8AD2243D0530026D657 /* VideoToolbox.framework */; };
+		0CBDC99C2244ACA60026D657 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBDC99A2244ACA60026D657 /* version.h */; };
+		0CBDC99D2244ACA60026D657 /* swscale.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBDC99B2244ACA60026D657 /* swscale.h */; };
+		0CBDC99F2244ACB10026D657 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC99E2244ACB10026D657 /* libswscale.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
+		0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
 		0CB919AF2231806D009BDA52 /* SAAudioSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SAAudioSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB919B22231806D009BDA52 /* SAAudioSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
 		0CB919B32231806D009BDA52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,12 +277,16 @@
 		0CB91ADF2231856E009BDA52 /* SAMetadataCollector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMetadataCollector.m; sourceTree = "<group>"; };
 		0CB91AE222318E09009BDA52 /* SAAudioMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
 		0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
-		0CB91AE722397359009BDA52 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		0CB91AE92239737C009BDA52 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		0CB91AEB2239739D009BDA52 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		0CB91AEF223973C2009BDA52 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		0CB91AF1223973E9009BDA52 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		0CB91AFC2239749E009BDA52 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0CBDC89F2243BB740026D657 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		0CBDC8A12243BB800026D657 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0CBDC8A32243BB880026D657 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		0CBDC8A52243BB910026D657 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		0CBDC8A72243BB9A0026D657 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		0CBDC8AD2243D0530026D657 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		0CBDC8AF2243D0B20026D657 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0CBDC99A2244ACA60026D657 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		0CBDC99B2244ACA60026D657 /* swscale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swscale.h; sourceTree = "<group>"; };
+		0CBDC99E2244ACB10026D657 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,30 +294,78 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CBDC8A82243BB9A0026D657 /* CoreAudio.framework in Frameworks */,
+				0CBDC8B02243D0B20026D657 /* CoreMedia.framework in Frameworks */,
+				0CBDC8A62243BB910026D657 /* CoreVideo.framework in Frameworks */,
+				0CBDC8B52243D31C0026D657 /* VideoToolbox.framework in Frameworks */,
+				0CBDC8A42243BB880026D657 /* libbz2.tbd in Frameworks */,
+				0CBDC8A22243BB800026D657 /* libz.tbd in Frameworks */,
+				0CBDC8A02243BB740026D657 /* libiconv.tbd in Frameworks */,
+				0CBDC99F2244ACB10026D657 /* libswscale.a in Frameworks */,
 				0CB91AAA22318096009BDA52 /* libavfilter.a in Frameworks */,
 				0CB91AA922318096009BDA52 /* libavutil.a in Frameworks */,
 				0CB91AAB22318096009BDA52 /* libavcodec.a in Frameworks */,
 				0CB91AAE22318096009BDA52 /* libswresample.a in Frameworks */,
 				0CB91AAC22318096009BDA52 /* libavformat.a in Frameworks */,
-				0CB91AE822397359009BDA52 /* libz.tbd in Frameworks */,
-				0CB91AF722397426009BDA52 /* libiconv.tbd in Frameworks */,
-				0CB91AF82239743A009BDA52 /* libbz2.tbd in Frameworks */,
-				0CB91AFB22397463009BDA52 /* VideoToolbox.framework in Frameworks */,
-				0CB91AEC2239739D009BDA52 /* AudioToolbox.framework in Frameworks */,
-				0CB91AFD2239749E009BDA52 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C908EE4223FB31D002694BF /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				0CB91ACE2231810B009BDA52 /* SAAudioDecoder.h */,
+				0CB91ACD2231810B009BDA52 /* SAAudioDecoder.m */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
+		0C908EE5223FB356002694BF /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				0CB91AC72231810B009BDA52 /* SAAudioPlayer.h */,
+				0CB91ACA2231810B009BDA52 /* SAAudioPlayer.m */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		0C908EE6223FB361002694BF /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				0CB91AC62231810B009BDA52 /* SAAudioSystemError.h */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		0C908EE7223FB382002694BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CB91AC82231810B009BDA52 /* SAPacketQueue.h */,
+				0CB91ACF2231810B009BDA52 /* SAPacketQueue.m */,
+				0CB91AE222318E09009BDA52 /* SAAudioMetadata.h */,
+				0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0C908EE8223FB3A1002694BF /* Equalizer */ = {
+			isa = PBXGroup;
+			children = (
+				0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */,
+				0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */,
+			);
+			path = Equalizer;
+			sourceTree = "<group>";
+		};
 		0CB919A52231806D009BDA52 = {
 			isa = PBXGroup;
 			children = (
 				0CB919BA22318085009BDA52 /* FFmpeg */,
 				0CB919B12231806D009BDA52 /* SAAudioSystem */,
 				0CB919B02231806D009BDA52 /* Products */,
-				0CB91AE622397359009BDA52 /* Frameworks */,
+				0CBDC89E2243BB730026D657 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -320,15 +380,12 @@
 		0CB919B12231806D009BDA52 /* SAAudioSystem */ = {
 			isa = PBXGroup;
 			children = (
+				0C908EE7223FB382002694BF /* Models */,
+				0C908EE5223FB356002694BF /* Player */,
+				0C908EE4223FB31D002694BF /* Decoder */,
+				0C908EE8223FB3A1002694BF /* Equalizer */,
 				0CB91AE52234F189009BDA52 /* Utils */,
-				0CB91ADC223184FE009BDA52 /* Metadata */,
-				0CB91AC72231810B009BDA52 /* SAAudioPlayer.h */,
-				0CB91ACA2231810B009BDA52 /* SAAudioPlayer.m */,
-				0CB91ACE2231810B009BDA52 /* SAAudioDecoder.h */,
-				0CB91ACD2231810B009BDA52 /* SAAudioDecoder.m */,
-				0CB91AC82231810B009BDA52 /* SAPacketQueue.h */,
-				0CB91ACF2231810B009BDA52 /* SAPacketQueue.m */,
-				0CB91AC62231810B009BDA52 /* SAAudioSystemError.h */,
+				0C908EE6223FB361002694BF /* Error */,
 				0CB919B22231806D009BDA52 /* SAAudioSystem.h */,
 				0CB919B32231806D009BDA52 /* Info.plist */,
 			);
@@ -347,6 +404,7 @@
 		0CB919BB22318092009BDA52 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				0CBDC9992244ACA60026D657 /* libswscale */,
 				0CB919BC22318092009BDA52 /* libavfilter */,
 				0CB919C122318092009BDA52 /* libavutil */,
 				0CB91A1522318092009BDA52 /* libavformat */,
@@ -501,6 +559,7 @@
 		0CB91A3222318096009BDA52 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				0CBDC99E2244ACB10026D657 /* libswscale.a */,
 				0CB91A3322318096009BDA52 /* libavutil.a */,
 				0CB91A3422318096009BDA52 /* libavfilter.a */,
 				0CB91A3522318096009BDA52 /* libavcodec.a */,
@@ -508,15 +567,6 @@
 				0CB91A3822318096009BDA52 /* libswresample.a */,
 			);
 			path = lib;
-			sourceTree = "<group>";
-		};
-		0CB91ADC223184FE009BDA52 /* Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91AE222318E09009BDA52 /* SAAudioMetadata.h */,
-				0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */,
-			);
-			path = Metadata;
 			sourceTree = "<group>";
 		};
 		0CB91AE52234F189009BDA52 /* Utils */ = {
@@ -530,17 +580,27 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		0CB91AE622397359009BDA52 /* Frameworks */ = {
+		0CBDC89E2243BB730026D657 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0CB91AE722397359009BDA52 /* libz.tbd */,
-				0CB91AF1223973E9009BDA52 /* libiconv.tbd */,
-				0CB91AEF223973C2009BDA52 /* libbz2.tbd */,
-				0CB91AEB2239739D009BDA52 /* AudioToolbox.framework */,
-				0CB91AE92239737C009BDA52 /* VideoToolbox.framework */,
-				0CB91AFC2239749E009BDA52 /* CoreMedia.framework */,
+				0CBDC8AD2243D0530026D657 /* VideoToolbox.framework */,
+				0CBDC8AF2243D0B20026D657 /* CoreMedia.framework */,
+				0CBDC8A72243BB9A0026D657 /* CoreAudio.framework */,
+				0CBDC8A52243BB910026D657 /* CoreVideo.framework */,
+				0CBDC8A32243BB880026D657 /* libbz2.tbd */,
+				0CBDC8A12243BB800026D657 /* libz.tbd */,
+				0CBDC89F2243BB740026D657 /* libiconv.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0CBDC9992244ACA60026D657 /* libswscale */ = {
+			isa = PBXGroup;
+			children = (
+				0CBDC99A2244ACA60026D657 /* version.h */,
+				0CBDC99B2244ACA60026D657 /* swscale.h */,
+			);
+			path = libswscale;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,6 +629,7 @@
 				0CB91A5F22318096009BDA52 /* threadmessage.h in Headers */,
 				0CB91A5C22318096009BDA52 /* ffversion.h in Headers */,
 				0CB91A3B22318096009BDA52 /* buffersrc.h in Headers */,
+				0CBDC99D2244ACA60026D657 /* swscale.h in Headers */,
 				0CB91A7422318096009BDA52 /* macros.h in Headers */,
 				0CB91A6922318096009BDA52 /* pixelutils.h in Headers */,
 				0CB91A6822318096009BDA52 /* camellia.h in Headers */,
@@ -651,6 +712,7 @@
 				0CB91A8C22318096009BDA52 /* intreadwrite.h in Headers */,
 				0CB91AA222318096009BDA52 /* avdct.h in Headers */,
 				0CB91A4C22318096009BDA52 /* base64.h in Headers */,
+				0C908EEB223FB3E3002694BF /* SAAudioEqualizer.h in Headers */,
 				0CB91A7D22318096009BDA52 /* twofish.h in Headers */,
 				0CB91A5222318096009BDA52 /* avutil.h in Headers */,
 				0CB91AD92231810B009BDA52 /* SAAudioDecoder.h in Headers */,
@@ -658,6 +720,7 @@
 				0CB91AA322318096009BDA52 /* ac3_parser.h in Headers */,
 				0CB91A3E22318096009BDA52 /* hwcontext.h in Headers */,
 				0CB91A9B22318096009BDA52 /* videotoolbox.h in Headers */,
+				0CBDC99C2244ACA60026D657 /* version.h in Headers */,
 				0CB91A8A22318096009BDA52 /* hash.h in Headers */,
 				0CB91A9922318096009BDA52 /* qsv.h in Headers */,
 				0CB91A7C22318096009BDA52 /* encryption_info.h in Headers */,
@@ -734,6 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C908EEC223FB3E3002694BF /* SAAudioEqualizer.m in Sources */,
 				0CB91AE422318F76009BDA52 /* SAAudioMetadata.m in Sources */,
 				0CB91AD52231810B009BDA52 /* SAAudioPlayer.m in Sources */,
 				0CB91AE02231856E009BDA52 /* SAMetadataCollector.m in Sources */,
@@ -868,6 +932,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -900,6 +965,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

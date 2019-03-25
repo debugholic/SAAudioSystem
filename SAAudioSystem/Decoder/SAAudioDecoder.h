@@ -10,6 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "SAAudioSystemError.h"
 #import "SAAudioMetadata.h"
+#import "SAAudioEqualizer.h"
 
 @class SAAudioDecoder;
 
@@ -30,6 +31,8 @@
 @property (assign, nonatomic) BOOL readFinished;
 @property (assign, nonatomic) BOOL endOfFile;
 @property (assign, nonatomic) Float32 readProgress;
+@property (strong, nonatomic, readonly, nonnull) SAAudioEqualizer *equalizer;
+@property (assign, nonatomic) BOOL adjustEQ;
 
 - (void)openSource:(NSString *)sourcePath error:(NSError **)error;
 - (void)closeSource;

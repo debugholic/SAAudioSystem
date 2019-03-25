@@ -111,3 +111,6 @@ FFmpeg/lib/libavfilter.a
 FFmpeg/lib/libavformat.a
 FFmpeg/lib/libavutil.a
 FFmpeg/lib/libswresample.a
+FFmpeg/include/libswscale/swscale.h
+FFmpeg/include/libswscale/version.h
+FFmpeg/lib/libswscale.a

@@ -33,6 +33,7 @@
 @property (assign, nonatomic) BOOL stopDecode;
 @property (assign, nonatomic) BOOL stopRead;
 @property (assign, nonatomic) BOOL seekable;
+@property (assign, nonatomic) SAAudioEqualizerFlag eqFlag;
 
 @end
 
@@ -54,6 +55,9 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
         _stopDecode = NO;
         _endOfFile = NO;
         _seekable = NO;
+        _equalizer = [[SAAudioEqualizer alloc] initWithDefautBands_10];
+        _adjustEQ = NO;
+        _eqFlag = SAAudioEqualizerFlagNone;
     }
     return self;
 }
@@ -89,7 +93,6 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     }
     
     ret = avformat_find_stream_info(_formatContext, NULL);
-    
     if (ret < 0) {
         *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
                                      code:SAAudioSystemErrorNotFoundAnyStream
@@ -130,7 +133,6 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     
     _codec = avcodec_find_decoder(_codecContext->codec_id);
     ret = avcodec_open2(_codecContext, _codec, NULL);
-    
     if (ret < 0) {
         *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
                                      code:SAAudioSystemErrorNotOpenCodec
@@ -150,7 +152,6 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     }
     
     enum AVSampleFormat outDecodeFormat = AV_SAMPLE_FMT_S16;
-    
     switch(_codecContext->sample_fmt) {
         case AV_SAMPLE_FMT_U8P :
             outDecodeFormat = AV_SAMPLE_FMT_U8;
@@ -316,6 +317,17 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     }
 }
 
+- (void)setAdjustEQ:(BOOL)adjustEQ {
+    if (_adjustEQ != adjustEQ) {
+        if (adjustEQ) {
+            _eqFlag = SAAudioEqualizerFlagOn;
+        } else {
+            _eqFlag = SAAudioEqualizerFlagOff;
+        }
+    }
+    _adjustEQ = adjustEQ;
+}
+
 - (BOOL)decodeFrameInAQBufferCapacity:(UInt32)bufferCapacity outAQBuffer:(UInt8 *)buffer inFrameSize:(UInt32 *)frameSize error:(NSError **)error {
     if (!_sourcePath || !buffer) {
         return NO;
@@ -362,6 +374,12 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     // Non-planar data.
     if (!av_sample_fmt_is_planar(_codecContext->sample_fmt)
         && _codecContext->sample_fmt != AV_SAMPLE_FMT_DBL) {
+        if (_adjustEQ) {
+            [_equalizer adjust:_frame->data[0]+_frameRemainderIndex length:frameSize flag:_eqFlag];
+            if (_eqFlag != SAAudioEqualizerFlagNone) {
+                _eqFlag = SAAudioEqualizerFlagNone;
+            }
+        }
         memcpy(buffer, _frame->data[0]+_frameRemainderIndex, frameSize);
     }
     
@@ -406,7 +424,14 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
                             (const uint8_t **) _frame->extended_data,
                             _frame->nb_samples);
             }
-            
+
+            if (_adjustEQ) {
+                [_equalizer adjust:cvtData+_frameRemainderIndex length:frameSize flag:_eqFlag];
+                if (_eqFlag != SAAudioEqualizerFlagNone) {
+                    _eqFlag = SAAudioEqualizerFlagNone;
+                }
+            }
+
             memcpy(buffer, cvtData+_frameRemainderIndex, frameSize);
             if (frameSize > 0) {
                 av_freep(&cvtData);

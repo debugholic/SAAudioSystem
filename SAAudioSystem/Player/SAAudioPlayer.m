@@ -487,7 +487,7 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
             UInt32 size = sizeof(isRunning);
             AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &isRunning, &size);
             if (isRunning) {
-                NSLog(@"Cannot write data into audio queue because it is running.");
+                NSLog(@"Could not write data into audio queue because it is running.");
             }
         }
         [userData endFile];
@@ -496,11 +496,9 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
     
     int len = inAQBuffer->mAudioDataBytesCapacity;
     UInt32 numBytes;
-    
     inAQBuffer->mAudioDataByteSize = 0;
-    
     UInt8 *buffer = (UInt8 *)inAQBuffer->mAudioData;
-    
+
     while (len > 0) {
         NSError *error = nil;
         BOOL isPlayable = [decoder decodeFrameInAQBufferCapacity:len outAQBuffer:buffer inFrameSize:&numBytes error:&error];
@@ -539,10 +537,14 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
         UInt32 size = sizeof(isRunning);
         AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &isRunning, &size);
         if (isRunning) {
-            NSLog(@"Cannot write data into audio queue because it is running.");
+            NSLog(@"Counld not write data into audio queue because it is running.");
         }
         return;
     }
+}
+
+- (void)adjustEQ:(BOOL)adjust {
+    self.decoder.adjustEQ = adjust;
 }
 
 @end
