@@ -2,7 +2,7 @@
 //  SAAudioEqualizer.m
 //  SAAudioSystem
 //
-//  Created by 김영훈 on 18/03/2019.
+//  Created by DebugHolic on 18/03/2019.
 //  Copyright © 2019 Sidekick-Academy. All rights reserved.
 //
 

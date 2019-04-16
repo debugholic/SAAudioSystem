@@ -117,8 +117,9 @@
     }
     
     [metadata setValue:@(bitDepth) forKey:@"bitdepth"];
-    [metadata setValue:@((NSUInteger)duration/timeBase_den) forKey:@"duration"];
-    
+    //    [metadata setValue:@((NSUInteger)duration/timeBase_den) forKey:@"duration"];
+    [metadata setValue:@(duration) forKey:SAAudioMetadataDurationKey];
+
     if (codecContext != NULL) {
         avcodec_close(codecContext);
     }

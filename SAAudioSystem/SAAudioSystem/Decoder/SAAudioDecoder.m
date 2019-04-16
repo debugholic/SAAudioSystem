@@ -13,6 +13,8 @@
 #import <libswresample/swresample.h>
 #import <libavutil/opt.h>
 #import "SAPacketQueue.h"
+#import "SAMetadataCollector.h"
+#import "SAAlbumArtExtractor.h"
 
 @interface SAAudioDecoder()
 
@@ -211,6 +213,9 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     _dataFormat.mBytesPerFrame = (_dataFormat.mBitsPerChannel / 8) * _dataFormat.mChannelsPerFrame;
     _dataFormat.mBytesPerPacket = _dataFormat.mBytesPerFrame * _dataFormat.mFramesPerPacket;
     
+    _metadata = [SAMetadataCollector metadataWithFormatContext:_formatContext];
+    _albumArt = [SAAlbumArtExtractor albumArtWithFormatContext:_formatContext];
+    
     _frameRemainderIndex = 0;
     _frameRemainderSize = 0;
     
@@ -240,6 +245,7 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
         avformat_close_input(&_formatContext);      // Close container.
         avformat_free_context(_formatContext);      // Release container.
     }
+    _metadata = nil;
 }
 
 - (void)readStart {
@@ -254,9 +260,11 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
         _stopRead = YES;
         _readFinished = YES;
         [self stopDecoding];
-        *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
-                                     code:SAAudioSystemErrorWhileDecoding
-                                 userInfo:@{NSLocalizedDescriptionKey:@"Reading frames failed because formatContext is null."}];
+        if (error) {
+            *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
+                                         code:SAAudioSystemErrorWhileDecoding
+                                     userInfo:@{NSLocalizedDescriptionKey:@"Reading frames failed because formatContext is null."}];
+        }
         return;
     }
 
@@ -266,9 +274,6 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
         int ret = av_read_frame(_formatContext, &packet);
         if (ret < 0) {
             _readFinished = YES;
-            *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
-                                         code:SAAudioSystemErrorWhileDecoding
-                                     userInfo:@{NSLocalizedDescriptionKey:@"Could not read frame."}];
             return;
         }
         
@@ -292,7 +297,7 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
             }
         }
         
-        if (packet.pts < _metadata.duration && packet.pts > _packetQueue.pts) {
+        if (packet.pts < (int64_t)_metadata.duration && packet.pts > _packetQueue.pts) {
             packet_queue_put_packet(&_packetQueue, &packet);
         }
         loop++;
@@ -514,14 +519,8 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
             _endOfFile = YES;
             return;
         } else if (ret < 0) {
-            *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
-                                         code:SAAudioSystemErrorWhileDecoding
-                                     userInfo:@{NSLocalizedDescriptionKey:@"Error occurred while read packets."}];
             return;
         } else {
-            *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
-                                         code:SAAudioSystemErrorWhileDecoding
-                                     userInfo:@{NSLocalizedDescriptionKey:@"Unknown error occurred."}];
             return;
         }
     } else {
@@ -548,9 +547,6 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
         _endOfFile = YES;
         return -1;
     } else if (ret < 0) {
-        *error = [NSError errorWithDomain:SAAudioDecoderErrorDomain
-                                     code:SAAudioSystemErrorWhileDecoding
-                                 userInfo:@{NSLocalizedDescriptionKey:@"Unknown error occurred."}];
         return -1;
     } else {
         int frameSize = av_samples_get_buffer_size(NULL, _codecContext->channels,
@@ -560,5 +556,4 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
     }
     return 0;
 }
-
 @end

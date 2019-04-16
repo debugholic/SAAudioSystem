@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C908EEB223FB3E3002694BF /* SAAudioEqualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */; };
-		0C908EEC223FB3E3002694BF /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */; };
-		0CB919B42231806D009BDA52 /* SAAudioSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919B22231806D009BDA52 /* SAAudioSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB91A3A22318096009BDA52 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919BD22318092009BDA52 /* version.h */; };
 		0CB91A3B22318096009BDA52 /* buffersrc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919BE22318092009BDA52 /* buffersrc.h */; };
 		0CB91A3C22318096009BDA52 /* buffersink.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB919BF22318092009BDA52 /* buffersink.h */; };
@@ -122,18 +119,6 @@
 		0CB91AAB22318096009BDA52 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91A3522318096009BDA52 /* libavcodec.a */; };
 		0CB91AAC22318096009BDA52 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91A3622318096009BDA52 /* libavformat.a */; };
 		0CB91AAE22318096009BDA52 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB91A3822318096009BDA52 /* libswresample.a */; };
-		0CB91AD12231810B009BDA52 /* SAAudioSystemError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91AC62231810B009BDA52 /* SAAudioSystemError.h */; };
-		0CB91AD22231810B009BDA52 /* SAAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91AC72231810B009BDA52 /* SAAudioPlayer.h */; };
-		0CB91AD32231810B009BDA52 /* SAPacketQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91AC82231810B009BDA52 /* SAPacketQueue.h */; };
-		0CB91AD52231810B009BDA52 /* SAAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ACA2231810B009BDA52 /* SAAudioPlayer.m */; };
-		0CB91AD62231810B009BDA52 /* SAAlbumArtExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ACB2231810B009BDA52 /* SAAlbumArtExtractor.m */; };
-		0CB91AD82231810B009BDA52 /* SAAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ACD2231810B009BDA52 /* SAAudioDecoder.m */; };
-		0CB91AD92231810B009BDA52 /* SAAudioDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91ACE2231810B009BDA52 /* SAAudioDecoder.h */; };
-		0CB91ADA2231810B009BDA52 /* SAPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ACF2231810B009BDA52 /* SAPacketQueue.m */; };
-		0CB91ADB2231810B009BDA52 /* SAAlbumArtExtractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91AD02231810B009BDA52 /* SAAlbumArtExtractor.h */; };
-		0CB91ADE22318551009BDA52 /* SAMetadataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB91ADD22318551009BDA52 /* SAMetadataCollector.h */; };
-		0CB91AE02231856E009BDA52 /* SAMetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91ADF2231856E009BDA52 /* SAMetadataCollector.m */; };
-		0CB91AE422318F76009BDA52 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */; };
 		0CBDC8A02243BB740026D657 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC89F2243BB740026D657 /* libiconv.tbd */; };
 		0CBDC8A22243BB800026D657 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A12243BB800026D657 /* libz.tbd */; };
 		0CBDC8A42243BB880026D657 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC8A32243BB880026D657 /* libbz2.tbd */; };
@@ -144,14 +129,26 @@
 		0CBDC99C2244ACA60026D657 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBDC99A2244ACA60026D657 /* version.h */; };
 		0CBDC99D2244ACA60026D657 /* swscale.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CBDC99B2244ACA60026D657 /* swscale.h */; };
 		0CBDC99F2244ACB10026D657 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBDC99E2244ACB10026D657 /* libswscale.a */; };
+		0CD211DB2265DD8200F51C99 /* SAAudioEqualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211C52265DD8200F51C99 /* SAAudioEqualizer.h */; };
+		0CD211DC2265DD8200F51C99 /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211C62265DD8200F51C99 /* SAAudioEqualizer.m */; };
+		0CD211DD2265DD8200F51C99 /* SAAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211C82265DD8200F51C99 /* SAAudioDecoder.m */; };
+		0CD211DE2265DD8200F51C99 /* SAAudioDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211C92265DD8200F51C99 /* SAAudioDecoder.h */; };
+		0CD211DF2265DD8200F51C99 /* SAAudioSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211CA2265DD8200F51C99 /* SAAudioSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD211E02265DD8200F51C99 /* SAMetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211CC2265DD8200F51C99 /* SAMetadataCollector.m */; };
+		0CD211E12265DD8200F51C99 /* SAAlbumArtExtractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211CD2265DD8200F51C99 /* SAAlbumArtExtractor.h */; };
+		0CD211E22265DD8200F51C99 /* SAMetadataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211CE2265DD8200F51C99 /* SAMetadataCollector.h */; };
+		0CD211E32265DD8200F51C99 /* SAAlbumArtExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211CF2265DD8200F51C99 /* SAAlbumArtExtractor.m */; };
+		0CD211E42265DD8200F51C99 /* SAPacketQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211D12265DD8200F51C99 /* SAPacketQueue.h */; };
+		0CD211E52265DD8200F51C99 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211D22265DD8200F51C99 /* SAAudioMetadata.m */; };
+		0CD211E62265DD8200F51C99 /* SAPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211D32265DD8200F51C99 /* SAPacketQueue.m */; };
+		0CD211E72265DD8200F51C99 /* SAAudioMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211D42265DD8200F51C99 /* SAAudioMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD211E82265DD8200F51C99 /* SAAudioSystemError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211D62265DD8200F51C99 /* SAAudioSystemError.h */; };
+		0CD211EA2265DD8200F51C99 /* SAAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD211D92265DD8200F51C99 /* SAAudioPlayer.m */; };
+		0CD211EB2265DD8200F51C99 /* SAAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD211DA2265DD8200F51C99 /* SAAudioPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
-		0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
 		0CB919AF2231806D009BDA52 /* SAAudioSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SAAudioSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CB919B22231806D009BDA52 /* SAAudioSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
-		0CB919B32231806D009BDA52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CB919BD22318092009BDA52 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		0CB919BE22318092009BDA52 /* buffersrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersrc.h; sourceTree = "<group>"; };
 		0CB919BF22318092009BDA52 /* buffersink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersink.h; sourceTree = "<group>"; };
@@ -264,19 +261,6 @@
 		0CB91A3522318096009BDA52 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavcodec.a; sourceTree = "<group>"; };
 		0CB91A3622318096009BDA52 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavformat.a; sourceTree = "<group>"; };
 		0CB91A3822318096009BDA52 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswresample.a; sourceTree = "<group>"; };
-		0CB91AC62231810B009BDA52 /* SAAudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystemError.h; sourceTree = "<group>"; };
-		0CB91AC72231810B009BDA52 /* SAAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioPlayer.h; sourceTree = "<group>"; };
-		0CB91AC82231810B009BDA52 /* SAPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPacketQueue.h; sourceTree = "<group>"; };
-		0CB91ACA2231810B009BDA52 /* SAAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioPlayer.m; sourceTree = "<group>"; };
-		0CB91ACB2231810B009BDA52 /* SAAlbumArtExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumArtExtractor.m; sourceTree = "<group>"; };
-		0CB91ACD2231810B009BDA52 /* SAAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioDecoder.m; sourceTree = "<group>"; };
-		0CB91ACE2231810B009BDA52 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
-		0CB91ACF2231810B009BDA52 /* SAPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPacketQueue.m; sourceTree = "<group>"; };
-		0CB91AD02231810B009BDA52 /* SAAlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumArtExtractor.h; sourceTree = "<group>"; };
-		0CB91ADD22318551009BDA52 /* SAMetadataCollector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMetadataCollector.h; sourceTree = "<group>"; };
-		0CB91ADF2231856E009BDA52 /* SAMetadataCollector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMetadataCollector.m; sourceTree = "<group>"; };
-		0CB91AE222318E09009BDA52 /* SAAudioMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
-		0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
 		0CBDC89F2243BB740026D657 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		0CBDC8A12243BB800026D657 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0CBDC8A32243BB880026D657 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -287,6 +271,23 @@
 		0CBDC99A2244ACA60026D657 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		0CBDC99B2244ACA60026D657 /* swscale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swscale.h; sourceTree = "<group>"; };
 		0CBDC99E2244ACB10026D657 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
+		0CD211C52265DD8200F51C99 /* SAAudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
+		0CD211C62265DD8200F51C99 /* SAAudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
+		0CD211C82265DD8200F51C99 /* SAAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioDecoder.m; sourceTree = "<group>"; };
+		0CD211C92265DD8200F51C99 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
+		0CD211CA2265DD8200F51C99 /* SAAudioSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
+		0CD211CC2265DD8200F51C99 /* SAMetadataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMetadataCollector.m; sourceTree = "<group>"; };
+		0CD211CD2265DD8200F51C99 /* SAAlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumArtExtractor.h; sourceTree = "<group>"; };
+		0CD211CE2265DD8200F51C99 /* SAMetadataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMetadataCollector.h; sourceTree = "<group>"; };
+		0CD211CF2265DD8200F51C99 /* SAAlbumArtExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumArtExtractor.m; sourceTree = "<group>"; };
+		0CD211D12265DD8200F51C99 /* SAPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPacketQueue.h; sourceTree = "<group>"; };
+		0CD211D22265DD8200F51C99 /* SAAudioMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
+		0CD211D32265DD8200F51C99 /* SAPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPacketQueue.m; sourceTree = "<group>"; };
+		0CD211D42265DD8200F51C99 /* SAAudioMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
+		0CD211D62265DD8200F51C99 /* SAAudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystemError.h; sourceTree = "<group>"; };
+		0CD211D72265DD8200F51C99 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CD211D92265DD8200F51C99 /* SAAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioPlayer.m; sourceTree = "<group>"; };
+		0CD211DA2265DD8200F51C99 /* SAAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioPlayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,57 +314,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C908EE4223FB31D002694BF /* Decoder */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91ACE2231810B009BDA52 /* SAAudioDecoder.h */,
-				0CB91ACD2231810B009BDA52 /* SAAudioDecoder.m */,
-			);
-			path = Decoder;
-			sourceTree = "<group>";
-		};
-		0C908EE5223FB356002694BF /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91AC72231810B009BDA52 /* SAAudioPlayer.h */,
-				0CB91ACA2231810B009BDA52 /* SAAudioPlayer.m */,
-			);
-			path = Player;
-			sourceTree = "<group>";
-		};
-		0C908EE6223FB361002694BF /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91AC62231810B009BDA52 /* SAAudioSystemError.h */,
-			);
-			path = Error;
-			sourceTree = "<group>";
-		};
-		0C908EE7223FB382002694BF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91AC82231810B009BDA52 /* SAPacketQueue.h */,
-				0CB91ACF2231810B009BDA52 /* SAPacketQueue.m */,
-				0CB91AE222318E09009BDA52 /* SAAudioMetadata.h */,
-				0CB91AE322318F76009BDA52 /* SAAudioMetadata.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		0C908EE8223FB3A1002694BF /* Equalizer */ = {
-			isa = PBXGroup;
-			children = (
-				0C908EE9223FB3E3002694BF /* SAAudioEqualizer.h */,
-				0C908EEA223FB3E3002694BF /* SAAudioEqualizer.m */,
-			);
-			path = Equalizer;
-			sourceTree = "<group>";
-		};
 		0CB919A52231806D009BDA52 = {
 			isa = PBXGroup;
 			children = (
 				0CB919BA22318085009BDA52 /* FFmpeg */,
-				0CB919B12231806D009BDA52 /* SAAudioSystem */,
+				0CD211C32265DD8200F51C99 /* SAAudioSystem */,
 				0CB919B02231806D009BDA52 /* Products */,
 				0CBDC89E2243BB730026D657 /* Frameworks */,
 			);
@@ -375,21 +330,6 @@
 				0CB919AF2231806D009BDA52 /* SAAudioSystem.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0CB919B12231806D009BDA52 /* SAAudioSystem */ = {
-			isa = PBXGroup;
-			children = (
-				0C908EE7223FB382002694BF /* Models */,
-				0C908EE5223FB356002694BF /* Player */,
-				0C908EE4223FB31D002694BF /* Decoder */,
-				0C908EE8223FB3A1002694BF /* Equalizer */,
-				0CB91AE52234F189009BDA52 /* Utils */,
-				0C908EE6223FB361002694BF /* Error */,
-				0CB919B22231806D009BDA52 /* SAAudioSystem.h */,
-				0CB919B32231806D009BDA52 /* Info.plist */,
-			);
-			path = SAAudioSystem;
 			sourceTree = "<group>";
 		};
 		0CB919BA22318085009BDA52 /* FFmpeg */ = {
@@ -569,17 +509,6 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		0CB91AE52234F189009BDA52 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				0CB91ADD22318551009BDA52 /* SAMetadataCollector.h */,
-				0CB91ADF2231856E009BDA52 /* SAMetadataCollector.m */,
-				0CB91AD02231810B009BDA52 /* SAAlbumArtExtractor.h */,
-				0CB91ACB2231810B009BDA52 /* SAAlbumArtExtractor.m */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		0CBDC89E2243BB730026D657 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +532,78 @@
 			path = libswscale;
 			sourceTree = "<group>";
 		};
+		0CD211C32265DD8200F51C99 /* SAAudioSystem */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211C42265DD8200F51C99 /* Equalizer */,
+				0CD211C72265DD8200F51C99 /* Decoder */,
+				0CD211CA2265DD8200F51C99 /* SAAudioSystem.h */,
+				0CD211CB2265DD8200F51C99 /* Utils */,
+				0CD211D02265DD8200F51C99 /* Models */,
+				0CD211D52265DD8200F51C99 /* Error */,
+				0CD211D72265DD8200F51C99 /* Info.plist */,
+				0CD211D82265DD8200F51C99 /* Player */,
+			);
+			path = SAAudioSystem;
+			sourceTree = "<group>";
+		};
+		0CD211C42265DD8200F51C99 /* Equalizer */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211C52265DD8200F51C99 /* SAAudioEqualizer.h */,
+				0CD211C62265DD8200F51C99 /* SAAudioEqualizer.m */,
+			);
+			path = Equalizer;
+			sourceTree = "<group>";
+		};
+		0CD211C72265DD8200F51C99 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211C82265DD8200F51C99 /* SAAudioDecoder.m */,
+				0CD211C92265DD8200F51C99 /* SAAudioDecoder.h */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
+		0CD211CB2265DD8200F51C99 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211CC2265DD8200F51C99 /* SAMetadataCollector.m */,
+				0CD211CD2265DD8200F51C99 /* SAAlbumArtExtractor.h */,
+				0CD211CE2265DD8200F51C99 /* SAMetadataCollector.h */,
+				0CD211CF2265DD8200F51C99 /* SAAlbumArtExtractor.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0CD211D02265DD8200F51C99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211D12265DD8200F51C99 /* SAPacketQueue.h */,
+				0CD211D22265DD8200F51C99 /* SAAudioMetadata.m */,
+				0CD211D32265DD8200F51C99 /* SAPacketQueue.m */,
+				0CD211D42265DD8200F51C99 /* SAAudioMetadata.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CD211D52265DD8200F51C99 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211D62265DD8200F51C99 /* SAAudioSystemError.h */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		0CD211D82265DD8200F51C99 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				0CD211D92265DD8200F51C99 /* SAAudioPlayer.m */,
+				0CD211DA2265DD8200F51C99 /* SAAudioPlayer.h */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -610,18 +611,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD211DF2265DD8200F51C99 /* SAAudioSystem.h in Headers */,
+				0CD211EB2265DD8200F51C99 /* SAAudioPlayer.h in Headers */,
+				0CD211E72265DD8200F51C99 /* SAAudioMetadata.h in Headers */,
 				0CB91A5622318096009BDA52 /* frame.h in Headers */,
 				0CB91A5822318096009BDA52 /* md5.h in Headers */,
 				0CB91A8622318096009BDA52 /* aes_ctr.h in Headers */,
 				0CB91A6422318096009BDA52 /* sha512.h in Headers */,
-				0CB91AD32231810B009BDA52 /* SAPacketQueue.h in Headers */,
 				0CB91A9A22318096009BDA52 /* vaapi.h in Headers */,
 				0CB91A7822318096009BDA52 /* cpu.h in Headers */,
 				0CB91A8D22318096009BDA52 /* avstring.h in Headers */,
 				0CB91A7322318096009BDA52 /* aes.h in Headers */,
 				0CB91A6A22318096009BDA52 /* hwcontext_drm.h in Headers */,
 				0CB91A9622318096009BDA52 /* avcodec.h in Headers */,
-				0CB91AD22231810B009BDA52 /* SAAudioPlayer.h in Headers */,
 				0CB91A4122318096009BDA52 /* intfloat.h in Headers */,
 				0CB91A6322318096009BDA52 /* timecode.h in Headers */,
 				0CB91A9D22318096009BDA52 /* mediacodec.h in Headers */,
@@ -638,11 +640,13 @@
 				0CB91A7F22318096009BDA52 /* hwcontext_videotoolbox.h in Headers */,
 				0CB91A3C22318096009BDA52 /* buffersink.h in Headers */,
 				0CB91A6C22318096009BDA52 /* hmac.h in Headers */,
+				0CD211DB2265DD8200F51C99 /* SAAudioEqualizer.h in Headers */,
 				0CB91A5D22318096009BDA52 /* audio_fifo.h in Headers */,
 				0CB91A6022318096009BDA52 /* attributes.h in Headers */,
 				0CB91A4622318096009BDA52 /* replaygain.h in Headers */,
 				0CB91A3F22318096009BDA52 /* time.h in Headers */,
 				0CB91AA522318096009BDA52 /* dxva2.h in Headers */,
+				0CD211DE2265DD8200F51C99 /* SAAudioDecoder.h in Headers */,
 				0CB91A9C22318096009BDA52 /* xvmc.h in Headers */,
 				0CB91A4F22318096009BDA52 /* motion_vector.h in Headers */,
 				0CB91A9522318096009BDA52 /* adts_parser.h in Headers */,
@@ -654,13 +658,13 @@
 				0CB91A6F22318096009BDA52 /* random_seed.h in Headers */,
 				0CB91A4D22318096009BDA52 /* rational.h in Headers */,
 				0CB91A7522318096009BDA52 /* bswap.h in Headers */,
-				0CB919B42231806D009BDA52 /* SAAudioSystem.h in Headers */,
 				0CB91A7622318096009BDA52 /* rc4.h in Headers */,
 				0CB91A7222318096009BDA52 /* log.h in Headers */,
 				0CB91AA722318096009BDA52 /* version.h in Headers */,
 				0CB91A3A22318096009BDA52 /* version.h in Headers */,
 				0CB91A7122318096009BDA52 /* mastering_display_metadata.h in Headers */,
 				0CB91A7A22318096009BDA52 /* des.h in Headers */,
+				0CD211E22265DD8200F51C99 /* SAMetadataCollector.h in Headers */,
 				0CB91AA122318096009BDA52 /* dirac.h in Headers */,
 				0CB91A5922318096009BDA52 /* cast5.h in Headers */,
 				0CB91AA422318096009BDA52 /* vorbis_parser.h in Headers */,
@@ -691,14 +695,14 @@
 				0CB91A8722318096009BDA52 /* timestamp.h in Headers */,
 				0CB91A5A22318096009BDA52 /* hwcontext_vaapi.h in Headers */,
 				0CB91A4822318096009BDA52 /* murmur3.h in Headers */,
+				0CD211E42265DD8200F51C99 /* SAPacketQueue.h in Headers */,
 				0CB91A8122318096009BDA52 /* parseutils.h in Headers */,
 				0CB91A5722318096009BDA52 /* file.h in Headers */,
 				0CB91A6B22318096009BDA52 /* common.h in Headers */,
-				0CB91ADE22318551009BDA52 /* SAMetadataCollector.h in Headers */,
-				0CB91AD12231810B009BDA52 /* SAAudioSystemError.h in Headers */,
-				0CB91ADB2231810B009BDA52 /* SAAlbumArtExtractor.h in Headers */,
 				0CB91A6E22318096009BDA52 /* dict.h in Headers */,
+				0CD211E12265DD8200F51C99 /* SAAlbumArtExtractor.h in Headers */,
 				0CB91AA622318096009BDA52 /* dv_profile.h in Headers */,
+				0CD211E82265DD8200F51C99 /* SAAudioSystemError.h in Headers */,
 				0CB91A5522318096009BDA52 /* hwcontext_vdpau.h in Headers */,
 				0CB91A9122318096009BDA52 /* avio.h in Headers */,
 				0CB91A9E22318096009BDA52 /* d3d11va.h in Headers */,
@@ -712,10 +716,8 @@
 				0CB91A8C22318096009BDA52 /* intreadwrite.h in Headers */,
 				0CB91AA222318096009BDA52 /* avdct.h in Headers */,
 				0CB91A4C22318096009BDA52 /* base64.h in Headers */,
-				0C908EEB223FB3E3002694BF /* SAAudioEqualizer.h in Headers */,
 				0CB91A7D22318096009BDA52 /* twofish.h in Headers */,
 				0CB91A5222318096009BDA52 /* avutil.h in Headers */,
-				0CB91AD92231810B009BDA52 /* SAAudioDecoder.h in Headers */,
 				0CB91A4A22318096009BDA52 /* samplefmt.h in Headers */,
 				0CB91AA322318096009BDA52 /* ac3_parser.h in Headers */,
 				0CB91A3E22318096009BDA52 /* hwcontext.h in Headers */,
@@ -797,13 +799,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C908EEC223FB3E3002694BF /* SAAudioEqualizer.m in Sources */,
-				0CB91AE422318F76009BDA52 /* SAAudioMetadata.m in Sources */,
-				0CB91AD52231810B009BDA52 /* SAAudioPlayer.m in Sources */,
-				0CB91AE02231856E009BDA52 /* SAMetadataCollector.m in Sources */,
-				0CB91AD82231810B009BDA52 /* SAAudioDecoder.m in Sources */,
-				0CB91ADA2231810B009BDA52 /* SAPacketQueue.m in Sources */,
-				0CB91AD62231810B009BDA52 /* SAAlbumArtExtractor.m in Sources */,
+				0CD211E32265DD8200F51C99 /* SAAlbumArtExtractor.m in Sources */,
+				0CD211E02265DD8200F51C99 /* SAMetadataCollector.m in Sources */,
+				0CD211DC2265DD8200F51C99 /* SAAudioEqualizer.m in Sources */,
+				0CD211EA2265DD8200F51C99 /* SAAudioPlayer.m in Sources */,
+				0CD211E52265DD8200F51C99 /* SAAudioMetadata.m in Sources */,
+				0CD211DD2265DD8200F51C99 /* SAAudioDecoder.m in Sources */,
+				0CD211E62265DD8200F51C99 /* SAPacketQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,10 +935,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82P75Q2F2K;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -969,7 +971,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82P75Q2F2K;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

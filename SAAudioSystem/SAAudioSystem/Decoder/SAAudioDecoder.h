@@ -25,6 +25,7 @@
 @property (strong, nonatomic, nullable) id <SAAudioDecoderDelegate> delegate;
 @property (strong, nonatomic, readonly, nullable) NSString *sourcePath;
 @property (strong, nonatomic, readonly, nullable) SAAudioMetadata *metadata;
+@property (strong, nonatomic, readonly, nullable) UIImage *albumArt;
 @property (assign, nonatomic, readonly) AudioStreamBasicDescription dataFormat;
 @property (nonatomic, readonly) int64_t timeBase_den;
 @property (nonatomic, readonly) int64_t timeStamp;

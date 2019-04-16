@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SAAudioPlayer.h"
 
 //! Project version number for SAAudioSystem.
 FOUNDATION_EXPORT double SAAudioSystemVersionNumber;

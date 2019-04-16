@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "SAAudioPlayer.h"
+#import "SAAudioMetadata.h"
 
 typedef NS_ENUM(NSUInteger, SAAudioPlayerState) {
     SAAudioPlayerStateInitialized,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, SAAudioPlayerState) {
 
 @protocol SAAudioPlayerDelegate <NSObject>
 
-- (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackPlayingAsDuration:(Float64)duration;
+- (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackPlayingForDuration:(Float64)duration;
 - (void)audioPlayer:(SAAudioPlayer *)audioPlayer didChangeState:(SAAudioPlayerState)state;
 - (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackReadingProgress:(Float64)progress;
 
@@ -45,5 +46,7 @@ typedef NS_ENUM(NSUInteger, SAAudioPlayerState) {
 - (void)seekToTarget:(int64_t)targetTime withError:(NSError **)error;
 - (void)adjustEQ:(BOOL)adjust;
 - (void)terminateWithError:(NSError **)error;
+- (SAAudioMetadata *)metadata;
+- (UIImage *)albumArt;
 
 @end

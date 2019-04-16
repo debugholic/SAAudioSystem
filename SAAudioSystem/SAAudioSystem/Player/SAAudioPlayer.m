@@ -10,7 +10,7 @@
 #import "SAAudioDecoder.h"
 #import "avformat.h"
 
-@interface SAAudioPlayer()
+@interface SAAudioPlayer() <SAAudioDecoderDelegate>
 
 @property (assign, nonatomic) AudioStreamBasicDescription format;
 @property (assign, nonatomic) AudioQueueRef queue;
@@ -56,6 +56,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     }
     
     _decoder = [[SAAudioDecoder alloc] init];
+    _decoder.delegate = self;
     [_decoder openSource:_sourcePath error:error];
     
     if (*error) {
@@ -83,7 +84,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     _timeBase = _decoder.timeBase_den;
     
     Float64 curDuration = self.timeStamp / self.timeBase;
-    [self.delegate audioPlayer:self didTrackPlayingAsDuration:curDuration];
+    [self.delegate audioPlayer:self didTrackPlayingForDuration:curDuration];
     [_decoder readStart];
     _state = SAAudioPlayerStateReady;
     [self.delegate audioPlayer:self didChangeState:_state];
@@ -91,7 +92,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
 
 - (OSStatus)setAudioQueue {
     OSStatus err = -1;
-    if (_decoder && _queue) {
+    if (_decoder) {
         AudioStreamBasicDescription dataFormat = _decoder.dataFormat;
         err = AudioQueueNewOutput(&dataFormat,
                                   AQOutputCallback,
@@ -453,13 +454,13 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     Float64 duration = _decoder.metadata.duration;
     self.timeStamp += PLAYBACK_TIME * self.timeBase;
     if (abs((int)(duration - self.timeStamp)) < PLAYBACK_TIME * self.timeBase) {
-        [self.delegate audioPlayer:self didTrackPlayingAsDuration:duration];
+        [self.delegate audioPlayer:self didTrackPlayingForDuration:duration];
         self.finished = YES;
         [self stopWithError:nil];
         return;
     }
     Float64 curDuration = self.timeStamp / self.timeBase;
-    [self.delegate audioPlayer:self didTrackPlayingAsDuration:curDuration];
+    [self.delegate audioPlayer:self didTrackPlayingForDuration:curDuration];
     AudioQueueFlush(_queue);
 }
 
@@ -530,7 +531,7 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
     }
     
     Float64 curDuration = (Float64) userData.timeStamp / userData.timeBase;
-    [userData.delegate audioPlayer:userData didTrackPlayingAsDuration:curDuration];
+    [userData.delegate audioPlayer:userData didTrackPlayingForDuration:curDuration];
     
     if (err != noErr) {
         UInt32 isRunning = 0;
@@ -544,7 +545,19 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
 }
 
 - (void)adjustEQ:(BOOL)adjust {
-    self.decoder.adjustEQ = adjust;
+    _decoder.adjustEQ = adjust;
+}
+
+- (SAAudioMetadata *)metadata {
+    return _decoder.metadata;
+}
+
+- (UIImage *)albumArt {
+    return _decoder.albumArt;
+}
+
+- (void)audioDecoder:(SAAudioDecoder *)audioDecoder didTrackReadingProgress:(Float64)progress {
+    [_delegate audioPlayer:self didTrackReadingProgress:progress];
 }
 
 @end
