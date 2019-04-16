@@ -1,0 +1,212 @@
+//
+//  Player.m
+//  Sample
+//
+//  Created by DebugHolic on 27/03/2019.
+//  Copyright © 2019 Sidekick-Academy. All rights reserved.
+//
+
+#import "Player.h"
+#import <AVFoundation/AVFoundation.h>
+#import <SAAudioSystem/SAAudioSystem.h>
+
+@interface Player() <SAAudioPlayerDelegate>
+
+@property SAAudioPlayerState state;
+@property SAAudioPlayer *audioPlayer;
+@property NSUInteger volume;
+
+@end
+
+@implementation Player
+
+const NSUInteger MaxVolume = 100;
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.curDuration = DurationInNumToString(0);
+        self.state = SAAudioPlayerStateInitialized;
+        self.audioPlayer = [[SAAudioPlayer alloc] init];
+        self.audioPlayer.delegate = self;
+        self.volume = (NSUInteger)(MaxVolume * [[AVAudioSession sharedInstance] outputVolume]);
+    }
+    return self;
+}
+
+- (void)insertTrackWithURL:(NSString *)URL withSuccess:(void (^)(BOOL, NSError *))successBlock {
+    dispatch_queue_t insertQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(insertQueue, ^{
+        NSError *error = nil;
+        if ((self.state == SAAudioPlayerStateStopped
+            || self.state == SAAudioPlayerStateInitialized) && URL) {
+            [self.audioPlayer insertTrack:URL withError:&error];
+            if (successBlock && !error) {
+                self.curTrack = [Track trackWithMetadata:self.audioPlayer.metadata albumArt:self.audioPlayer.albumArt];
+                self.state = SAAudioPlayerStateReady;
+                successBlock(YES, error);
+                return;
+            }
+        }
+        if (successBlock) {
+            successBlock(NO, error);
+        }
+    });
+}
+
+- (void)playTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock {
+    dispatch_queue_t playQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(playQueue, ^{
+        NSError *error = nil;
+        if (self.state == SAAudioPlayerStatePaused) {
+            [self.audioPlayer resumeWithError:&error];
+            if (successBlock && !error) {
+                successBlock(YES, error);
+                return;
+            }
+        } else {
+            if (self.state == SAAudioPlayerStateReady) {
+                [self.audioPlayer playWithError:&error];
+                if (successBlock && !error) {
+                    successBlock(YES, error);
+                    return;
+                }
+            }
+        }
+        if (successBlock) {
+            successBlock(NO, error);
+        }
+    });
+}
+
+- (void)stopTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock {
+    dispatch_queue_t stopQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(stopQueue, ^{
+        NSError *error = nil;
+        if (self.state == SAAudioPlayerStateStopped || self.state == SAAudioPlayerStateInitialized) {
+            if (successBlock) {
+                successBlock(YES, error);
+            }
+            return;
+        }
+        
+        [self.audioPlayer stopWithError:&error];
+        if (successBlock && !error) {
+            successBlock(YES, error);
+            return;
+        }
+        self.curDuration = DurationInNumToString(0);
+        if (successBlock) {
+            successBlock(NO, error);
+        }
+    });
+}
+
+- (void)pauseTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock {
+    NSError *error = nil;
+    [self.audioPlayer pauseWithError:&error];
+    if (successBlock && !error) {
+        successBlock(YES, error);
+        return;
+    }
+    if (successBlock) {
+        successBlock(NO, error);
+    }
+}
+
+- (void)seekToDuration:(NSUInteger)trackDuration withSuccess:(void (^)(BOOL, NSError *))successBlock {
+    dispatch_queue_t seekQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(seekQueue, ^{
+        NSError *error = nil;
+        if (self.state == SAAudioPlayerStatePaused
+            || self.state == SAAudioPlayerStatePlaying) {
+            if (trackDuration <= self.curTrack.duration) {
+                self.curDuration = DurationInNumToString(trackDuration);
+                [self.audioPlayer seekToTarget:(int64_t)trackDuration withError:&error];
+                if (successBlock && !error) {
+                    successBlock(YES, error);
+                    return;
+                }
+            }
+        }
+        if (successBlock) {
+            successBlock(NO, nil);
+        }
+
+    });
+}
+
+- (void)terminate {
+    [self.audioPlayer terminateWithError:nil];
+}
+
+- (void)audioPlayer:(SAAudioPlayer *)audioPlayer didChangeState:(SAAudioPlayerState)state {
+    switch (state) {
+        case SAAudioPlayerStateInitialized:
+            break;
+        
+        case SAAudioPlayerStateReady:
+            break;
+        
+        case SAAudioPlayerStatePlaying:
+            break;
+            
+        case SAAudioPlayerStatePaused:
+            break;
+
+        case SAAudioPlayerStateStopped:
+            break;
+        
+        case SAAudioPlayerStateTransitioning:
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackReadingProgress:(Float64)progress {
+    _progress = progress;
+    NSLog(@"Progress :: %f", progress);
+}
+
+- (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackPlayingForDuration:(Float64)duration {
+    if (self.state == SAAudioPlayerStateTransitioning) {
+       return;
+    }
+
+    if (duration - floor(duration) > 0.5) {
+        self.curDuration = DurationInNumToString((NSUInteger)ceil(duration));
+    } else {
+        self.curDuration = DurationInNumToString((NSUInteger)floor(duration));
+    }
+    NSLog(@"Duration :: %f", duration);
+}
+
+NSUInteger DurationInStringToNum (NSString *duration) {
+    NSUInteger durationInNum = 0;
+    NSArray *durationComponents = [duration componentsSeparatedByString:@":"];
+    
+    NSEnumerator *e = durationComponents.objectEnumerator;
+    durationInNum += [(NSString *)e.nextObject integerValue] * 60 * 60; // H
+    durationInNum += [(NSString *)e.nextObject integerValue] * 60;      // M
+    durationInNum += [(NSString *)e.nextObject integerValue];           // S
+    return durationInNum;
+}
+
+NSString * DurationInNumToString (NSUInteger duration) {
+    NSUInteger h = duration / (60 * 60);
+    duration -= h * 60 *60;
+    NSUInteger m = duration / 60;
+    duration -= m * 60;
+    NSUInteger s = duration;
+    
+    if (h >= 100) {
+        return [NSString stringWithFormat:@"%lu:%02lu:%02lu", (unsigned long)h, (unsigned long)m, (unsigned long)s];
+    } else {
+        return [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (unsigned long)h, (unsigned long)m, (unsigned long)s];;
+    }
+}
+
+
+@end
