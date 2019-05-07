@@ -451,10 +451,10 @@ UInt32 const PLAYBACK_BUFFERS = 3;
 }
 
 - (void)endFile {
-    Float64 duration = _decoder.metadata.duration;
+    Float64 duration = _decoder.metadata.duration * self.timeBase;
     self.timeStamp += PLAYBACK_TIME * self.timeBase;
     if (abs((int)(duration - self.timeStamp)) < PLAYBACK_TIME * self.timeBase) {
-        [self.delegate audioPlayer:self didTrackPlayingForDuration:duration];
+        [self.delegate audioPlayer:self didTrackPlayingForDuration:_decoder.metadata.duration];
         self.finished = YES;
         [self stopWithError:nil];
         return;

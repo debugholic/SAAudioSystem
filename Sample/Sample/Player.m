@@ -12,9 +12,9 @@
 
 @interface Player() <SAAudioPlayerDelegate>
 
-@property SAAudioPlayerState state;
-@property SAAudioPlayer *audioPlayer;
-@property NSUInteger volume;
+@property (strong, nonatomic) SAAudioPlayer *audioPlayer;
+@property (assign, nonatomic) NSUInteger volume;
+@property (assign, nonatomic) SAAudioPlayerState state;
 
 @end
 
@@ -25,7 +25,7 @@ const NSUInteger MaxVolume = 100;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.curDuration = DurationInNumToString(0);
+        self.curDuration = 0;
         self.state = SAAudioPlayerStateInitialized;
         self.audioPlayer = [[SAAudioPlayer alloc] init];
         self.audioPlayer.delegate = self;
@@ -95,9 +95,9 @@ const NSUInteger MaxVolume = 100;
             successBlock(YES, error);
             return;
         }
-        self.curDuration = DurationInNumToString(0);
+        self.curDuration = 0;
         if (successBlock) {
-            successBlock(NO, error);
+            successBlock(YES, error);
         }
     });
 }
@@ -121,7 +121,7 @@ const NSUInteger MaxVolume = 100;
         if (self.state == SAAudioPlayerStatePaused
             || self.state == SAAudioPlayerStatePlaying) {
             if (trackDuration <= self.curTrack.duration) {
-                self.curDuration = DurationInNumToString(trackDuration);
+                self.curDuration = trackDuration;
                 [self.audioPlayer seekToTarget:(int64_t)trackDuration withError:&error];
                 if (successBlock && !error) {
                     successBlock(YES, error);
@@ -132,7 +132,6 @@ const NSUInteger MaxVolume = 100;
         if (successBlock) {
             successBlock(NO, nil);
         }
-
     });
 }
 
@@ -141,33 +140,12 @@ const NSUInteger MaxVolume = 100;
 }
 
 - (void)audioPlayer:(SAAudioPlayer *)audioPlayer didChangeState:(SAAudioPlayerState)state {
-    switch (state) {
-        case SAAudioPlayerStateInitialized:
-            break;
-        
-        case SAAudioPlayerStateReady:
-            break;
-        
-        case SAAudioPlayerStatePlaying:
-            break;
-            
-        case SAAudioPlayerStatePaused:
-            break;
-
-        case SAAudioPlayerStateStopped:
-            break;
-        
-        case SAAudioPlayerStateTransitioning:
-            break;
-            
-        default:
-            break;
-    }
+    self.state = state;
+    [self.delegate player:self didChangeState:state];
 }
 
 - (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackReadingProgress:(Float64)progress {
     _progress = progress;
-    NSLog(@"Progress :: %f", progress);
 }
 
 - (void)audioPlayer:(SAAudioPlayer *)audioPlayer didTrackPlayingForDuration:(Float64)duration {
@@ -176,37 +154,11 @@ const NSUInteger MaxVolume = 100;
     }
 
     if (duration - floor(duration) > 0.5) {
-        self.curDuration = DurationInNumToString((NSUInteger)ceil(duration));
+        self.curDuration = (NSUInteger)ceil(duration);
     } else {
-        self.curDuration = DurationInNumToString((NSUInteger)floor(duration));
+        self.curDuration = (NSUInteger)floor(duration);
     }
-    NSLog(@"Duration :: %f", duration);
+    [self.delegate player:self didTrackPlayingForDuration:duration];
 }
-
-NSUInteger DurationInStringToNum (NSString *duration) {
-    NSUInteger durationInNum = 0;
-    NSArray *durationComponents = [duration componentsSeparatedByString:@":"];
-    
-    NSEnumerator *e = durationComponents.objectEnumerator;
-    durationInNum += [(NSString *)e.nextObject integerValue] * 60 * 60; // H
-    durationInNum += [(NSString *)e.nextObject integerValue] * 60;      // M
-    durationInNum += [(NSString *)e.nextObject integerValue];           // S
-    return durationInNum;
-}
-
-NSString * DurationInNumToString (NSUInteger duration) {
-    NSUInteger h = duration / (60 * 60);
-    duration -= h * 60 *60;
-    NSUInteger m = duration / 60;
-    duration -= m * 60;
-    NSUInteger s = duration;
-    
-    if (h >= 100) {
-        return [NSString stringWithFormat:@"%lu:%02lu:%02lu", (unsigned long)h, (unsigned long)m, (unsigned long)s];
-    } else {
-        return [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (unsigned long)h, (unsigned long)m, (unsigned long)s];;
-    }
-}
-
 
 @end

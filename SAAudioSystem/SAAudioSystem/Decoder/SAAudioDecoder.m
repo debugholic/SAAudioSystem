@@ -296,8 +296,8 @@ NSString * const SAAudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.
                 }
             }
         }
-        
-        if (packet.pts < (int64_t)_metadata.duration && packet.pts > _packetQueue.pts) {
+        int64_t duration = (int64_t)_metadata.duration * _timeBase_den;
+        if (packet.pts < duration && packet.pts > _packetQueue.pts) {
             packet_queue_put_packet(&_packetQueue, &packet);
         }
         loop++;

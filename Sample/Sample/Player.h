@@ -9,11 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "Track.h"
 
+@class Player;
+
+@protocol PlayerDelegate <NSObject>
+
+- (void)player:(Player *)player didChangeState:(SAAudioPlayerState)state;
+- (void)player:(Player *)player didTrackPlayingForDuration:(Float64)duration;
+
+@end
+
 @interface Player : NSObject
 
-@property Track *curTrack;
-@property NSString *curDuration;
-@property Float64 progress;
+@property (strong, nonatomic) Track *curTrack;
+@property (assign, nonatomic) NSUInteger curDuration;
+@property (assign, nonatomic) Float64 progress;
+@property (strong, nonatomic) id <PlayerDelegate> delegate;
 
 - (void)insertTrackWithURL:(NSString *)URL withSuccess:(void (^)(BOOL, NSError *))successBlock;
 - (void)playTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock;
