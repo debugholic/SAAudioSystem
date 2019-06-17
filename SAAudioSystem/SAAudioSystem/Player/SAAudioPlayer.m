@@ -499,7 +499,7 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
     UInt32 numBytes;
     inAQBuffer->mAudioDataByteSize = 0;
     UInt8 *buffer = (UInt8 *)inAQBuffer->mAudioData;
-
+    
     while (len > 0) {
         NSError *error = nil;
         BOOL isPlayable = [decoder decodeFrameInAQBufferCapacity:len outAQBuffer:buffer inFrameSize:&numBytes error:&error];

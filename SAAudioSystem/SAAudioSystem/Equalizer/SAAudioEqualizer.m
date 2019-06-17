@@ -196,7 +196,6 @@ void memcpy_24_to_32(int32_t *dst, const int32_t *src, size_t c) {
     while (c--) {
         *dst++ = *src++ >> 8;
     }
-    
 }
 
 void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {

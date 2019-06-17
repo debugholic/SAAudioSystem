@@ -23,7 +23,7 @@
 @property (strong, nonatomic) Track *curTrack;
 @property (assign, nonatomic) NSUInteger curDuration;
 @property (assign, nonatomic) Float64 progress;
-@property (strong, nonatomic) id <PlayerDelegate> delegate;
+@property (weak, nonatomic) id <PlayerDelegate> delegate;
 
 - (void)insertTrackWithURL:(NSString *)URL withSuccess:(void (^)(BOOL, NSError *))successBlock;
 - (void)playTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock;
