@@ -13,7 +13,7 @@
 
 @protocol PlayerDelegate <NSObject>
 
-- (void)player:(Player *)player didChangeState:(SAAudioPlayerState)state;
+- (void)player:(Player *)player didChangeState:(AudioQueuePlayerState)state;
 - (void)player:(Player *)player didTrackPlayingForDuration:(Float64)duration;
 
 @end

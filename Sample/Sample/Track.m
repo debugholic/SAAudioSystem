@@ -10,11 +10,11 @@
 
 @implementation Track
 
-+ (Track *)trackWithMetadata:(SAAudioMetadata *)metadata {
++ (Track *)trackWithMetadata:(AudioMetadata *)metadata {
     return [self.class trackWithMetadata:metadata albumArt:nil];
 }
 
-+ (Track *)trackWithMetadata:(SAAudioMetadata *)metadata albumArt:(UIImage *)image {
++ (Track *)trackWithMetadata:(AudioMetadata *)metadata albumArt:(UIImage *)image {
     Track *track = [[Track alloc] init];
     if (metadata.title) {
         track.title = [NSString stringWithString:metadata.title];

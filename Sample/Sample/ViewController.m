@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
 @property (strong, nonatomic) Player *player;
-@property (assign, nonatomic) SAAudioPlayerState state;
+@property (assign, nonatomic) AudioQueuePlayerState state;
 @property (strong, nonatomic) NSArray *playQueue;
 @property (assign, nonatomic) NSUInteger playNumber;
 
@@ -63,10 +63,10 @@
 }
 
 - (IBAction)touchUpPlayPause:(id)sender {
-    if (self.state == SAAudioPlayerStatePlaying) {
+    if (self.state == AudioQueuePlayerStatePlaying) {
         [self.player pauseTrackWithSuccess:nil];
     } else {
-        if (self.state == SAAudioPlayerStateStopped || self.state == SAAudioPlayerStateInitialized) {
+        if (self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) {
             NSString *path = self.playQueue[self.playNumber];
             [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
                 if (success) {
@@ -194,8 +194,8 @@ NSString * DurationInNumToString (NSUInteger duration) {
     }
 }
 
-- (void)player:(Player *)player didChangeState:(SAAudioPlayerState)state {
-    if (state == SAAudioPlayerStatePlaying) {
+- (void)player:(Player *)player didChangeState:(AudioQueuePlayerState)state {
+    if (state == AudioQueuePlayerStatePlaying) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_playPauseBtn setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
             [self->_playPauseBtn setImage:[UIImage imageNamed:@"pause_p"] forState:UIControlStateFocused];

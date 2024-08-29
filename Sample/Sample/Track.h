@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SAAudioSystem/SAAudioSystem.h>
+#import "SAAudioSystem.h"
 
 @interface Track : NSObject
 
@@ -19,7 +19,7 @@
 @property (assign, nonatomic, readonly) NSUInteger duration;
 @property (strong, nonatomic, readonly, nullable) UIImage *albumArt;
 
-+ (Track *)trackWithMetadata:(SAAudioMetadata *)metadata;
-+ (Track *)trackWithMetadata:(SAAudioMetadata *)metadata albumArt:(UIImage *)image;
++ (Track *)trackWithMetadata:(AudioMetadata *)metadata;
++ (Track *)trackWithMetadata:(AudioMetadata *)metadata albumArt:(UIImage *)image;
 
 @end

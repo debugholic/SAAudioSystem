@@ -3,13 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0C197514224FCD0C0071223C /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C197513224FCD0C0071223C /* Track.m */; };
 		0C197516225114F80071223C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C197515225114F80071223C /* Assets.xcassets */; };
-		0C38429E2265DF9000427A89 /* SAAudioSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C38429D2265DF9000427A89 /* SAAudioSystem.framework */; };
+		0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */; };
+		0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3A82C807E7300CC67A8 /* PacketQueue.m */; };
+		0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AB2C807E7500CC67A8 /* AudioQueuePlayer.m */; };
+		0C60D3B72C807E7900CC67A8 /* AlbumArtExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AC2C807E7500CC67A8 /* AlbumArtExtractor.m */; };
+		0C60D3B82C807E7900CC67A8 /* AudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */; };
+		0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */; };
+		0C60D3BA2C807E7900CC67A8 /* MetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */; };
+		0C60D3BD2C807F5100CC67A8 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */; };
 		0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */; };
 		0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B0224B7BCA0026D657 /* ViewController.m */; };
 		0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B2224B7BCA0026D657 /* Main.storyboard */; };
@@ -27,7 +34,22 @@
 		0C197512224FCD0C0071223C /* Track.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		0C197513224FCD0C0071223C /* Track.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		0C197515225114F80071223C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0C38429D2265DF9000427A89 /* SAAudioSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SAAudioSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumArtExtractor.h; sourceTree = "<group>"; };
+		0C60D3A52C807E7100CC67A8 /* SAAudioSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
+		0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioDecoder.m; sourceTree = "<group>"; };
+		0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueuePlayer.h; sourceTree = "<group>"; };
+		0C60D3A82C807E7300CC67A8 /* PacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketQueue.m; sourceTree = "<group>"; };
+		0C60D3A92C807E7300CC67A8 /* AudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEqualizer.h; sourceTree = "<group>"; };
+		0C60D3AA2C807E7400CC67A8 /* MetadataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetadataCollector.h; sourceTree = "<group>"; };
+		0C60D3AB2C807E7500CC67A8 /* AudioQueuePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueuePlayer.m; sourceTree = "<group>"; };
+		0C60D3AC2C807E7500CC67A8 /* AlbumArtExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumArtExtractor.m; sourceTree = "<group>"; };
+		0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEqualizer.m; sourceTree = "<group>"; };
+		0C60D3AE2C807E7600CC67A8 /* AudioMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMetadata.h; sourceTree = "<group>"; };
+		0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMetadata.m; sourceTree = "<group>"; };
+		0C60D3B02C807E7700CC67A8 /* AudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDecoder.h; sourceTree = "<group>"; };
+		0C60D3B12C807E7700CC67A8 /* PacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketQueue.h; sourceTree = "<group>"; };
+		0C60D3B22C807E7800CC67A8 /* AudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSystemError.h; sourceTree = "<group>"; };
+		0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataCollector.m; sourceTree = "<group>"; };
 		0CBDC9A9224B7BCA0026D657 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C38429E2265DF9000427A89 /* SAAudioSystem.framework in Frameworks */,
+				0C60D3BD2C807F5100CC67A8 /* FFmpeg-iOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +100,22 @@
 		0CBDC9AB224B7BCA0026D657 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */,
+				0C60D3AC2C807E7500CC67A8 /* AlbumArtExtractor.m */,
+				0C60D3B02C807E7700CC67A8 /* AudioDecoder.h */,
+				0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */,
+				0C60D3A92C807E7300CC67A8 /* AudioEqualizer.h */,
+				0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */,
+				0C60D3AE2C807E7600CC67A8 /* AudioMetadata.h */,
+				0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */,
+				0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */,
+				0C60D3AB2C807E7500CC67A8 /* AudioQueuePlayer.m */,
+				0C60D3B22C807E7800CC67A8 /* AudioSystemError.h */,
+				0C60D3AA2C807E7400CC67A8 /* MetadataCollector.h */,
+				0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */,
+				0C60D3B12C807E7700CC67A8 /* PacketQueue.h */,
+				0C60D3A82C807E7300CC67A8 /* PacketQueue.m */,
+				0C60D3A52C807E7100CC67A8 /* SAAudioSystem.h */,
 				0CBDC9C3224B83090026D657 /* Player.h */,
 				0CBDC9C4224B83090026D657 /* Player.m */,
 				0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */,
@@ -99,7 +137,6 @@
 		0CBDC9C2224B7BE80026D657 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C38429D2265DF9000427A89 /* SAAudioSystem.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -132,6 +169,9 @@
 			dependencies = (
 			);
 			name = Sample;
+			packageProductDependencies = (
+				0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */,
+			);
 			productName = Sample;
 			productReference = 0CBDC9A9224B7BCA0026D657 /* Sample.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +199,9 @@
 				Base,
 			);
 			mainGroup = 0CBDC9A0224B7BCA0026D657;
+			packageReferences = (
+				0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */,
+			);
 			productRefGroup = 0CBDC9AA224B7BCA0026D657 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -192,10 +235,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CBDC9C5224B83090026D657 /* Player.m in Sources */,
+				0C60D3B82C807E7900CC67A8 /* AudioEqualizer.m in Sources */,
+				0C60D3BA2C807E7900CC67A8 /* MetadataCollector.m in Sources */,
+				0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */,
 				0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */,
 				0CBDC9BC224B7BCC0026D657 /* main.m in Sources */,
+				0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */,
+				0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */,
+				0C60D3B72C807E7900CC67A8 /* AlbumArtExtractor.m in Sources */,
 				0C197514224FCD0C0071223C /* Track.m in Sources */,
 				0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */,
+				0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +439,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kewlbear/FFmpeg-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */;
+			productName = "FFmpeg-iOS";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0CBDC9A1224B7BCA0026D657 /* Project object */;
 }
