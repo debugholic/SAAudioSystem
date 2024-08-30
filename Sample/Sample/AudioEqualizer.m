@@ -1,6 +1,6 @@
 //
 //  AudioEqualizer.m
-//  AudioSystem
+//  FFmpegAudioPlayer
 //
 //  Created by DebugHolic on 18/03/2019.
 //  Copyright © 2019 Sidekick-Academy. All rights reserved.

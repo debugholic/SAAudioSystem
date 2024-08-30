@@ -65,6 +65,7 @@
 - (IBAction)touchUpPlayPause:(id)sender {
     if (self.state == AudioQueuePlayerStatePlaying) {
         [self.player pauseTrackWithSuccess:nil];
+
     } else {
         if (self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) {
             NSString *path = self.playQueue[self.playNumber];

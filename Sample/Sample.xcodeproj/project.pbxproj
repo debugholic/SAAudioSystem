@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,9 @@
 		0CBDC9B9224B7BCC0026D657 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */; };
 		0CBDC9BC224B7BCC0026D657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9BB224B7BCC0026D657 /* main.m */; };
 		0CBDC9C5224B83090026D657 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9C4224B83090026D657 /* Player.m */; };
+		0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3A62C815F770018C375 /* AudioPlayer.swift */; };
+		0CDFE3AC2C8164450018C375 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* ContentView.swift */; };
+		0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */; };
 		0CED1461225E152E00849BB8 /* Minuet in G.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145C225E152D00849BB8 /* Minuet in G.mp3 */; };
 		0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */; };
 		0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */; };
@@ -35,7 +38,6 @@
 		0C197513224FCD0C0071223C /* Track.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		0C197515225114F80071223C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumArtExtractor.h; sourceTree = "<group>"; };
-		0C60D3A52C807E7100CC67A8 /* SAAudioSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
 		0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioDecoder.m; sourceTree = "<group>"; };
 		0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueuePlayer.h; sourceTree = "<group>"; };
 		0C60D3A82C807E7300CC67A8 /* PacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketQueue.m; sourceTree = "<group>"; };
@@ -61,6 +63,10 @@
 		0CBDC9BB224B7BCC0026D657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0CBDC9C3224B83090026D657 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		0CBDC9C4224B83090026D657 /* Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Bridging-Header.h"; sourceTree = "<group>"; };
+		0CDFE3A62C815F770018C375 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		0CDFE3AA2C8164450018C375 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAudioPlayerApp.swift; sourceTree = "<group>"; };
 		0CED145C225E152D00849BB8 /* Minuet in G.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Minuet in G.mp3"; sourceTree = "<group>"; };
 		0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nocturne in C# minor.mp3"; sourceTree = "<group>"; };
 		0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pavane for Dead Princess.mp3"; sourceTree = "<group>"; };
@@ -115,13 +121,15 @@
 				0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */,
 				0C60D3B12C807E7700CC67A8 /* PacketQueue.h */,
 				0C60D3A82C807E7300CC67A8 /* PacketQueue.m */,
-				0C60D3A52C807E7100CC67A8 /* SAAudioSystem.h */,
 				0CBDC9C3224B83090026D657 /* Player.h */,
 				0CBDC9C4224B83090026D657 /* Player.m */,
 				0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */,
 				0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */,
 				0CBDC9AF224B7BCA0026D657 /* ViewController.h */,
 				0CBDC9B0224B7BCA0026D657 /* ViewController.m */,
+				0CDFE3A62C815F770018C375 /* AudioPlayer.swift */,
+				0CDFE3AA2C8164450018C375 /* ContentView.swift */,
+				0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */,
 				0CBDC9B2224B7BCA0026D657 /* Main.storyboard */,
 				0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */,
 				0C197515225114F80071223C /* Assets.xcassets */,
@@ -130,6 +138,7 @@
 				0C197512224FCD0C0071223C /* Track.h */,
 				0C197513224FCD0C0071223C /* Track.m */,
 				0CED1466225E153500849BB8 /* Sample music */,
+				0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -187,11 +196,12 @@
 				TargetAttributes = {
 					0CBDC9A8224B7BCA0026D657 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1540;
 					};
 				};
 			};
 			buildConfigurationList = 0CBDC9A4224B7BCA0026D657 /* Build configuration list for PBXProject "Sample" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -240,11 +250,14 @@
 				0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */,
 				0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */,
 				0CBDC9BC224B7BCC0026D657 /* main.m in Sources */,
+				0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */,
 				0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */,
 				0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */,
 				0C60D3B72C807E7900CC67A8 /* AlbumArtExtractor.m in Sources */,
 				0C197514224FCD0C0071223C /* Track.m in Sources */,
+				0CDFE3AC2C8164450018C375 /* ContentView.swift in Sources */,
 				0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */,
+				0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */,
 				0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -375,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -387,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82P75Q2F2K;
 				INFOPLIST_FILE = Sample/Info.plist;
@@ -396,6 +410,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sidekick.academy.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -404,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82P75Q2F2K;
 				INFOPLIST_FILE = Sample/Info.plist;
@@ -413,6 +431,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sidekick.academy.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sample/Sample-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

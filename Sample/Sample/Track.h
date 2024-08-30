@@ -6,8 +6,8 @@
 //  Copyright © 2019 Sidekick-Academy. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SAAudioSystem.h"
+#import <UIKit/UIKit.h>
+#import "AudioMetadata.h"
 
 @interface Track : NSObject
 

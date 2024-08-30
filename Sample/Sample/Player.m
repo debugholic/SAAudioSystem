@@ -1,6 +1,6 @@
 //
 //  Player.m
-//  Sample
+//  FFmpegAudioPlayer
 //
 //  Created by DebugHolic on 27/03/2019.
 //  Copyright © 2019 Sidekick-Academy. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "Player.h"
 #import <AVFoundation/AVFoundation.h>
-#import "SAAudioSystem.h"
+#import "AudioQueuePlayer.h"
 
 @interface Player() <AudioQueuePlayerDelegate>
 
