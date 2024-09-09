@@ -27,7 +27,7 @@ struct Button: View {
     }
 }
 
-struct ContentView: View {
+struct PlayerView: View {
     var player: AudioPlayer = {
         var player = AudioPlayer()
         player.playlist = []
@@ -57,11 +57,11 @@ struct ContentView: View {
                     Text("Artist")
                         .font(.title3)
                     HStack(spacing: 36) {
-                        Button(action: { }, imageName: "previous")
+                        Button(action: { }, imageName: "reverse")
                             .frame(width: 50, height: 50)
-                        Button(action: { }, imageName: "free-icon-pause-button-6671250")
+                        Button(action: { }, imageName: "pause")
                             .frame(width: 50, height: 50)
-                        Button(action: { }, imageName: "skip")
+                        Button(action: { }, imageName: "forward")
                             .frame(width: 50, height: 50)
                     }
                     .padding(EdgeInsets(top: 8, leading: 8, bottom: 16, trailing: 8))
@@ -87,7 +87,7 @@ struct ContentView: View {
 struct NavigationBar: View {
     var body: some View {
         HStack {
-            Button(action: { }, imageName: "free-icon-smartphone-4611388")
+            Button(action: { }, imageName: "musicfile")
             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             Spacer()
         }
@@ -97,10 +97,10 @@ struct NavigationBar: View {
 struct BottomBar: View {
     var body: some View {
         HStack {
-            Button(action: { }, imageName: "free-icon-equalizer-6671543")
+            Button(action: { }, imageName: "equalizer")
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             Spacer()
-            Button(action: { }, imageName: "free-icon-playlist-6671338")
+            Button(action: { }, imageName: "playlist")
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
 
         }
@@ -108,5 +108,5 @@ struct BottomBar: View {
 }
 
 #Preview {
-    ContentView()
+    PlayerView()
 }

@@ -24,13 +24,14 @@
 		0CBDC9BC224B7BCC0026D657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9BB224B7BCC0026D657 /* main.m */; };
 		0CBDC9C5224B83090026D657 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9C4224B83090026D657 /* Player.m */; };
 		0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3A62C815F770018C375 /* AudioPlayer.swift */; };
-		0CDFE3AC2C8164450018C375 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* ContentView.swift */; };
+		0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* PlayerView.swift */; };
 		0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */; };
 		0CED1461225E152E00849BB8 /* Minuet in G.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145C225E152D00849BB8 /* Minuet in G.mp3 */; };
 		0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */; };
 		0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */; };
 		0CED1464225E152E00849BB8 /* Carmen Habanera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */; };
 		0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED1460225E152D00849BB8 /* Canon in D.mp3 */; };
+		0CF7E71A2C8EEEE400CE0B62 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,13 +66,14 @@
 		0CBDC9C4224B83090026D657 /* Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0CDFE3A62C815F770018C375 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		0CDFE3AA2C8164450018C375 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0CDFE3AA2C8164450018C375 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAudioPlayerApp.swift; sourceTree = "<group>"; };
 		0CED145C225E152D00849BB8 /* Minuet in G.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Minuet in G.mp3"; sourceTree = "<group>"; };
 		0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nocturne in C# minor.mp3"; sourceTree = "<group>"; };
 		0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pavane for Dead Princess.mp3"; sourceTree = "<group>"; };
 		0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carmen Habanera.mp3"; sourceTree = "<group>"; };
 		0CED1460225E152D00849BB8 /* Canon in D.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Canon in D.mp3"; sourceTree = "<group>"; };
+		0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,8 @@
 				0CBDC9AF224B7BCA0026D657 /* ViewController.h */,
 				0CBDC9B0224B7BCA0026D657 /* ViewController.m */,
 				0CDFE3A62C815F770018C375 /* AudioPlayer.swift */,
-				0CDFE3AA2C8164450018C375 /* ContentView.swift */,
+				0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */,
+				0CDFE3AA2C8164450018C375 /* PlayerView.swift */,
 				0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */,
 				0CBDC9B2224B7BCA0026D657 /* Main.storyboard */,
 				0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */,
@@ -253,9 +256,10 @@
 				0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */,
 				0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */,
 				0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */,
+				0CF7E71A2C8EEEE400CE0B62 /* PlayerViewModel.swift in Sources */,
 				0C60D3B72C807E7900CC67A8 /* AlbumArtExtractor.m in Sources */,
 				0C197514224FCD0C0071223C /* Track.m in Sources */,
-				0CDFE3AC2C8164450018C375 /* ContentView.swift in Sources */,
+				0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */,
 				0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */,
 				0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */,
 				0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */,
