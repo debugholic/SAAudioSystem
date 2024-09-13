@@ -28,12 +28,9 @@ struct Button: View {
 }
 
 struct PlayerView: View {
-    var player: AudioPlayer = {
-        var player = AudioPlayer()
-        player.playlist = []
-        return player
-    }()
-    
+    var viewModel = PlayerViewModel()
+    @State private var isPlaying : Bool = false
+
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             NavigationBar()
@@ -59,8 +56,31 @@ struct PlayerView: View {
                     HStack(spacing: 36) {
                         Button(action: { }, imageName: "reverse")
                             .frame(width: 50, height: 50)
-                        Button(action: { }, imageName: "pause")
-                            .frame(width: 50, height: 50)
+                        Button(action: {
+                            switch viewModel.state {
+                            case .initialized:
+                                if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
+                                    viewModel.setPlaylist([Track(url: path)])
+                                }
+                                viewModel.playAudio()
+                                isPlaying = true
+                                break
+                                
+                            case .ready, .paused, .stopped:
+                                viewModel.playAudio()
+                                isPlaying = true
+                                break
+                                
+                            case .playing:
+                                viewModel.pauseAudio()
+                                isPlaying = false
+                                break
+                                
+                            default:
+                                break
+                            }
+                        }, imageName: isPlaying ? "pause" : "play")
+                        .frame(width: 50, height: 50)
                         Button(action: { }, imageName: "forward")
                             .frame(width: 50, height: 50)
                     }
@@ -102,7 +122,6 @@ struct BottomBar: View {
             Spacer()
             Button(action: { }, imageName: "playlist")
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-
         }
     }
 }
