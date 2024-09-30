@@ -324,11 +324,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
 
 - (void)setAdjustEQ:(BOOL)adjustEQ {
     if (_adjustEQ != adjustEQ) {
-        if (adjustEQ) {
-            _eqFlag = AudioEqualizerFlagOn;
-        } else {
-            _eqFlag = AudioEqualizerFlagOff;
-        }
+        _eqFlag = adjustEQ ? AudioEqualizerFlagOn : AudioEqualizerFlagOff;
     }
     _adjustEQ = adjustEQ;
 }

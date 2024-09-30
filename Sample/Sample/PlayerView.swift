@@ -28,8 +28,8 @@ struct Button: View {
 }
 
 struct PlayerView: View {
-    var viewModel = PlayerViewModel()
-    @State private var isPlaying : Bool = false
+    @ObservedObject var viewModel = PlayerViewModel()
+    @State private var isEditing = false
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -38,51 +38,106 @@ struct PlayerView: View {
                 .background(Color.black)
             GeometryReader { geometry in
                 VStack {
-                    Image("")
+                    Image(uiImage: viewModel.albumArt ?? UIImage())
+                        .resizable()
                         .frame(width: min(geometry.size.width, geometry.size.height),
                                height: min(geometry.size.width, geometry.size.height))
-                        .background(Color.red)
+                        .background(Color.gray.opacity(0.7))
+                        .cornerRadius(16)
+                        .scaledToFill()
+                    
+                    Slider(value: $viewModel.duration, in: 0...Double(viewModel.mediaInfo?.duration ?? 0)) {
+                        viewModel.isEditSeeking = $0
+                        if !$0 {
+                            viewModel.seek(to: viewModel.duration)
+                            print("ㅁㄴㅇㅁaaaa")
+                        }
+                    }
+                    HStack {
+                        Text(viewModel.duration.dateFormatted())
+                            .font(.system(size: 12))
+                        Spacer()
+                        Text(Double(viewModel.mediaInfo?.duration ?? 0).dateFormatted())
+                            .font(.system(size: 12))
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                    
                     HStack(spacing: 4) {
-                        Text("-")
+                        if let bitdepth = viewModel.mediaInfo?.bitdepth {
+                            Text("\(bitdepth)bit")
+                        } else {
+                            Text("-")
+                        }
+
                         Text("/")
-                        Text("-")
+
+                        if let samplerate = viewModel.mediaInfo?.samplerate {
+                            Text((samplerate > 1000 ? String(format: "%.1fk", Double(samplerate)/Double(1000)) : "\(samplerate)") + "Hz")
+                        } else {
+                            Text("-")
+                        }
                     }
                     .padding(EdgeInsets(top: 32, leading: 8, bottom: 16, trailing: 8))
-                    Text("Title")
+                    
+                    Text(viewModel.mediaInfo?.title ?? "Title")
                         .font(.title)
                         .fontWeight(.bold)
-                    Text("Artist")
+                    
+                    Text(viewModel.mediaInfo?.artist ?? "Artist")
                         .font(.title3)
+                    
                     HStack(spacing: 36) {
-                        Button(action: { }, imageName: "reverse")
-                            .frame(width: 50, height: 50)
+                        Button(action: {
+                            viewModel.prev()
+                        }, imageName: "reverse")
+                        .frame(width: 50, height: 50)
+                        
                         Button(action: {
                             switch viewModel.state {
-                            case .initialized:
-                                if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
-                                    viewModel.setPlaylist([Track(url: path)])
+                            case .initialized, .stopped:
+                                var playlist = [Track]()
+                                if let path = Bundle.main.path(forResource: "Pavane for Dead Princess", ofType: "mp3") {
+                                    playlist.append(Track(url: path))
                                 }
-                                viewModel.playAudio()
-                                isPlaying = true
+                                if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
+                                    playlist.append(Track(url: path))
+                                }
+                                if let path = Bundle.main.path(forResource: "Nocturne in C# minor", ofType: "mp3") {
+                                    playlist.append(Track(url: path))
+                                }
+                                if let path = Bundle.main.path(forResource: "Carmen Habanera", ofType: "mp3") {
+                                    playlist.append(Track(url: path))
+                                }
+                                if let path = Bundle.main.path(forResource: "Minuet in G", ofType: "mp3") {
+                                    playlist.append(Track(url: path))
+                                }
+                                viewModel.playlist = playlist
+                                viewModel.play()
                                 break
                                 
-                            case .ready, .paused, .stopped:
-                                viewModel.playAudio()
-                                isPlaying = true
+                            case .ready:
+                                viewModel.play()
+                                break
+                                
+                            case .paused:
+                                viewModel.resume()
                                 break
                                 
                             case .playing:
-                                viewModel.pauseAudio()
-                                isPlaying = false
+                                viewModel.pause()
                                 break
                                 
                             default:
                                 break
                             }
-                        }, imageName: isPlaying ? "pause" : "play")
+                        }, imageName: viewModel.state == .playing ? "pause" : "play" )
                         .frame(width: 50, height: 50)
-                        Button(action: { }, imageName: "forward")
-                            .frame(width: 50, height: 50)
+                        
+                        Button(action: {
+                            viewModel.next()
+                            
+                        }, imageName: "forward")
+                        .frame(width: 50, height: 50)
                     }
                     .padding(EdgeInsets(top: 8, leading: 8, bottom: 16, trailing: 8))
                 }
@@ -91,16 +146,6 @@ struct PlayerView: View {
             Divider()
             BottomBar()
         }
-            
-            //                NavigationBar()
-            //                    .frame()
-            //                    .background(Color.red)
-            //                Button("버튼") {
-            //                    if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
-            //                        player.playlist = [Track(url: path)]
-            //                        player.play()
-            //                    }
-            //                }
     }
 }
 
@@ -129,3 +174,5 @@ struct BottomBar: View {
 #Preview {
     PlayerView()
 }
+
+

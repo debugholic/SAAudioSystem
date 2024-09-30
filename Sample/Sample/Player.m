@@ -38,8 +38,7 @@ const NSUInteger MaxVolume = 100;
     dispatch_queue_t insertQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_async(insertQueue, ^{
         NSError *error = nil;
-        if ((self.state == AudioQueuePlayerStateStopped
-            || self.state == AudioQueuePlayerStateInitialized) && URL) {
+        if ((self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) && URL) {
             [self.audioPlayer insertTrack:URL withError:&error];
             if (successBlock && !error) {
                 self.curTrack = [Track trackWithMetadata:self.audioPlayer.metadata albumArt:self.audioPlayer.albumArt];
