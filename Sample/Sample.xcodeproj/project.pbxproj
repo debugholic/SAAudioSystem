@@ -17,6 +17,7 @@
 		0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */; };
 		0C60D3BA2C807E7900CC67A8 /* MetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */; };
 		0C60D3BD2C807F5100CC67A8 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */; };
+		0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97AD8C2CDC6461002204BF /* EqualizerView.swift */; };
 		0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */; };
 		0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B0224B7BCA0026D657 /* ViewController.m */; };
 		0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B2224B7BCA0026D657 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		0C60D3B12C807E7700CC67A8 /* PacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketQueue.h; sourceTree = "<group>"; };
 		0C60D3B22C807E7800CC67A8 /* AudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSystemError.h; sourceTree = "<group>"; };
 		0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataCollector.m; sourceTree = "<group>"; };
+		0C97AD8C2CDC6461002204BF /* EqualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerView.swift; sourceTree = "<group>"; };
 		0CBDC9A9224B7BCA0026D657 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -132,14 +134,15 @@
 				0CDFE3A62C815F770018C375 /* AudioPlayer.swift */,
 				0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */,
 				0CDFE3AA2C8164450018C375 /* PlayerView.swift */,
+				0C97AD8C2CDC6461002204BF /* EqualizerView.swift */,
 				0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */,
 				0CBDC9B2224B7BCA0026D657 /* Main.storyboard */,
 				0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */,
 				0C197515225114F80071223C /* Assets.xcassets */,
 				0CBDC9BA224B7BCC0026D657 /* Info.plist */,
 				0CBDC9BB224B7BCC0026D657 /* main.m */,
-				0C197512224FCD0C0071223C /* Track.h */,
 				0C197513224FCD0C0071223C /* Track.m */,
+				0C197512224FCD0C0071223C /* Track.h */,
 				0CED1466225E153500849BB8 /* Sample music */,
 				0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */,
 			);
@@ -261,6 +264,7 @@
 				0C197514224FCD0C0071223C /* Track.m in Sources */,
 				0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */,
 				0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */,
+				0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */,
 				0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */,
 				0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */,
 			);

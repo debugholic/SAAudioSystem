@@ -64,7 +64,21 @@ class PlayerViewModel: ObservableObject {
     }
     var playingIndex: Int = 0
     var subscriptions = Set<AnyCancellable>()
-
+    var equalizer: AudioEqualizer? {
+        set { player.equalizer = newValue }
+        get { player.equalizer }
+    }
+    
+    var isEqualizerEnabled: Bool {
+        set {
+            equalizer = newValue ? AudioEqualizer() : nil
+            UserDefaults.standard.set(newValue, forKey: "isEqualizerEnabled")
+            
+        } get {
+            UserDefaults.standard.bool(forKey: "isEqualizerEnabled")
+        }
+    }
+    
     init() {
         player.duration.sink { duration in
             DispatchQueue.main.async {
@@ -107,7 +121,7 @@ class PlayerViewModel: ObservableObject {
     }
         
     func play() {
-        player.play()
+        try? player.play()
     }
     
     func resume() {
@@ -123,19 +137,27 @@ class PlayerViewModel: ObservableObject {
     }
     
     func next() {
+        let state = self.state
         if playingIndex < (playlist?.count ?? 0) - 1 {
             playingIndex += 1
             player.stop()
         }
-        play()
+        insert()
+        if state == .playing {
+            play()
+        }
     }
     
     func prev() {
-        if duration > 3  && playingIndex > 1 {
+        let state = self.state
+        player.stop()
+        if duration < 3  && playingIndex >= 1 {
             playingIndex -= 1
-            player.stop()
         }
-        play()
+        insert()
+        if state == .playing {
+            play()
+        }
     }
     
     func seek(to target: TimeInterval) {

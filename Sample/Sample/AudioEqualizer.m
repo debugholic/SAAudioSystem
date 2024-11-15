@@ -25,6 +25,14 @@ NSInteger const MAX_GAIN = 10.0;
 
 @implementation AudioEqualizer
 
++ (NSArray<NSNumber *> * _Nonnull)defaultBands_10 {
+    return @[@31.5, @63.0, @125.0, @250.0, @500.0, @1000.0, @2000.0, @4000.0, @8000.0, @16000.0];
+}
+
++ (NSArray<NSNumber *> * _Nonnull)defaultBands_20 {
+    return @[@30.0, @45.0, @60.0, @90.0, @120.0, @180.0, @250.0, @500.0, @750.0, @1000.0, @1500.0, @2000.0, @3000.0, @4000.0, @6000.0, @8000.0, @12000.0, @140000.0, @16000.0];
+}
+
 - (instancetype)initWithDefautBands_10 {
     self = [super init];
     if (self) {
@@ -50,11 +58,32 @@ NSInteger const MAX_GAIN = 10.0;
     return self;
 }
 
+- (void)setBands:(NSArray<NSNumber *> *)bands {
+    _bands = bands;
+    NSMutableArray *gains = [NSMutableArray arrayWithCapacity: _bands.count];
+    for (int i=0; i<gains.count; i++) {
+        gains[i] = @0.0;
+    }
+    NSMutableArray *qFactors = [NSMutableArray arrayWithCapacity: _bands.count];
+    for (int i=0; i<qFactors.count; i++) {
+        qFactors[i] = @2.0;
+    }
+    _gains = gains;
+    _qFactors = qFactors;
+    _preamp = @(-6.0);
+}
+
 - (void)setQFactors:(NSArray<NSNumber *> *)qFactors {
+    if (_qFactors.count != qFactors.count) {
+        return;
+    }
     _qFactors = qFactors;
 }
 
 - (void)setGains:(NSArray<NSNumber *> *)gains {
+    if (_gains.count != gains.count) {
+        return;
+    }
     _gains = gains;
 }
 
@@ -206,7 +235,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     }
 }
 
-- (int)adjust:(void *)data length:(size_t)length flag:(AudioEqualizerFlag)flag {
+- (int)filter:(void *)data length:(size_t)length {
     if (_metadata) {
         return -1;
     }
@@ -272,43 +301,27 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
             av_frame_free(&sink);
             return 0;
         }
-
-        if (flag == AudioEqualizerFlagNone) {
-            if (_metadata.bitdepth == 24) {
-                memcpy_24_to_32(data, (int32_t *)sink->data[0], nb_samples);
-            } else {
-                memcpy(data, sink->data[0], buffer_size);
-            }
+        
+        void *origin = calloc(1, buffer_size);
+        memcpy(origin, data, buffer_size);
+        
+        if (_metadata.bitdepth == 24) {
+            memcpy_24_to_32(data, (int32_t *)sink->data[0], nb_samples);
         } else {
-            void *origin = calloc(1, buffer_size);
-            memcpy(origin, data, buffer_size);
-
-            if (_metadata.bitdepth == 24) {
-                memcpy_24_to_32(data, (int32_t *)sink->data[0], nb_samples);
-            } else {
-                memcpy(data, sink->data[0], buffer_size);
-            }
-
-            for (int i = 0; i < nb_samples; i += channels) {
-                double r = (double)i / (nb_samples-1);
-                for (int j = 0; j < channels; j++) {
-                    if (_metadata.bitdepth == 16) {
-                        if (flag == AudioEqualizerFlagOn) {
-                            *(int16_t *)(data+i+j) = (1-r)*(*(int16_t *)(origin+i+j)) + r*(*(int16_t *)(data+i+j));
-                        } else {
-                            *(int16_t *)(data+i+j) = (1-r)*(*(int16_t *)(data+i+j)) + r*(*(int16_t *)(origin+i+j));
-                        }
-                    } else {
-                        if (flag == AudioEqualizerFlagOn) {
-                            *(int32_t *)(data+i+j) = (1-r)*(*(int32_t *)(origin+i+j)) + r*(*(int32_t *)(data+i+j));
-                        } else {
-                            *(int32_t *)(data+i+j) = (1-r)*(*(int32_t *)(data+i+j)) + r*(*(int32_t *)(origin+i+j));
-                        }
-                    }
+            memcpy(data, sink->data[0], buffer_size);
+        }
+        
+        for (int i = 0; i < nb_samples; i += channels) {
+            double r = (double)i / (nb_samples-1);
+            for (int j = 0; j < channels; j++) {
+                if (_metadata.bitdepth == 16) {
+                    *(int16_t *)(data+i+j) = (1-r)*(*(int16_t *)(origin+i+j)) + r*(*(int16_t *)(data+i+j));
+                } else {
+                    *(int32_t *)(data+i+j) = (1-r)*(*(int32_t *)(origin+i+j)) + r*(*(int32_t *)(data+i+j));
                 }
             }
-            av_free(origin);
         }
+        av_free(origin);
         av_frame_unref(sink);
         av_frame_free(&sink);
     
@@ -395,5 +408,5 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
         avfilter_graph_free(&_next);
     }
 }
-    
+
 @end

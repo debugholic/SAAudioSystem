@@ -13,7 +13,7 @@ protocol AudioPlayable {
     var url: String { get }
 }
 
-class AudioPlayer: NSObject {
+final class AudioPlayer: NSObject {
     enum State {
         case initialized
         case ready
@@ -28,14 +28,18 @@ class AudioPlayer: NSObject {
         player.delegate = self
         return player
     }()
-
+    
+    var equalizer: AudioEqualizer? {
+        set { player.equalizer = newValue }
+        get { player.equalizer  }
+    }
     var state = PassthroughSubject<State, Never>()
     var duration = PassthroughSubject<Double, Never>()
     var progress = PassthroughSubject<Double, Never>()
     var metadata = PassthroughSubject<AudioMetadata, Never>()
     var albumArt = PassthroughSubject<UIImage?, Never>()
     var error = PassthroughSubject<Error?, Never>()
-
+    
     func insertTrack(_ track: any AudioPlayable) {
         var error: NSError?
         player.insertTrack(track.url, withError: &error)
@@ -44,7 +48,7 @@ class AudioPlayer: NSObject {
         self.error.send(error)
     }
     
-    func play() {
+    func play() throws {
         var error: NSError?
         player.playWithError(&error)
         self.error.send(error)
@@ -70,20 +74,22 @@ class AudioPlayer: NSObject {
     
     func seek(to target: TimeInterval) {
         var error: NSError?
-        print(target, Int64(ceil(target)))
         player.seek(toTarget: Int64(ceil(target)), withError: &error)
         self.error.send(error)
     }
-    
+        
 //    - (void)seekToTarget:(int64_t)targetTime withError:(NSError *_Nullable *_Nonnull)error;
-//    - (void)adjustEQ:(BOOL)adjust;
+//    func setEqualizerOn(_ isOn: Bool) {
+//        player.equalizer
+//    player.equalizer.isOn
+        
+//    }
 //    - (void)terminateWithError:(NSError *_Nullable *_Nonnull)error;
 
 }
 
 extension AudioPlayer: AudioQueuePlayerDelegate {
     func audioPlayer(_ audioPlayer: AudioQueuePlayer, didTrackPlayingForDuration duration: Float64) {
-//        print(duration)
         self.duration.send(duration)
     }
     

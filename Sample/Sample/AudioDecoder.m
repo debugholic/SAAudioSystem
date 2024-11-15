@@ -35,7 +35,6 @@
 @property (assign, nonatomic) BOOL stopDecode;
 @property (assign, nonatomic) BOOL stopRead;
 @property (assign, nonatomic) BOOL seekable;
-@property (assign, nonatomic) AudioEqualizerFlag eqFlag;
 
 @end
 
@@ -57,9 +56,6 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         _stopDecode = NO;
         _endOfFile = NO;
         _seekable = NO;
-        _equalizer = [[AudioEqualizer alloc] initWithDefautBands_10];
-        _adjustEQ = NO;
-        _eqFlag = AudioEqualizerFlagNone;
     }
     return self;
 }
@@ -69,7 +65,6 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         *error = [NSError errorWithDomain:AudioDecoderErrorDomain
                                      code:AudioSystemErrorNotFoundSourcePath
                                  userInfo:@{NSLocalizedDescriptionKey:@"Could not found source path."}];
-
         return;
     }
 
@@ -91,6 +86,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
                                          code:AudioSystemErrorNotOpenFile
                                      userInfo:@{NSLocalizedDescriptionKey:@"Could not open an input file."}];
         }
+        [self close];
         return;
     }
     
@@ -113,6 +109,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         *error = [NSError errorWithDomain:AudioDecoderErrorDomain
                                      code:AudioSystemErrorNotFoundAudioStream
                                  userInfo:@{NSLocalizedDescriptionKey:@"Could not found any audio streams."}];
+        [self close];
         return;
     }
     
@@ -130,6 +127,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         *error = [NSError errorWithDomain:AudioDecoderErrorDomain
                                      code:AudioSystemErrorNotOpenCodec
                                  userInfo:@{NSLocalizedDescriptionKey:@"Could not open codec."}];
+        [self close];
         return;
     }
     
@@ -139,20 +137,17 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         *error = [NSError errorWithDomain:AudioDecoderErrorDomain
                                      code:AudioSystemErrorNotOpenCodec
                                  userInfo:@{NSLocalizedDescriptionKey:@"Could not open codec."}];
+        [self close];
         return;
     }
     
     _dataFormat.mSampleRate = _codecContext->sample_rate;
-    _dataFormat.mChannelsPerFrame = _codecContext->channels;
+    _dataFormat.mChannelsPerFrame = _codecContext->ch_layout.nb_channels;
     _dataFormat.mFramesPerPacket = 1;
     _dataFormat.mReserved = 0;
     _dataFormat.mFormatID = kAudioFormatLinearPCM;
     _dataFormat.mFormatFlags = kAudioFormatFlagIsPacked;
-    
-//    if (_codecContext->channel_layout == 0) {
-//        _codecContext->channel_layout = av_get_default_channel_layout(_codecContext->channels);
-//    }
-    
+        
     enum AVSampleFormat outDecodeFormat = AV_SAMPLE_FMT_S16;
     switch(_codecContext->sample_fmt) {
         case AV_SAMPLE_FMT_U8P :
@@ -164,6 +159,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
             
         case AV_SAMPLE_FMT_S16P :
             outDecodeFormat = AV_SAMPLE_FMT_S16;
+     
         case AV_SAMPLE_FMT_S16 :
             _dataFormat.mFormatFlags |= kAudioFormatFlagIsSignedInteger;
             _dataFormat.mBitsPerChannel = 16;
@@ -171,6 +167,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
             
         case AV_SAMPLE_FMT_S32P :
             outDecodeFormat = AV_SAMPLE_FMT_S32;
+      
         case AV_SAMPLE_FMT_S32 :
             _dataFormat.mFormatFlags |= kAudioFormatFlagIsSignedInteger;
             _dataFormat.mBitsPerChannel = 32;
@@ -178,6 +175,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
             
         case AV_SAMPLE_FMT_FLTP :
             outDecodeFormat = AV_SAMPLE_FMT_FLT;
+      
         case AV_SAMPLE_FMT_FLT :
             _dataFormat.mFormatFlags |= kAudioFormatFlagIsFloat;
             _dataFormat.mBitsPerChannel = 32;
@@ -200,13 +198,22 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         || _codecContext->sample_fmt == AV_SAMPLE_FMT_FLTP
         || _codecContext->sample_fmt == AV_SAMPLE_FMT_DBL
         || _codecContext->sample_fmt == AV_SAMPLE_FMT_DBLP) {
-        _swrContext = swr_alloc_set_opts( NULL,
-                                         _codecContext->channel_layout,
-                                         outDecodeFormat,
-                                         _codecContext->sample_rate,
-                                         _codecContext->channel_layout,
-                                         _codecContext->sample_fmt,
-                                         _codecContext->sample_rate, 0, NULL );
+        
+        int ret = swr_alloc_set_opts2( &_swrContext,
+                                       &_codecContext->ch_layout,
+                                       outDecodeFormat,
+                                       _codecContext->sample_rate,
+                                       &_codecContext->ch_layout,
+                                       _codecContext->sample_fmt,
+                                       _codecContext->sample_rate, 0, NULL );
+        
+        if (ret < 0) {
+            *error = [NSError errorWithDomain:AudioDecoderErrorDomain
+                                         code:AudioSystemErrorWhileDecoding
+                                     userInfo:@{NSLocalizedDescriptionKey:@"Could not convert."}];
+            [self close];
+            return;
+        }
         swr_init(_swrContext);
     }
 
@@ -322,13 +329,6 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
     }
 }
 
-- (void)setAdjustEQ:(BOOL)adjustEQ {
-    if (_adjustEQ != adjustEQ) {
-        _eqFlag = adjustEQ ? AudioEqualizerFlagOn : AudioEqualizerFlagOff;
-    }
-    _adjustEQ = adjustEQ;
-}
-
 - (BOOL)decodeFrameInAQBufferCapacity:(UInt32)bufferCapacity outAQBuffer:(UInt8 *)buffer inFrameSize:(UInt32 *)frameSize error:(NSError **)error {
     if (!_sourcePath || !buffer) {
         return NO;
@@ -375,11 +375,8 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
     // Non-planar data.
     if (!av_sample_fmt_is_planar(_codecContext->sample_fmt)
         && _codecContext->sample_fmt != AV_SAMPLE_FMT_DBL) {
-        if (_adjustEQ) {
-            [_equalizer adjust:_frame->data[0]+_frameRemainderIndex length:frameSize flag:_eqFlag];
-            if (_eqFlag != AudioEqualizerFlagNone) {
-                _eqFlag = AudioEqualizerFlagNone;
-            }
+        if (_equalizer) {
+            [_equalizer filter:_frame->data[0]+_frameRemainderIndex length:frameSize];
         }
         memcpy(buffer, _frame->data[0]+_frameRemainderIndex, frameSize);
     }
@@ -426,11 +423,8 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
                             _frame->nb_samples);
             }
 
-            if (_adjustEQ) {
-                [_equalizer adjust:cvtData+_frameRemainderIndex length:frameSize flag:_eqFlag];
-                if (_eqFlag != AudioEqualizerFlagNone) {
-                    _eqFlag = AudioEqualizerFlagNone;
-                }
+            if (_equalizer) {
+                [_equalizer filter:cvtData+_frameRemainderIndex length:frameSize];
             }
 
             memcpy(buffer, cvtData+_frameRemainderIndex, frameSize);
@@ -507,14 +501,18 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         if (packet->data != NULL) {
             av_packet_unref(packet);
         }
+
         if (ret == AVERROR(EAGAIN)) {
             [self drainPacket:error];
             return;
+
         } else if (ret == AVERROR_EOF) {
             _endOfFile = YES;
             return;
+
         } else if (ret < 0) {
             return;
+
         } else {
             return;
         }
@@ -531,6 +529,10 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
 
 - (int)drainPacket:(NSError **)error {
     int ret = 0;
+    if (_stopDecode) {
+        return -1;
+    }
+    
     ret = avcodec_receive_frame(_codecContext, _frame);
     
     if (ret == AVERROR(EAGAIN)) {

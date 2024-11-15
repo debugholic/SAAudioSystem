@@ -11,6 +11,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "AudioQueuePlayer.h"
 #import "AudioMetadata.h"
+#import "AudioEqualizer.h"
 
 typedef NS_ENUM(NSUInteger, AudioQueuePlayerState) {
     AudioQueuePlayerStateInitialized,
@@ -37,6 +38,7 @@ typedef NS_ENUM(NSUInteger, AudioQueuePlayerState) {
 @property (assign, nonatomic, readonly) AudioQueuePlayerState state;
 @property (assign, nonatomic, readonly) int64_t timeBase;
 @property (assign, nonatomic, readonly) BOOL finished;
+@property (strong, nonatomic, nullable) AudioEqualizer *equalizer;
 
 - (void)insertTrack:(NSString *_Nullable)path withError:(NSError *_Nullable *_Nonnull)error;
 - (void)playWithError:(NSError *_Nullable *_Nonnull)error;
@@ -44,7 +46,6 @@ typedef NS_ENUM(NSUInteger, AudioQueuePlayerState) {
 - (void)pauseWithError:(NSError *_Nullable *_Nonnull)error;
 - (void)resumeWithError:(NSError *_Nullable *_Nonnull)error;
 - (void)seekToTarget:(int64_t)targetTime withError:(NSError *_Nullable *_Nonnull)error;
-- (void)adjustEQ:(BOOL)adjust;
 - (void)terminateWithError:(NSError *_Nullable *_Nonnull)error;
 - (AudioMetadata *_Nonnull)metadata;
 - (UIImage *_Nullable)albumArt;

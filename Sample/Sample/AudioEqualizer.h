@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "AudioMetadata.h"
 
-typedef enum : NSUInteger {
-    AudioEqualizerFlagNone,
-    AudioEqualizerFlagOn,
-    AudioEqualizerFlagOff,
-} AudioEqualizerFlag;
-
 @interface AudioEqualizer : NSObject
+
++ (NSArray <NSNumber *> *_Nonnull)defaultBands_10;
++ (NSArray <NSNumber *> *_Nonnull)defaultBands_20;
 
 @property (strong, nonatomic, nonnull) NSArray <NSNumber *> *bands;
 @property (strong, nonatomic, nonnull) NSArray <NSNumber *> *gains;
@@ -23,8 +20,8 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic, nonnull) NSNumber *preamp;
 @property (strong, nonatomic, readonly, nullable) AudioMetadata *metadata;
 
-- (instancetype _Nonnull)initWithDefautBands_10;
-- (instancetype _Nonnull )initWithDefautBands_20;
-- (int)adjust:(void *_Nullable)data length:(size_t)length flag:(AudioEqualizerFlag)flag;
+
+- (instancetype _Nullable)initWithBands:(NSArray <NSNumber *> * _Nonnull)bands;
+- (int)filter:(void *_Nullable)data length:(size_t)length;
 
 @end

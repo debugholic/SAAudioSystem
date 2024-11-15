@@ -58,7 +58,7 @@ int packet_queue_get_packet(PacketQueue *q, AVPacket *packet) {
 
 		q->nb_packets--;
 		q->size -= packetTemp->pkt.size;
-		*packet = packetTemp->pkt;
+        *packet = packetTemp->pkt;
         av_free(packetTemp);
 		return TRUE;
 	}
@@ -74,10 +74,10 @@ int packet_queue_get_packet(PacketQueue *q, AVPacket *packet) {
 }
 
 void packet_queue_destroy(PacketQueue *q) {
-    AVPacket *packet = NULL;
+    AVPacket *packet = av_packet_alloc();
 	while (q->nb_packets > 0) {
 		packet_queue_get_packet(q, packet);
-        av_packet_unref( packet );
+        av_packet_unref(packet);
 	}
     q->pts = 0;
 }

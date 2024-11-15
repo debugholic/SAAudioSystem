@@ -218,7 +218,6 @@ UInt32 const PLAYBACK_BUFFERS = 3;
         [_decoder stop];
         return;
     }
-
     [_decoder stop];
     OSStatus errStop = AudioQueueStop(_queue, true);
     OSStatus errFlush = AudioQueueFlush(_queue);
@@ -537,10 +536,6 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
         }
         return;
     }
-}
-
-- (void)adjustEQ:(BOOL)adjust {
-    _decoder.adjustEQ = adjust;
 }
 
 - (AudioMetadata *)metadata {
