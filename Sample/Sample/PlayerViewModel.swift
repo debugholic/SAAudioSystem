@@ -64,14 +64,11 @@ class PlayerViewModel: ObservableObject {
     }
     var playingIndex: Int = 0
     var subscriptions = Set<AnyCancellable>()
-    var equalizer: AudioEqualizer? {
-        set { player.equalizer = newValue }
-        get { player.equalizer }
-    }
+    @Published var equalizer: AudioEqualizer = AudioEqualizer(values: AudioEqualizerValue.defaultBands10)
     
     var isEqualizerEnabled: Bool {
         set {
-            equalizer = newValue ? AudioEqualizer() : nil
+            player.equalizer = newValue ? equalizer : nil
             UserDefaults.standard.set(newValue, forKey: "isEqualizerEnabled")
             
         } get {
@@ -111,6 +108,7 @@ class PlayerViewModel: ObservableObject {
                 self.error = error
             }
         }.store(in: &subscriptions)
+        player.equalizer = equalizer
     }
     
     private func insert() {

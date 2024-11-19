@@ -17,23 +17,8 @@
 		0CD157A82C7F20F20089ED00 /* SAAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157702C7F20A10089ED00 /* SAAudioDecoder.m */; };
 		0CD157A92C7F20F20089ED00 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157792C7F20AE0089ED00 /* SAAudioMetadata.m */; };
 		0CD157AA2C7F20F20089ED00 /* SAPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1577B2C7F20AE0089ED00 /* SAPacketQueue.m */; };
-		0CD157AB2C7F20F20089ED00 /* SAAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157882C7F20D70089ED00 /* SAAudioPlayer.m */; };
-		0CD157AC2C7F20F20089ED00 /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1578C2C7F20E30089ED00 /* SAAudioEqualizer.m */; };
 		0CD157AD2C7F20F20089ED00 /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1576C2C7F207B0089ED00 /* SAAudioEqualizer.m */; };
 		0CD157AE2C7F20F20089ED00 /* SAAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157852C7F20D70089ED00 /* SAAudioPlayer.m */; };
-		0CD157AF2C7F20F20089ED00 /* SAAlbumArtExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1578F2C7F20E30089ED00 /* SAAlbumArtExtractor.m */; };
-		0CD157B02C7F20F20089ED00 /* SAMetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157912C7F20E30089ED00 /* SAMetadataCollector.m */; };
-		0CD157B12C7F20F20089ED00 /* SAAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157962C7F20E50089ED00 /* SAAudioDecoder.m */; };
-		0CD157B22C7F20F20089ED00 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1579D2C7F20F20089ED00 /* SAAudioMetadata.m */; };
-		0CD157B32C7F20F20089ED00 /* SAPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1579F2C7F20F20089ED00 /* SAPacketQueue.m */; };
-		0CD157B82C7F20FE0089ED00 /* SAAlbumArtExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157742C7F20A10089ED00 /* SAAlbumArtExtractor.m */; };
-		0CD157B92C7F20FE0089ED00 /* SAMetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157762C7F20A10089ED00 /* SAMetadataCollector.m */; };
-		0CD157BA2C7F20FE0089ED00 /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD1577F2C7F20BB0089ED00 /* SAAudioEqualizer.m */; };
-		0CD157BB2C7F20FE0089ED00 /* SAAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157822C7F20D70089ED00 /* SAAudioPlayer.m */; };
-		0CD157BC2C7F20FE0089ED00 /* SAAudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157992C7F20E50089ED00 /* SAAudioEqualizer.m */; };
-		0CD157BD2C7F20FE0089ED00 /* SAAudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157A22C7F20F20089ED00 /* SAAudioMetadata.m */; };
-		0CD157BE2C7F20FE0089ED00 /* SAPacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157A42C7F20F20089ED00 /* SAPacketQueue.m */; };
-		0CD157BF2C7F20FE0089ED00 /* SAAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD157B52C7F20F20089ED00 /* SAAudioDecoder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,47 +38,13 @@
 		0CD1576C2C7F207B0089ED00 /* SAAudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
 		0CD1576F2C7F20A10089ED00 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
 		0CD157702C7F20A10089ED00 /* SAAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioDecoder.m; sourceTree = "<group>"; };
-		0CD157722C7F20A10089ED00 /* SAAudioSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAudioSystem.h; path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/SAAudioSystem.h; sourceTree = "<group>"; };
-		0CD157732C7F20A10089ED00 /* SAAlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumArtExtractor.h; sourceTree = "<group>"; };
-		0CD157742C7F20A10089ED00 /* SAAlbumArtExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumArtExtractor.m; sourceTree = "<group>"; };
-		0CD157752C7F20A10089ED00 /* SAMetadataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMetadataCollector.h; sourceTree = "<group>"; };
-		0CD157762C7F20A10089ED00 /* SAMetadataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMetadataCollector.m; sourceTree = "<group>"; };
 		0CD157782C7F20AE0089ED00 /* SAAudioMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
 		0CD157792C7F20AE0089ED00 /* SAAudioMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
 		0CD1577A2C7F20AE0089ED00 /* SAPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPacketQueue.h; sourceTree = "<group>"; };
 		0CD1577B2C7F20AE0089ED00 /* SAPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPacketQueue.m; sourceTree = "<group>"; };
-		0CD1577D2C7F20AE0089ED00 /* SAAudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystemError.h; sourceTree = "<group>"; };
-		0CD1577F2C7F20BB0089ED00 /* SAAudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
-		0CD157812C7F20D70089ED00 /* SAAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioPlayer.h; sourceTree = "<group>"; };
-		0CD157822C7F20D70089ED00 /* SAAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioPlayer.m; sourceTree = "<group>"; };
 		0CD157842C7F20D70089ED00 /* SAAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioPlayer.h; sourceTree = "<group>"; };
 		0CD157852C7F20D70089ED00 /* SAAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioPlayer.m; sourceTree = "<group>"; };
-		0CD157872C7F20D70089ED00 /* SAAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioPlayer.h; sourceTree = "<group>"; };
-		0CD157882C7F20D70089ED00 /* SAAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioPlayer.m; sourceTree = "<group>"; };
 		0CD1578A2C7F20E30089ED00 /* SAAudioSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystem.h; sourceTree = "<group>"; };
-		0CD1578B2C7F20E30089ED00 /* SAAudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
-		0CD1578C2C7F20E30089ED00 /* SAAudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
-		0CD1578E2C7F20E30089ED00 /* SAAlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAlbumArtExtractor.h; sourceTree = "<group>"; };
-		0CD1578F2C7F20E30089ED00 /* SAAlbumArtExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAlbumArtExtractor.m; sourceTree = "<group>"; };
-		0CD157902C7F20E30089ED00 /* SAMetadataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMetadataCollector.h; sourceTree = "<group>"; };
-		0CD157912C7F20E30089ED00 /* SAMetadataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMetadataCollector.m; sourceTree = "<group>"; };
-		0CD157932C7F20E50089ED00 /* SAAudioSystemError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioSystemError.h; sourceTree = "<group>"; };
-		0CD157952C7F20E50089ED00 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
-		0CD157962C7F20E50089ED00 /* SAAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioDecoder.m; sourceTree = "<group>"; };
-		0CD157982C7F20E50089ED00 /* SAAudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
-		0CD157992C7F20E50089ED00 /* SAAudioEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioEqualizer.m; sourceTree = "<group>"; };
-		0CD1579B2C7F20F20089ED00 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
-		0CD1579C2C7F20F20089ED00 /* SAAudioMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
-		0CD1579D2C7F20F20089ED00 /* SAAudioMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
-		0CD1579E2C7F20F20089ED00 /* SAPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPacketQueue.h; sourceTree = "<group>"; };
-		0CD1579F2C7F20F20089ED00 /* SAPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPacketQueue.m; sourceTree = "<group>"; };
-		0CD157A12C7F20F20089ED00 /* SAAudioMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioMetadata.h; sourceTree = "<group>"; };
-		0CD157A22C7F20F20089ED00 /* SAAudioMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioMetadata.m; sourceTree = "<group>"; };
-		0CD157A32C7F20F20089ED00 /* SAPacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPacketQueue.h; sourceTree = "<group>"; };
-		0CD157A42C7F20F20089ED00 /* SAPacketQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPacketQueue.m; sourceTree = "<group>"; };
-		0CD157B42C7F20F20089ED00 /* SAAudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioDecoder.h; sourceTree = "<group>"; };
-		0CD157B52C7F20F20089ED00 /* SAAudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAudioDecoder.m; sourceTree = "<group>"; };
-		0CD157B72C7F20FE0089ED00 /* SAAudioEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioEqualizer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,28 +79,12 @@
 			isa = PBXGroup;
 			children = (
 				0CD157712C7F20A10089ED00 /* Decoder */,
-				0CD157972C7F20E50089ED00 /* Decoder */,
-				0CD157B62C7F20F20089ED00 /* Decoder */,
-				0CD1578D2C7F20E30089ED00 /* Equalizer */,
-				0CD1579A2C7F20E50089ED00 /* Equalizer */,
-				0CD157942C7F20E50089ED00 /* Error */,
 				0CD1577C2C7F20AE0089ED00 /* Models */,
-				0CD1577E2C7F20AE0089ED00 /* Error */,
-				0CD157A02C7F20F20089ED00 /* Models */,
-				0CD157A52C7F20F20089ED00 /* Models */,
-				0CD157832C7F20D70089ED00 /* Player */,
-				0CD157892C7F20D70089ED00 /* Player */,
-				0CD1579B2C7F20F20089ED00 /* SAAudioDecoder.h */,
-				0CD157B72C7F20FE0089ED00 /* SAAudioEqualizer.h */,
-				0CD1577F2C7F20BB0089ED00 /* SAAudioEqualizer.m */,
 				0CD1578A2C7F20E30089ED00 /* SAAudioSystem.h */,
 				0CD157642C7F20300089ED00 /* Utils */,
 				0CD157692C7F20630089ED00 /* Error */,
 				0CD1576D2C7F207B0089ED00 /* Equalizer */,
 				0CD157862C7F20D70089ED00 /* Player */,
-				0CD157722C7F20A10089ED00 /* SAAudioSystem.h */,
-				0CD157772C7F20A10089ED00 /* Utils */,
-				0CD157922C7F20E30089ED00 /* Utils */,
 				0CD157462C7EC7490089ED00 /* MyAudioPlayerApp.swift */,
 				0CD157482C7EC7490089ED00 /* ContentView.swift */,
 				0CD1574A2C7EC74B0089ED00 /* Assets.xcassets */,
@@ -205,18 +140,6 @@
 			path = Decoder;
 			sourceTree = "<group>";
 		};
-		0CD157772C7F20A10089ED00 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157732C7F20A10089ED00 /* SAAlbumArtExtractor.h */,
-				0CD157742C7F20A10089ED00 /* SAAlbumArtExtractor.m */,
-				0CD157752C7F20A10089ED00 /* SAMetadataCollector.h */,
-				0CD157762C7F20A10089ED00 /* SAMetadataCollector.m */,
-			);
-			name = Utils;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Utils;
-			sourceTree = "<group>";
-		};
 		0CD1577C2C7F20AE0089ED00 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,25 +151,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		0CD1577E2C7F20AE0089ED00 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				0CD1577D2C7F20AE0089ED00 /* SAAudioSystemError.h */,
-			);
-			name = Error;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Error;
-			sourceTree = "<group>";
-		};
-		0CD157832C7F20D70089ED00 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157812C7F20D70089ED00 /* SAAudioPlayer.h */,
-				0CD157822C7F20D70089ED00 /* SAAudioPlayer.m */,
-			);
-			name = Player;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Player;
-			sourceTree = "<group>";
-		};
 		0CD157862C7F20D70089ED00 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,101 +158,6 @@
 				0CD157852C7F20D70089ED00 /* SAAudioPlayer.m */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		0CD157892C7F20D70089ED00 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157872C7F20D70089ED00 /* SAAudioPlayer.h */,
-				0CD157882C7F20D70089ED00 /* SAAudioPlayer.m */,
-			);
-			name = Player;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Player;
-			sourceTree = "<group>";
-		};
-		0CD1578D2C7F20E30089ED00 /* Equalizer */ = {
-			isa = PBXGroup;
-			children = (
-				0CD1578B2C7F20E30089ED00 /* SAAudioEqualizer.h */,
-				0CD1578C2C7F20E30089ED00 /* SAAudioEqualizer.m */,
-			);
-			name = Equalizer;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Equalizer;
-			sourceTree = "<group>";
-		};
-		0CD157922C7F20E30089ED00 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				0CD1578E2C7F20E30089ED00 /* SAAlbumArtExtractor.h */,
-				0CD1578F2C7F20E30089ED00 /* SAAlbumArtExtractor.m */,
-				0CD157902C7F20E30089ED00 /* SAMetadataCollector.h */,
-				0CD157912C7F20E30089ED00 /* SAMetadataCollector.m */,
-			);
-			name = Utils;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Utils;
-			sourceTree = "<group>";
-		};
-		0CD157942C7F20E50089ED00 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157932C7F20E50089ED00 /* SAAudioSystemError.h */,
-			);
-			name = Error;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Error;
-			sourceTree = "<group>";
-		};
-		0CD157972C7F20E50089ED00 /* Decoder */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157952C7F20E50089ED00 /* SAAudioDecoder.h */,
-				0CD157962C7F20E50089ED00 /* SAAudioDecoder.m */,
-			);
-			name = Decoder;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Decoder;
-			sourceTree = "<group>";
-		};
-		0CD1579A2C7F20E50089ED00 /* Equalizer */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157982C7F20E50089ED00 /* SAAudioEqualizer.h */,
-				0CD157992C7F20E50089ED00 /* SAAudioEqualizer.m */,
-			);
-			name = Equalizer;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Equalizer;
-			sourceTree = "<group>";
-		};
-		0CD157A02C7F20F20089ED00 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0CD1579C2C7F20F20089ED00 /* SAAudioMetadata.h */,
-				0CD1579D2C7F20F20089ED00 /* SAAudioMetadata.m */,
-				0CD1579E2C7F20F20089ED00 /* SAPacketQueue.h */,
-				0CD1579F2C7F20F20089ED00 /* SAPacketQueue.m */,
-			);
-			name = Models;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Models;
-			sourceTree = "<group>";
-		};
-		0CD157A52C7F20F20089ED00 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157A12C7F20F20089ED00 /* SAAudioMetadata.h */,
-				0CD157A22C7F20F20089ED00 /* SAAudioMetadata.m */,
-				0CD157A32C7F20F20089ED00 /* SAPacketQueue.h */,
-				0CD157A42C7F20F20089ED00 /* SAPacketQueue.m */,
-			);
-			name = Models;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Models;
-			sourceTree = "<group>";
-		};
-		0CD157B62C7F20F20089ED00 /* Decoder */ = {
-			isa = PBXGroup;
-			children = (
-				0CD157B42C7F20F20089ED00 /* SAAudioDecoder.h */,
-				0CD157B52C7F20F20089ED00 /* SAAudioDecoder.m */,
-			);
-			name = Decoder;
-			path = ../../SAAudioSystem/SAAudioSystem/SAAudioSystem/Decoder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,28 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CD157BC2C7F20FE0089ED00 /* SAAudioEqualizer.m in Sources */,
-				0CD157BA2C7F20FE0089ED00 /* SAAudioEqualizer.m in Sources */,
-				0CD157AC2C7F20F20089ED00 /* SAAudioEqualizer.m in Sources */,
 				0CD157AD2C7F20F20089ED00 /* SAAudioEqualizer.m in Sources */,
 				0CD157A72C7F20F20089ED00 /* SAMetadataCollector.m in Sources */,
-				0CD157B22C7F20F20089ED00 /* SAAudioMetadata.m in Sources */,
-				0CD157BE2C7F20FE0089ED00 /* SAPacketQueue.m in Sources */,
-				0CD157B82C7F20FE0089ED00 /* SAAlbumArtExtractor.m in Sources */,
-				0CD157B02C7F20F20089ED00 /* SAMetadataCollector.m in Sources */,
 				0CD157A82C7F20F20089ED00 /* SAAudioDecoder.m in Sources */,
-				0CD157AF2C7F20F20089ED00 /* SAAlbumArtExtractor.m in Sources */,
 				0CD157AA2C7F20F20089ED00 /* SAPacketQueue.m in Sources */,
 				0CD157492C7EC7490089ED00 /* ContentView.swift in Sources */,
 				0CD157A92C7F20F20089ED00 /* SAAudioMetadata.m in Sources */,
-				0CD157AB2C7F20F20089ED00 /* SAAudioPlayer.m in Sources */,
-				0CD157BF2C7F20FE0089ED00 /* SAAudioDecoder.m in Sources */,
-				0CD157B92C7F20FE0089ED00 /* SAMetadataCollector.m in Sources */,
-				0CD157B32C7F20F20089ED00 /* SAPacketQueue.m in Sources */,
 				0CD157AE2C7F20F20089ED00 /* SAAudioPlayer.m in Sources */,
-				0CD157BD2C7F20FE0089ED00 /* SAAudioMetadata.m in Sources */,
-				0CD157B12C7F20F20089ED00 /* SAAudioDecoder.m in Sources */,
-				0CD157BB2C7F20FE0089ED00 /* SAAudioPlayer.m in Sources */,
 				0CD157A62C7F20F20089ED00 /* SAAlbumArtExtractor.m in Sources */,
 				0CD157472C7EC7490089ED00 /* MyAudioPlayerApp.swift in Sources */,
 			);

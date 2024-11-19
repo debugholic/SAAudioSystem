@@ -31,6 +31,7 @@ FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataDurationKey;
 @property (assign, nonatomic, readonly) NSUInteger duration;
 
 + (AudioMetadata *_Nonnull)metadataWithDictionary:(NSDictionary *_Nullable)dictionary;
+
 - (instancetype _Nullable)initWithDictionary:(NSDictionary *_Nullable)dictionary;
 
 @end

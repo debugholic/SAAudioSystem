@@ -56,6 +56,10 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     _decoder = [[AudioDecoder alloc] init];
     _decoder.delegate = self;
     [_decoder open:path error:error];
+
+    _equalizer.metadata = self.metadata;
+    [_equalizer changeFilter];
+    _decoder.equalizer = _equalizer;
     
     if (*error) {
         [_decoder stop];
@@ -548,6 +552,11 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
 
 - (void)audioDecoder:(AudioDecoder *)audioDecoder didTrackReadingProgress:(Float64)progress {
     [_delegate audioPlayer:self didTrackReadingProgress:progress];
+}
+
+- (void)setEqualizer:(AudioEqualizer *)equalizer {
+    _equalizer = equalizer;
+    _decoder.equalizer = _equalizer;
 }
 
 @end

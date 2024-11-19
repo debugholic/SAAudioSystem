@@ -16,7 +16,6 @@
 		0C60D3B82C807E7900CC67A8 /* AudioEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */; };
 		0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */; };
 		0C60D3BA2C807E7900CC67A8 /* MetadataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3B32C807E7900CC67A8 /* MetadataCollector.m */; };
-		0C60D3BD2C807F5100CC67A8 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */; };
 		0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97AD8C2CDC6461002204BF /* EqualizerView.swift */; };
 		0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */; };
 		0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B0224B7BCA0026D657 /* ViewController.m */; };
@@ -27,12 +26,15 @@
 		0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3A62C815F770018C375 /* AudioPlayer.swift */; };
 		0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* PlayerView.swift */; };
 		0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */; };
+		0CE685C72CEAD3480064EECC /* AudioEqualizerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE685C62CEAD33C0064EECC /* AudioEqualizerValue.m */; };
 		0CED1461225E152E00849BB8 /* Minuet in G.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145C225E152D00849BB8 /* Minuet in G.mp3 */; };
 		0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */; };
 		0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */; };
 		0CED1464225E152E00849BB8 /* Carmen Habanera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */; };
 		0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED1460225E152D00849BB8 /* Canon in D.mp3 */; };
 		0CF7E71A2C8EEEE400CE0B62 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */; };
+		0CFA001C2CEC797400D537A1 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0CFA001B2CEC797400D537A1 /* FFmpeg-iOS */; };
+		0CFA001E2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,12 +72,15 @@
 		0CDFE3A62C815F770018C375 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		0CDFE3AA2C8164450018C375 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAudioPlayerApp.swift; sourceTree = "<group>"; };
+		0CE685C52CEAD14C0064EECC /* AudioEqualizerValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioEqualizerValue.h; sourceTree = "<group>"; };
+		0CE685C62CEAD33C0064EECC /* AudioEqualizerValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioEqualizerValue.m; sourceTree = "<group>"; };
 		0CED145C225E152D00849BB8 /* Minuet in G.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Minuet in G.mp3"; sourceTree = "<group>"; };
 		0CED145D225E152D00849BB8 /* Nocturne in C# minor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nocturne in C# minor.mp3"; sourceTree = "<group>"; };
 		0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pavane for Dead Princess.mp3"; sourceTree = "<group>"; };
 		0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carmen Habanera.mp3"; sourceTree = "<group>"; };
 		0CED1460225E152D00849BB8 /* Canon in D.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Canon in D.mp3"; sourceTree = "<group>"; };
 		0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "다이나믹 듀오 - 해적 (Feat. YDG).mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C60D3BD2C807F5100CC67A8 /* FFmpeg-iOS in Frameworks */,
+				0CFA001C2CEC797400D537A1 /* FFmpeg-iOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +121,8 @@
 				0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */,
 				0C60D3A92C807E7300CC67A8 /* AudioEqualizer.h */,
 				0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */,
+				0CE685C52CEAD14C0064EECC /* AudioEqualizerValue.h */,
+				0CE685C62CEAD33C0064EECC /* AudioEqualizerValue.m */,
 				0C60D3AE2C807E7600CC67A8 /* AudioMetadata.h */,
 				0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */,
 				0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */,
@@ -164,6 +171,7 @@
 				0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */,
 				0CED145C225E152D00849BB8 /* Minuet in G.mp3 */,
 				0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */,
+				0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */,
 			);
 			path = "Sample music";
 			sourceTree = "<group>";
@@ -185,7 +193,7 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
-				0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */,
+				0CFA001B2CEC797400D537A1 /* FFmpeg-iOS */,
 			);
 			productName = Sample;
 			productReference = 0CBDC9A9224B7BCA0026D657 /* Sample.app */;
@@ -216,7 +224,7 @@
 			);
 			mainGroup = 0CBDC9A0224B7BCA0026D657;
 			packageReferences = (
-				0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */,
+				0CFA001A2CEC797400D537A1 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */,
 			);
 			productRefGroup = 0CBDC9AA224B7BCA0026D657 /* Products */;
 			projectDirPath = "";
@@ -237,9 +245,10 @@
 				0C197516225114F80071223C /* Assets.xcassets in Resources */,
 				0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */,
 				0CED1464225E152E00849BB8 /* Carmen Habanera.mp3 in Resources */,
+				0CFA001E2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 in Resources */,
 				0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */,
-				0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */,
 				0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */,
+				0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +261,7 @@
 			files = (
 				0CBDC9C5224B83090026D657 /* Player.m in Sources */,
 				0C60D3B82C807E7900CC67A8 /* AudioEqualizer.m in Sources */,
+				0CE685C72CEAD3480064EECC /* AudioEqualizerValue.m in Sources */,
 				0C60D3BA2C807E7900CC67A8 /* MetadataCollector.m in Sources */,
 				0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */,
 				0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */,
@@ -469,20 +479,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */ = {
+		0CFA001A2CEC797400D537A1 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kewlbear/FFmpeg-iOS.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.5;
+				minimumVersion = "0.0.6-b";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0C60D3BC2C807F5100CC67A8 /* FFmpeg-iOS */ = {
+		0CFA001B2CEC797400D537A1 /* FFmpeg-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0C60D3BB2C807F5100CC67A8 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */;
+			package = 0CFA001A2CEC797400D537A1 /* XCRemoteSwiftPackageReference "FFmpeg-iOS" */;
 			productName = "FFmpeg-iOS";
 		};
 /* End XCSwiftPackageProductDependency section */

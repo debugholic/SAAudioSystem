@@ -19,7 +19,7 @@
 @property (assign, nonatomic, readonly) NSUInteger duration;
 @property (strong, nonatomic, readonly, nullable) UIImage *albumArt;
 
-+ (Track *)trackWithMetadata:(AudioMetadata *)metadata;
-+ (Track *)trackWithMetadata:(AudioMetadata *)metadata albumArt:(UIImage *)image;
++ (Track *_Nonnull)trackWithMetadata:(AudioMetadata *_Nonnull)metadata;
++ (Track *_Nonnull)trackWithMetadata:(AudioMetadata *_Nonnull)metadata albumArt:(UIImage *)image;
 
 @end

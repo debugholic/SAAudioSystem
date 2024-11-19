@@ -32,8 +32,7 @@
 @property (assign, nonatomic) BOOL readFinished;
 @property (assign, nonatomic) BOOL endOfFile;
 @property (assign, nonatomic) Float32 readProgress;
-@property (strong, nonatomic) AudioEqualizer *equalizer;
-@property (assign, nonatomic) BOOL isEqualizerOn;
+@property (strong, nonatomic, nullable) AudioEqualizer *equalizer;
 
 - (void)open:(NSString * _Nonnull)path error:(NSError *_Nullable *_Nonnull)error;
 - (void)close;

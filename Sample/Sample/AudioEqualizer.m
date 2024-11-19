@@ -20,76 +20,213 @@
 
 @end
 
-NSInteger const MIN_GAIN = -10.0;
-NSInteger const MAX_GAIN = 10.0;
-
 @implementation AudioEqualizer
 
-+ (NSArray<NSNumber *> * _Nonnull)defaultBands_10 {
-    return @[@31.5, @63.0, @125.0, @250.0, @500.0, @1000.0, @2000.0, @4000.0, @8000.0, @16000.0];
-}
-
-+ (NSArray<NSNumber *> * _Nonnull)defaultBands_20 {
-    return @[@30.0, @45.0, @60.0, @90.0, @120.0, @180.0, @250.0, @500.0, @750.0, @1000.0, @1500.0, @2000.0, @3000.0, @4000.0, @6000.0, @8000.0, @12000.0, @140000.0, @16000.0];
-}
-
-- (instancetype)initWithDefautBands_10 {
+- (instancetype _Nonnull)initWithValues:(NSArray<AudioEqualizerValue *> * _Nonnull)values {
     self = [super init];
     if (self) {
-        self.bands = [NSArray arrayWithObjects:@31.5, @63.0, @125.0, @250.0, @500.0, @1000.0, @2000.0, @4000.0, @8000.0, @16000.0, nil];
-        self.gains = [NSArray arrayWithObjects:@0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, nil];
-        self.qFactors = [NSArray arrayWithObjects:@2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, nil];
-        self.preamp = @(-6.0);
+        _values = values;
+        _preamp = @(0.10);
     }
     return self;
-}
-
-- (instancetype)initWithDefautBands_20 {
-    self = [super init];
-    if (self) {
-        self.bands = [NSArray arrayWithObjects:@30.0, @45.0, @60.0, @90.0, @120.0, @180.0, @250.0, @500.0, @750.0, @1000.0,
-                      @1500.0, @2000.0, @3000.0, @4000.0, @6000.0, @8000.0, @12000.0, @140000.0, @16000.0, nil];
-        self.gains = [NSArray arrayWithObjects:@0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0,
-                      @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, nil];
-        self.qFactors = [NSArray arrayWithObjects:@2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0,
-                         @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, @2.0, nil];
-        self.preamp = @(-6.0);
-    }
-    return self;
-}
-
-- (void)setBands:(NSArray<NSNumber *> *)bands {
-    _bands = bands;
-    NSMutableArray *gains = [NSMutableArray arrayWithCapacity: _bands.count];
-    for (int i=0; i<gains.count; i++) {
-        gains[i] = @0.0;
-    }
-    NSMutableArray *qFactors = [NSMutableArray arrayWithCapacity: _bands.count];
-    for (int i=0; i<qFactors.count; i++) {
-        qFactors[i] = @2.0;
-    }
-    _gains = gains;
-    _qFactors = qFactors;
-    _preamp = @(-6.0);
-}
-
-- (void)setQFactors:(NSArray<NSNumber *> *)qFactors {
-    if (_qFactors.count != qFactors.count) {
-        return;
-    }
-    _qFactors = qFactors;
-}
-
-- (void)setGains:(NSArray<NSNumber *> *)gains {
-    if (_gains.count != gains.count) {
-        return;
-    }
-    _gains = gains;
 }
 
 - (void)setPreamp:(NSNumber *)preamp {
     _preamp = preamp;
 }
+
+- (AVFilterGraph *)drawFilter2 {
+    int ret = 0;
+    const AVFilter *abuffersrc  = avfilter_get_by_name("abuffer");
+    const AVFilter *abuffersink = avfilter_get_by_name("abuffersink");
+    AVFilterInOut *outputs = avfilter_inout_alloc();
+    AVFilterInOut *inputs  = avfilter_inout_alloc();
+    static const int out_sample_rate = 8000;
+    const AVFilterLink *outlink;
+    AVRational time_base = (AVRational){ 1, (int)_metadata.samplerate };
+    AVFilterContext *buffersink_ctx;
+    AVFilterContext *buffersrc_ctx;
+    char ch_layout_str[64];
+
+    AVFilterGraph *graph = avfilter_graph_alloc();
+    if (!graph || !_metadata) {
+        return NULL;
+    }
+
+    buffersrc_ctx = avfilter_graph_alloc_filter(graph, abuffersrc, "in");
+    if (!buffersrc_ctx) {
+        NSLog(@"Error!! : 'abuffer' filter could not be allocated.");
+        return NULL;
+    }
+
+    enum AVSampleFormat sample_fmt = AV_SAMPLE_FMT_NONE;
+    switch (_metadata.bitdepth) {
+        case 16 : sample_fmt = AV_SAMPLE_FMT_S16;
+        case 24 : sample_fmt = AV_SAMPLE_FMT_S32;
+        case 32 : sample_fmt = AV_SAMPLE_FMT_S32;
+    }
+
+    AVChannelLayout ch_layout;
+    av_channel_layout_default(&ch_layout, (int)_metadata.channels);
+    av_channel_layout_describe(&ch_layout, ch_layout_str, sizeof(ch_layout_str));
+    
+    av_opt_set(buffersrc_ctx, "channel_layout", ch_layout_str, AV_OPT_SEARCH_CHILDREN);
+    av_opt_set(buffersrc_ctx, "sample_fmt", av_get_sample_fmt_name(sample_fmt), AV_OPT_SEARCH_CHILDREN);
+    av_opt_set_q(buffersrc_ctx, "time_base", (AVRational){ 1, (int)_metadata.samplerate }, AV_OPT_SEARCH_CHILDREN);
+    av_opt_set_int(buffersrc_ctx, "sample_rate", _metadata.samplerate, AV_OPT_SEARCH_CHILDREN);
+    
+    ret = avfilter_init_str(buffersrc_ctx, NULL);
+    if (ret < 0) {
+        char errbuf[128];
+        av_strerror(ret, errbuf, sizeof(errbuf));
+        NSLog(@"Could not initialize the abuffer filter. / %s", errbuf);
+        return NULL;
+    }
+    
+    /* buffer audio sink: to terminate the filter chain. */
+    buffersink_ctx = avfilter_graph_alloc_filter(graph, abuffersink, "out");
+    if (!buffersink_ctx) {
+        char errbuf[128];
+        av_strerror(ret, errbuf, sizeof(errbuf));
+        NSLog(@"Cannot create audio buffer sink. / %s", errbuf);
+        return NULL;
+    }
+    
+//    ret = av_opt_set(buffersink_ctx, "sample_formats", "s16", AV_OPT_SEARCH_CHILDREN);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Cannot set output sample format. / %s", errbuf);
+//        return NULL;
+//    }
+//    
+//    ret = av_opt_set(buffersink_ctx, "channel_layouts", "mono", AV_OPT_SEARCH_CHILDREN);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Cannot set output channel layout. / %s", errbuf);
+//        return NULL;
+//    }
+//
+//    char option_str[32];
+//    snprintf(option_str, sizeof(option_str), "%d", out_sample_rate);
+    
+//    ret = av_opt_set(buffersink_ctx, "samplerates", option_str, AV_OPT_SEARCH_CHILDREN);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Cannot set output sample rate. / %s", errbuf);
+//        return NULL;
+//    }
+ 
+    ret = avfilter_init_dict(buffersink_ctx, NULL);
+    if (ret < 0) {
+        char errbuf[128];
+        av_strerror(ret, errbuf, sizeof(errbuf));
+        NSLog(@"Cannot initialize audio buffer sink. / %s", errbuf);
+        return NULL;
+    }
+ 
+    outputs->name       = av_strdup("in");
+    outputs->filter_ctx = buffersrc_ctx;
+    outputs->pad_idx    = 0;
+    outputs->next       = NULL;
+ 
+    /*
+     * The buffer sink input must be connected to the output pad of
+     * the last filter described by filters_descr; since the last
+     * filter output label is not specified, it is set to "out" by
+     * default.
+     */
+    inputs->name       = av_strdup("out");
+    inputs->filter_ctx = buffersink_ctx;
+    inputs->pad_idx    = 0;
+    inputs->next       = NULL;
+ 
+    char *filters_descr = "aresample=44100,aformat=sample_fmts=s32:channel_layouts=stereo";
+    if ((ret = avfilter_graph_parse_ptr(graph, filters_descr,
+                                        &inputs, &outputs, NULL)) < 0)
+        return NULL;
+ 
+    if ((ret = avfilter_graph_config(graph, NULL)) < 0)
+        return NULL;
+ 
+    /* Print summary of the sink buffer
+     * Note: args buffer is reused to store channel layout string */
+    outlink = buffersink_ctx->inputs[0];
+    
+////    /* Set equalizer */
+//    for (i = 0; i < nb_bands; i++) {
+//        char name[64];
+//        snprintf(name, sizeof(name), "equalizer%d", i);
+//
+//        AVFilterContext *equalizer = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("equalizer"), name);
+//        if (!equalizer) {
+//            NSLog(@"Error!! : 'equalizer' filter could not be allocated.");
+//            return NULL;
+//        }
+//        
+//        NSLog(@"%lf, %lf", _values[i].band.doubleValue, _values[i].q.doubleValue);
+//
+//        av_opt_set_double(equalizer, "frequency", _values[i].band.doubleValue, AV_OPT_SEARCH_CHILDREN);
+//        av_opt_set(equalizer, "width_type", "q", AV_OPT_SEARCH_CHILDREN);
+//        av_opt_set_double(equalizer, "width", _values[i].q.doubleValue, AV_OPT_SEARCH_CHILDREN);
+//        av_opt_set_double(equalizer, "gain", _values[i].gain, AV_OPT_SEARCH_CHILDREN);
+//        
+//        snprintf(option_str, sizeof(option_str), "%d", (int)_metadata.channels);
+//        av_opt_set(equalizer, "channels", option_str, AV_OPT_SEARCH_CHILDREN);
+//    
+//        ret = avfilter_init_str(equalizer, NULL);
+//        if (ret < 0) {
+//            char errbuf[128];
+//            av_strerror(ret, errbuf, sizeof(errbuf));
+//            NSLog(@"Could not initialize the equalizer filter. / %s", errbuf);
+//            return NULL;
+//        }
+//
+//        if (i == 0) {
+//            equalizer_first = equalizer;
+//        } else {
+//            avfilter_link(equalizer_last, 0, equalizer, 0);
+//        }
+//        equalizer_last = equalizer;
+//    }
+//
+//    /* Set audio buffer sink */
+//    abuffersink = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("abuffersink"), "out");
+//    if (abuffersink == NULL) {
+//        NSLog(@"Error!! : 'equalizer' filter could not be allocated.");
+//        return NULL;
+//    }
+//    
+//    ret = avfilter_init_str(abuffersink, NULL);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Could not initialize the abuffersink filter. / %s", errbuf);
+//        return NULL;
+//    }
+//    
+//    /* Connect the filters;
+//     * in this simple case the filters just form a linear chain. */
+//    avfilter_link(abuffer, 0, volume, 0);
+//    avfilter_link(volume, 0, equalizer_first, 0);
+//    avfilter_link(equalizer_last, 0, aformat, 0);
+//    avfilter_link(aformat, 0, abuffersink, 0);
+//
+//    /* Configure the graph. */
+//    ret = avfilter_graph_config(graph, NULL);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Error occurred while configuring the filter graph. / %s", errbuf);
+//        return NULL;
+//    }
+    return graph;
+}
+
+
+
 
 - (AVFilterGraph *)drawFilter {
     AVFilterGraph *graph = avfilter_graph_alloc();
@@ -99,18 +236,19 @@ NSInteger const MAX_GAIN = 10.0;
 
     AVFilterContext *abuffer = NULL;
     AVFilterContext *volume = NULL;
+    AVFilterContext *aformat = NULL;
     AVFilterContext *abuffersink = NULL;
     AVFilterContext *equalizer_first = NULL;
     AVFilterContext *equalizer_last = NULL;
     
     char ch_layout_str[64];
-    char volume_str[32];
+    char option_str[32];
     int i;
     int ret = 0;
-    NSUInteger nb_bands = _gains.count;
+    NSUInteger nb_bands = _values.count;
 
     /* Set audio buffer source */
-    abuffer = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("abuffer"), "abuffer");
+    abuffer = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("abuffer"), "in");
     if (!abuffer) {
         NSLog(@"Error!! : 'abuffer' filter could not be allocated.");
         return NULL;
@@ -141,38 +279,63 @@ NSInteger const MAX_GAIN = 10.0;
     }
     
     /* Set volume  */
-    volume = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("volume"), "volume");
-    if (!volume) {
-        NSLog(@"Error!! : 'volume' filter could not be allocated.");
+//    volume = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("volume"), "volume");
+//    if (!volume) {
+//        NSLog(@"Error!! : 'volume' filter could not be allocated.");
+//        return NULL;
+//    }
+//    
+//    snprintf(option_str, sizeof(option_str), "%f", _preamp.doubleValue);
+//    av_opt_set(volume, "volume", option_str, AV_OPT_SEARCH_CHILDREN);
+//
+//    ret = avfilter_init_str(volume, NULL);
+//    if (ret < 0) {
+//        char errbuf[128];
+//        av_strerror(ret, errbuf, sizeof(errbuf));
+//        NSLog(@"Could not initialize the volume filter. / %s", errbuf);
+//        return NULL;
+//    }
+//
+    aformat = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("aformat"), "aformat");
+    if (!aformat) {
+        NSLog(@"Error!! : 'aformat' filter could not be allocated.");
         return NULL;
     }
     
-    snprintf(volume_str, sizeof(volume_str), "%fdB", _preamp.doubleValue);
-    av_opt_set(volume, "volume", volume_str, AV_OPT_SEARCH_CHILDREN);
-    ret = avfilter_init_str(volume, NULL);
+    av_opt_set(aformat, "channel_layouts", ch_layout_str, AV_OPT_SEARCH_CHILDREN);
+    av_opt_set(aformat, "sample_fmts", av_get_sample_fmt_name(sample_fmt), AV_OPT_SEARCH_CHILDREN);
+    
+    snprintf(option_str, sizeof(option_str), "%d", (int)_metadata.samplerate);
+    av_opt_set(aformat, "sample_rates", option_str, AV_OPT_SEARCH_CHILDREN);
+
+    ret = avfilter_init_str(aformat, NULL);
     if (ret < 0) {
         char errbuf[128];
         av_strerror(ret, errbuf, sizeof(errbuf));
-        NSLog(@"Could not initialize the volume filter. / %s", errbuf);
+        NSLog(@"Could not initialize the aformat filter. / %s", errbuf);
         return NULL;
     }
-
+    
     /* Set equalizer */
     for (i = 0; i < nb_bands; i++) {
         char name[64];
         snprintf(name, sizeof(name), "equalizer%d", i);
+
         AVFilterContext *equalizer = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("equalizer"), name);
-    
         if (!equalizer) {
             NSLog(@"Error!! : 'equalizer' filter could not be allocated.");
             return NULL;
         }
-    
-        av_opt_set_double(equalizer, "frequency", _bands[i].doubleValue, AV_OPT_SEARCH_CHILDREN);
+        
+        NSLog(@"%lf, %lf", _values[i].band.doubleValue, _values[i].q.doubleValue);
+
+        av_opt_set_double(equalizer, "frequency", _values[i].band.doubleValue, AV_OPT_SEARCH_CHILDREN);
         av_opt_set(equalizer, "width_type", "q", AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_double(equalizer, "width", _qFactors[i].doubleValue, AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_double(equalizer, "gain", _gains[i].doubleValue, AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_int(equalizer, "channels", _metadata.channels, AV_OPT_SEARCH_CHILDREN);
+        av_opt_set_double(equalizer, "width", _values[i].q.doubleValue, AV_OPT_SEARCH_CHILDREN);
+        av_opt_set_double(equalizer, "gain", _values[i].gain, AV_OPT_SEARCH_CHILDREN);
+        
+        snprintf(option_str, sizeof(option_str), "%d", (int)_metadata.channels);
+        av_opt_set(equalizer, "channels", option_str, AV_OPT_SEARCH_CHILDREN);
     
         ret = avfilter_init_str(equalizer, NULL);
         if (ret < 0) {
@@ -188,11 +351,10 @@ NSInteger const MAX_GAIN = 10.0;
             avfilter_link(equalizer_last, 0, equalizer, 0);
         }
         equalizer_last = equalizer;
-    
     }
 
     /* Set audio buffer sink */
-    abuffersink = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("abuffersink"), "abuffersink");
+    abuffersink = avfilter_graph_alloc_filter(graph, avfilter_get_by_name("abuffersink"), "out");
     if (abuffersink == NULL) {
         NSLog(@"Error!! : 'equalizer' filter could not be allocated.");
         return NULL;
@@ -208,10 +370,12 @@ NSInteger const MAX_GAIN = 10.0;
     
     /* Connect the filters;
      * in this simple case the filters just form a linear chain. */
-    avfilter_link(abuffer, 0, volume, 0);
-    avfilter_link(volume, 0, equalizer_first, 0);
-    avfilter_link(equalizer_last, 0, abuffersink, 0);
-    
+//    avfilter_link(abuffer, 0, volume, 0);
+    avfilter_link(abuffer, 0, equalizer_first, 0);
+    avfilter_link(equalizer_last, 0, aformat, 0);
+//    avfilter_link(abuffer, 0, aformat, 0);
+    avfilter_link(aformat, 0, abuffersink, 0);
+
     /* Configure the graph. */
     ret = avfilter_graph_config(graph, NULL);
     if (ret < 0) {
@@ -236,7 +400,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
 }
 
 - (int)filter:(void *)data length:(size_t)length {
-    if (_metadata) {
+    if (!_metadata) {
         return -1;
     }
     void *samples;
@@ -280,7 +444,12 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     av_frame_get_buffer(src, 0);
     av_frame_make_writable(src);
     
+    buffer_size = nb_samples;
     buffer_size = av_samples_get_buffer_size(NULL, 2, src->nb_samples, src->format, 1);
+    
+    if (buffer_size < 0) {
+        return -1;
+    }
     samples = av_malloc(buffer_size);
 
     if (_metadata.bitdepth == 24) {
@@ -288,8 +457,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     } else {
         memcpy(samples, data, buffer_size);
     }
-
-    memcpy(src->data[0], samples, buffer_size);
+    memcpy(src->extended_data[0], samples, buffer_size);
     av_free(samples);
     
     @synchronized (self) {
@@ -306,11 +474,11 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
         memcpy(origin, data, buffer_size);
         
         if (_metadata.bitdepth == 24) {
-            memcpy_24_to_32(data, (int32_t *)sink->data[0], nb_samples);
+            memcpy_24_to_32(data, (int32_t *)sink->extended_data[0], nb_samples);
         } else {
-            memcpy(data, sink->data[0], buffer_size);
+            memcpy(data, sink->extended_data[0], buffer_size);
         }
-        
+                
         for (int i = 0; i < nb_samples; i += channels) {
             double r = (double)i / (nb_samples-1);
             for (int j = 0; j < channels; j++) {
@@ -335,9 +503,9 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
                 
                 void *next = calloc(1, buffer_size);
                 if (_metadata.bitdepth == 24) {
-                    memcpy_24_to_32(next, (int32_t *)sink->data[0], nb_samples);
+                    memcpy_24_to_32(next, (int32_t *)sink->extended_data[0], nb_samples);
                 } else {
-                    memcpy(next, sink->data[0], buffer_size);
+                    memcpy(next, sink->extended_data[0], buffer_size);
                 }
                 
                 for (int i = 0; i < nb_samples; i += channels) {
@@ -367,7 +535,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     }
 
     int ret;
-    AVFilterContext *abuffer = avfilter_graph_get_filter(_graph, "abuffer");
+    AVFilterContext *abuffer = avfilter_graph_get_filter(_graph, "in");
     ret = av_buffersrc_add_frame_flags(abuffer, src, AV_BUFFERSRC_FLAG_KEEP_REF);
     if (ret < 0) {
         char errbuf[128];
@@ -377,7 +545,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     }
     
     /* pull filtered audio from the filtergraph */
-    AVFilterContext *abuffersink = avfilter_graph_get_filter(_graph, "abuffersink");
+    AVFilterContext *abuffersink = avfilter_graph_get_filter(_graph, "out");
     ret = av_buffersink_get_frame(abuffersink, sink);
     if (ret < 0) {
         char errbuf[128];
@@ -394,8 +562,13 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
         return -1;
     }
     @synchronized (self) {
-        avfilter_graph_free(&_next);
-        _next = graph;
+        if (!_graph) {
+            _graph = graph;
+
+        } else {
+            avfilter_graph_free(&_next);
+            _next = graph;
+        }
     }
     return 0;
 }
