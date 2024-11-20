@@ -24,7 +24,7 @@ struct EqualizerView: View {
             if viewModel.isEqualizerEnabled {
                 ForEach($viewModel.equalizer.values, id: \.band) { $value in
                     Stepper("\(value.band): \(value.gain)", value: $value.gain, in: AudioEqualizerValue.minGain...AudioEqualizerValue.maxGain) {
-                        if $0 { viewModel.equalizer.changeFilter() }
+                        if !$0 { viewModel.equalizer.changeFilter() }
                     }
                 }
             }

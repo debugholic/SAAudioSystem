@@ -48,7 +48,7 @@ static NSInteger MIN_GAIN = -10;
 }
 
 - (instancetype)initWithBand:(NSNumber *)band {
-    return [self initWithBand:band gain:0 q:@2.0];
+    return [self initWithBand:band gain:0 q:@1.0];
 }
 
 - (instancetype)initWithBand:(NSNumber *)band q:(NSNumber *)q {
@@ -56,7 +56,7 @@ static NSInteger MIN_GAIN = -10;
 }
 
 - (instancetype)initWithBand:(NSNumber *)band gain:(NSInteger)gain {
-    return [self initWithBand:band gain:gain q:@2.0];
+    return [self initWithBand:band gain:gain q:@1.0];
 }
 
 - (instancetype)initWithBand:(NSNumber *)band gain:(NSInteger)gain q:(NSNumber *)q {
