@@ -17,6 +17,7 @@ FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataSamplerateKey;
 FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataBitdepthKey;
 FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataChannelsKey;
 FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataDurationKey;
+FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataSampleformatKey;
 
 @interface AudioMetadata : NSObject
 
@@ -29,6 +30,7 @@ FOUNDATION_EXPORT NSString * _Nullable const AudioMetadataDurationKey;
 @property (assign, nonatomic, readonly) NSUInteger bitdepth;
 @property (assign, nonatomic, readonly) NSUInteger channels;
 @property (assign, nonatomic, readonly) NSUInteger duration;
+@property (strong, nonatomic, readonly, nonnull) NSString *sampleformat;
 
 + (AudioMetadata *_Nonnull)metadataWithDictionary:(NSDictionary *_Nullable)dictionary;
 

@@ -152,6 +152,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
     switch(_codecContext->sample_fmt) {
         case AV_SAMPLE_FMT_U8P :
             outDecodeFormat = AV_SAMPLE_FMT_U8;
+            
         case AV_SAMPLE_FMT_U8 :
             _dataFormat.mFormatFlags |= kAudioFormatFlagIsSignedInteger;
             _dataFormat.mBitsPerChannel = 8;
@@ -376,7 +377,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
     if (!av_sample_fmt_is_planar(_codecContext->sample_fmt)
         && _codecContext->sample_fmt != AV_SAMPLE_FMT_DBL) {
         if (_equalizer) {
-            [_equalizer filter:_frame->extended_data[0] length:frameSize];
+            [_equalizer filter:_frame->data[0] length:frameSize];
         }
         memcpy(buffer, _frame->extended_data[0]+_frameRemainderIndex, frameSize);
     }
@@ -404,7 +405,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
                 break;
                 
             default :
-                cvtData = _frame->extended_data[0];
+                cvtData = _frame->data[0];
                 break;
         }
         
@@ -413,13 +414,13 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
                 swr_convert(_swrContext,
                             &cvtData,
                             _frame->nb_samples,
-                            (const uint8_t **) _frame->extended_data,
+                            (const uint8_t **) _frame->data,
                             _frame->nb_samples);
             } else {
                 swr_convert(_swrContext,
                             &cvtData,
                             _frame->nb_samples,
-                            (const uint8_t **) _frame->extended_data,
+                            (const uint8_t **) _frame->data,
                             _frame->nb_samples);
             }
 

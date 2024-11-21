@@ -31,9 +31,6 @@ struct PlayerView: View {
     @ObservedObject var viewModel = {
         let viewModel = PlayerViewModel()
         var playlist = [Track]()
-        if let path = Bundle.main.path(forResource: "다이나믹 듀오 - 해적 (Feat. YDG)", ofType: "mp3") {
-            playlist.append(Track(url: path))
-        }
         if let path = Bundle.main.path(forResource: "Pavane for Dead Princess", ofType: "mp3") {
             playlist.append(Track(url: path))
         }

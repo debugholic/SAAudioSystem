@@ -17,7 +17,7 @@ NSString * const AudioMetadataSamplerateKey = @"samplerate";
 NSString * const AudioMetadataBitdepthKey = @"bitdepth";
 NSString * const AudioMetadataChannelsKey = @"channels";
 NSString * const AudioMetadataDurationKey = @"duration";
-
+NSString * const AudioMetadataSampleformatKey = @"sampleformat";
 
 @implementation AudioMetadata
 
@@ -37,6 +37,7 @@ NSString * const AudioMetadataDurationKey = @"duration";
         self.bitdepth = dictionary[AudioMetadataBitdepthKey];
         self.channels = dictionary[AudioMetadataChannelsKey];
         self.duration = dictionary[AudioMetadataDurationKey];
+        self.sampleformat = dictionary[AudioMetadataSampleformatKey];
     }
     return self;
 }
@@ -75,6 +76,10 @@ NSString * const AudioMetadataDurationKey = @"duration";
 
 - (void)setDuration:(NSNumber * _Nullable)duration {
     _duration = duration.unsignedIntegerValue;
+}
+
+- (void)setSampleformat:(NSString * _Nonnull)sampleformat {
+    _sampleformat = sampleformat;
 }
 
 @end

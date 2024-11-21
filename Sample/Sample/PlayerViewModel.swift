@@ -68,7 +68,7 @@ class PlayerViewModel: ObservableObject {
     
     var isEqualizerEnabled: Bool {
         set {
-            player.equalizer = newValue ? equalizer : nil
+            player.equalizer?.on = newValue
             UserDefaults.standard.set(newValue, forKey: "isEqualizerEnabled")
             
         } get {
@@ -109,6 +109,7 @@ class PlayerViewModel: ObservableObject {
             }
         }.store(in: &subscriptions)
         player.equalizer = equalizer
+        player.equalizer?.on = isEqualizerEnabled
     }
     
     private func insert() {

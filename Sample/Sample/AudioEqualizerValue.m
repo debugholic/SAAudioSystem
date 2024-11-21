@@ -8,8 +8,8 @@
 
 #import "AudioEqualizer.h"
 
-static NSInteger MAX_GAIN = 10;
-static NSInteger MIN_GAIN = -10;
+static NSInteger MAX_GAIN = 20;
+static NSInteger MIN_GAIN = -20;
 
 @implementation AudioEqualizerValue
 
@@ -48,7 +48,7 @@ static NSInteger MIN_GAIN = -10;
 }
 
 - (instancetype)initWithBand:(NSNumber *)band {
-    return [self initWithBand:band gain:0 q:@1.0];
+    return [self initWithBand:band gain:0 q:@10.0];
 }
 
 - (instancetype)initWithBand:(NSNumber *)band q:(NSNumber *)q {

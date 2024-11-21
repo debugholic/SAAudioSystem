@@ -12,6 +12,7 @@
 
 @interface AudioEqualizer: NSObject
 
+@property (assign, nonatomic) BOOL on;
 @property (strong, nonatomic, nonnull) NSArray <AudioEqualizerValue *> *values;
 @property (assign, nonatomic) float preamp;
 @property (strong, nonatomic, nullable) AudioMetadata *metadata;

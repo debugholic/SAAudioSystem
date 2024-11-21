@@ -34,7 +34,6 @@
 		0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CED1460225E152D00849BB8 /* Canon in D.mp3 */; };
 		0CF7E71A2C8EEEE400CE0B62 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */; };
 		0CFA001C2CEC797400D537A1 /* FFmpeg-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0CFA001B2CEC797400D537A1 /* FFmpeg-iOS */; };
-		0CFA001E2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +79,6 @@
 		0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carmen Habanera.mp3"; sourceTree = "<group>"; };
 		0CED1460225E152D00849BB8 /* Canon in D.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Canon in D.mp3"; sourceTree = "<group>"; };
 		0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "다이나믹 듀오 - 해적 (Feat. YDG).mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +169,6 @@
 				0CED145F225E152D00849BB8 /* Carmen Habanera.mp3 */,
 				0CED145C225E152D00849BB8 /* Minuet in G.mp3 */,
 				0CED145E225E152D00849BB8 /* Pavane for Dead Princess.mp3 */,
-				0CFA001D2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 */,
 			);
 			path = "Sample music";
 			sourceTree = "<group>";
@@ -245,7 +242,6 @@
 				0C197516225114F80071223C /* Assets.xcassets in Resources */,
 				0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */,
 				0CED1464225E152E00849BB8 /* Carmen Habanera.mp3 in Resources */,
-				0CFA001E2CEC855700D537A1 /* 다이나믹 듀오 - 해적 (Feat. YDG).mp3 in Resources */,
 				0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */,
 				0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */,
 				0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */,

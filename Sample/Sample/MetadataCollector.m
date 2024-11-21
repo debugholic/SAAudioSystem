@@ -81,27 +81,29 @@
     } else {
         bitDepth = codec_ctx->bits_per_coded_sample;
     }
+    NSString *sampleformat = [NSString stringWithFormat:@"%s", av_get_sample_fmt_name(codec_ctx->sample_fmt)];
+    [metadata setValue:sampleformat forKey:AudioMetadataSampleformatKey];
     
     if (!bitDepth) {
         switch(codec_ctx->sample_fmt) {
-                case AV_SAMPLE_FMT_U8 :
-                case AV_SAMPLE_FMT_U8P :
-                    bitDepth = 8;
-                    break;
+            case AV_SAMPLE_FMT_U8 :
+            case AV_SAMPLE_FMT_U8P :
+                bitDepth = 8;
+                break;
                 
-                case AV_SAMPLE_FMT_S16 :
-                    case AV_SAMPLE_FMT_S16P :
-                    bitDepth = 16;
-                    break;
+            case AV_SAMPLE_FMT_S16 :
+            case AV_SAMPLE_FMT_S16P :
+                bitDepth = 16;
+                break;
                 
-                case AV_SAMPLE_FMT_S32 :
-                case AV_SAMPLE_FMT_S32P :
-                case AV_SAMPLE_FMT_FLT :
-                case AV_SAMPLE_FMT_FLTP :
-                case AV_SAMPLE_FMT_DBL :
-                case AV_SAMPLE_FMT_DBLP :
-                    bitDepth = 32;
-                    break;
+            case AV_SAMPLE_FMT_S32 :
+            case AV_SAMPLE_FMT_S32P :
+            case AV_SAMPLE_FMT_FLT :
+            case AV_SAMPLE_FMT_FLTP :
+            case AV_SAMPLE_FMT_DBL :
+            case AV_SAMPLE_FMT_DBLP :
+                bitDepth = 32;
+                break;
                 
             default:
                 break;
