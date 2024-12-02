@@ -147,8 +147,8 @@
 				0CBDC9BA224B7BCC0026D657 /* Info.plist */,
 				0CBDC9BB224B7BCC0026D657 /* main.m */,
 				0C197513224FCD0C0071223C /* Track.m */,
-				0C197512224FCD0C0071223C /* Track.h */,
 				0CED1466225E153500849BB8 /* Sample music */,
+				0C197512224FCD0C0071223C /* Track.h */,
 				0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */,
 			);
 			path = Sample;

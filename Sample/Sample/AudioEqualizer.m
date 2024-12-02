@@ -140,9 +140,9 @@
             return NULL;
         }
         
-        av_opt_set_double(equalizer, "frequency", _values[i].band.doubleValue, AV_OPT_SEARCH_CHILDREN);
+        av_opt_set_double(equalizer, "frequency", _values[i].band, AV_OPT_SEARCH_CHILDREN);
         av_opt_set(equalizer, "width_type", "q", AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_double(equalizer, "width", _values[i].q.doubleValue, AV_OPT_SEARCH_CHILDREN);
+        av_opt_set_double(equalizer, "width", _values[i].q, AV_OPT_SEARCH_CHILDREN);
         av_opt_set_int(equalizer, "gain", (int)_values[i].gain, AV_OPT_SEARCH_CHILDREN);
 
         ret = avfilter_init_str(equalizer, NULL);
