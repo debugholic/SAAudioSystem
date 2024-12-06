@@ -3,3 +3,5 @@
 //
 
 #import "AudioQueuePlayer.h"
+#import "MetadataExtractor.h"
+#import "AlbumArtExtractor.h"

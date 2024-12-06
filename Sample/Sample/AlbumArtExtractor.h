@@ -11,6 +11,7 @@
 
 @interface AlbumArtExtractor : NSObject
 
-+ (UIImage *)albumArtWithFormatContext:(AVFormatContext *)fmt_ctx;
++ (UIImage * _Nullable)albumArtWithPath:(NSString * _Nullable)path;
++ (UIImage * _Nullable)albumArtWithFormatContext:(AVFormatContext * _Nullable)fmt_ctx;
 
 @end

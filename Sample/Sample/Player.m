@@ -34,12 +34,12 @@ const NSUInteger MaxVolume = 100;
     return self;
 }
 
-- (void)insertTrackWithURL:(NSString *)URL withSuccess:(void (^)(BOOL, NSError *))successBlock {
+- (void)insertTrackWithPath:(NSString *)path withSuccess:(void (^)(BOOL, NSError *))successBlock {
     dispatch_queue_t insertQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_async(insertQueue, ^{
         NSError *error = nil;
-        if ((self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) && URL) {
-            [self.audioPlayer insertTrack:URL withError:&error];
+        if ((self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) && path) {
+            [self.audioPlayer insertTrack:path withError:&error];
             if (successBlock && !error) {
                 self.curTrack = [Track trackWithMetadata:self.audioPlayer.metadata albumArt:self.audioPlayer.albumArt];
                 self.state = AudioQueuePlayerStateReady;

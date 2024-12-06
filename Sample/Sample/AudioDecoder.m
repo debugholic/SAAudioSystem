@@ -13,7 +13,7 @@
 #import <libswresample/swresample.h>
 #import <libavutil/opt.h>
 #import "PacketQueue.h"
-#import "MetadataCollector.h"
+#import "MetadataExtractor.h"
 #import "AlbumArtExtractor.h"
 
 @interface AudioDecoder()
@@ -221,7 +221,7 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
     _dataFormat.mBytesPerFrame = (_dataFormat.mBitsPerChannel / 8) * _dataFormat.mChannelsPerFrame;
     _dataFormat.mBytesPerPacket = _dataFormat.mBytesPerFrame * _dataFormat.mFramesPerPacket;
     
-    _metadata = [MetadataCollector metadataWithFormatContext:_formatContext];
+    _metadata = [MetadataExtractor metadataWithFormatContext:_formatContext];
     _albumArt = [AlbumArtExtractor albumArtWithFormatContext:_formatContext];
     
     _frameRemainderIndex = 0;

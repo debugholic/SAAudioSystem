@@ -26,7 +26,7 @@
 @property (assign, nonatomic) Float64 progress;
 @property (weak, nonatomic) id <PlayerDelegate> delegate;
 
-- (void)insertTrackWithURL:(NSString *)URL withSuccess:(void (^)(BOOL, NSError *))successBlock;
+- (void)insertTrackWithPath:(NSString *)String withSuccess:(void (^)(BOOL, NSError *))successBlock;
 - (void)playTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock;
 - (void)stopTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock;
 - (void)pauseTrackWithSuccess:(void (^)(BOOL, NSError *))successBlock;

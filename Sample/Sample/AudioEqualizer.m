@@ -358,7 +358,7 @@ void memcpy_32_to_24(int32_t *dst, const int32_t *src, size_t c) {
     return 0;
 }
 
-- (int)changeFilter {
+- (int)tune {
     AVFilterGraph *graph = [self drawFilter];
     if (!graph) {
         return -1;

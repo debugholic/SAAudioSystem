@@ -47,9 +47,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Could not found source path."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         return;
     }
     
@@ -58,7 +56,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     [_decoder open:path error:error];
 
     _equalizer.metadata = self.metadata;
-    [_equalizer changeFilter];
+    [_equalizer tune];
     _decoder.equalizer = _equalizer;
     
     if (*error) {
@@ -74,9 +72,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Error occurred while setting up audio queue"}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -138,9 +134,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Could not found source path."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -173,9 +167,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Error occurred while setting up audio queue."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -216,9 +208,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Audio queue is not initianlized."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -248,9 +238,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
 - (void)seekToTarget:(int64_t)target withError:(NSError *__autoreleasing *)error {
     AudioQueuePlayerState lastState = _state;
     _state = AudioQueuePlayerStateTransitioning;
-    if (_delegate) {
-        [self.delegate audioPlayer:self didChangeState:_state];
-    }
+    [self.delegate audioPlayer:self didChangeState:_state];
 
     if (!_queue) {
         if (error) {
@@ -259,9 +247,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Audio queue is not initianlized."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -274,9 +260,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Error occurred while stopping audio queue."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -313,9 +297,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Error occurred while setting up audio queue."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -356,9 +338,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Audio queue is not initianlized."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -390,9 +370,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
                                      userInfo:@{NSLocalizedDescriptionKey:@"Audio queue is not initianlized."}];
         }
         _state = AudioQueuePlayerStateInitialized;
-        if (_delegate) {
-            [self.delegate audioPlayer:self didChangeState:_state];
-        }
+        [self.delegate audioPlayer:self didChangeState:_state];
         [_decoder stop];
         return;
     }
@@ -447,14 +425,15 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     }
 
     _state = AudioQueuePlayerStateInitialized;
-    if (_delegate) {
-        [self.delegate audioPlayer:self didChangeState:_state];
-    }
+    [self.delegate audioPlayer:self didChangeState:_state];
 }
 
 - (void)endFile {
     Float64 duration = _decoder.metadata.duration * self.timeBase;
     self.timeStamp += PLAYBACK_TIME * self.timeBase;
+    _state = AudioQueuePlayerStateFinished;
+    [self.delegate audioPlayer:self didChangeState:_state];
+    
     if (abs((int)(duration - self.timeStamp)) < PLAYBACK_TIME * self.timeBase) {
         [self.delegate audioPlayer:self didTrackPlayingForDuration:_decoder.metadata.duration];
         self.finished = YES;

@@ -41,7 +41,7 @@
                        [[NSBundle mainBundle] pathForResource:@"Minuet in G" ofType:@"mp3"]];
     self.playNumber = 0;
     NSString *path = self.playQueue[self.playNumber];
-    [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+    [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
         if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self->_albumArtView.image = self.player.curTrack.albumArt;
@@ -69,7 +69,7 @@
     } else {
         if (self.state == AudioQueuePlayerStateStopped || self.state == AudioQueuePlayerStateInitialized) {
             NSString *path = self.playQueue[self.playNumber];
-            [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+            [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
                 if (success) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self->_albumArtView.image = self.player.curTrack.albumArt;
@@ -95,7 +95,7 @@
         [self.player stopTrackWithSuccess:^(BOOL success, NSError *error) {
             if (success) {
                 NSString *path = self.playQueue[self.playNumber];
-                [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+                [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
                     if (success) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             self->_albumArtView.image = self.player.curTrack.albumArt;
@@ -120,7 +120,7 @@
                     self.playNumber = 4;
                 }
                 NSString *path = self.playQueue[self.playNumber];
-                [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+                [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
                     if (success) {
                         [self.player playTrackWithSuccess:nil];
                     }
@@ -138,7 +138,7 @@
                 self.playNumber = 0;
             }
             NSString *path = self.playQueue[self.playNumber];
-            [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+            [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
                 if (success) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self->_albumArtView.image = self.player.curTrack.albumArt;
@@ -225,7 +225,7 @@ NSString * DurationInNumToString (NSUInteger duration) {
                         self.playNumber = 0;
                     }
                     NSString *path = self.playQueue[self.playNumber];
-                    [self.player insertTrackWithURL:path withSuccess:^(BOOL success, NSError *error) {
+                    [self.player insertTrackWithPath:path withSuccess:^(BOOL success, NSError *error) {
                         if (success) {
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 self->_albumArtView.image = self.player.curTrack.albumArt;

@@ -11,20 +11,56 @@
 
 @implementation AlbumArtExtractor
 
-+ (UIImage *)albumArtWithFormatContext:(AVFormatContext *)fmt_ctx {
-    if (!fmt_ctx) {
++ (UIImage *)albumArtWithPath:(NSString *)path {
+    if (!path) {
         return nil;
     }
-
-    UIImage *albumArt = nil;
-    int ret = fmt_ctx->iformat->read_header(fmt_ctx);
+    
+    AVFormatContext *formatContext = avformat_alloc_context();
+    const char *filePathStr = path.UTF8String;
+    
+    int ret = avformat_open_input(&formatContext, filePathStr, NULL, NULL);
     if (ret < 0) {
         return nil;
     }
 
-    for (int i = 0; i < fmt_ctx->nb_streams; i++) {
-        if (fmt_ctx->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC) {
-            AVPacket packet = fmt_ctx->streams[i]->attached_pic;
+    UIImage *albumArt = nil;
+    ret = formatContext->iformat->read_header(formatContext);
+    if (ret < 0) {
+        return nil;
+    }
+
+    for (int i = 0; i < formatContext->nb_streams; i++) {
+        if (formatContext->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC) {
+            AVPacket packet = formatContext->streams[i]->attached_pic;
+            NSData *imageData = [NSData dataWithBytes:packet.data length:packet.size];
+            albumArt = [UIImage imageWithData:imageData];
+            break;
+        }
+    }
+    
+    if (formatContext != NULL) {
+        avformat_close_input(&formatContext);
+        avformat_free_context(formatContext);
+    }
+    
+    return albumArt;
+}
+
++ (UIImage *)albumArtWithFormatContext:(AVFormatContext *)formatContext {
+    if (!formatContext) {
+        return nil;
+    }
+
+    UIImage *albumArt = nil;
+    int ret = formatContext->iformat->read_header(formatContext);
+    if (ret < 0) {
+        return nil;
+    }
+
+    for (int i = 0; i < formatContext->nb_streams; i++) {
+        if (formatContext->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC) {
+            AVPacket packet = formatContext->streams[i]->attached_pic;
             NSData *imageData = [NSData dataWithBytes:packet.data length:packet.size];
             albumArt = [UIImage imageWithData:imageData];
             break;

@@ -1,14 +1,37 @@
 //
-//  MetadataCollector.m
+//  MetadataExtractor.m
 //  FFmpegAudioPlayer
 //
 //  Created by DebugHolic on 08/03/2019.
 //  Copyright © 2019 Sidekick-Academy. All rights reserved.
 //
 
-#import "MetadataCollector.h"
+#import "MetadataExtractor.h"
+#import "AudioSystemError.h"
 
-@implementation MetadataCollector
+@implementation MetadataExtractor
+
++ (AudioMetadata *)metadataWithPath:(NSString *)path {
+    if (!path) {
+        return nil;
+    }
+    
+    AVFormatContext *formatContext = avformat_alloc_context();
+    const char *filePathStr = path.UTF8String;
+    
+    int ret = avformat_open_input(&formatContext, filePathStr, NULL, NULL);
+    if (ret < 0) {
+        return nil;
+    }
+
+    AudioMetadata *metadata = [MetadataExtractor metadataWithFormatContext:formatContext];
+    if (formatContext != NULL) {
+        avformat_close_input(&formatContext);
+        avformat_free_context(formatContext);
+    }
+    return metadata;
+}
+
 
 + (AudioMetadata *)metadataWithFormatContext:(AVFormatContext *)fmt_ctx {
     if (!fmt_ctx) {

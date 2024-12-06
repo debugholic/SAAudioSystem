@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-extension AudioEqualizerValue: Identifiable {
-    
-}
-
 struct EqualizerView: View {
     @ObservedObject var viewModel: PlayerViewModel
     
@@ -22,19 +18,25 @@ struct EqualizerView: View {
             }
 
             if viewModel.isEqualizerEnabled {
-                ForEach($viewModel.equalizer.values, id: \.band) { $value in
+                ForEach($viewModel.equalizerValues, id: \.band) { $value in
                     VStack {
                         HStack {
                             Text((value.band >= 1000) ? "\(NSNumber(value: value.band / 1000))kHz" : "\(NSNumber(value: value.band))Hz")
                                 .frame(width: 70, alignment: .leading)
                             Text("\(value.gain)dB")
                                 .frame(width: 60, alignment: .leading)
-                            Slider(value: .convert($value.gain), in: Double(AudioEqualizerValue.minGain)...Double(AudioEqualizerValue.maxGain))
+                            Slider(value: .convert($value.gain), in: Double(AudioEqualizerValue.minGain)...Double(AudioEqualizerValue.maxGain)) {
+                                if !$0 {
+                                    viewModel.tune()
+                                }
+                            }
+                                
                         }
                         HStack {
                             Text("Q-Factor:")
                                 .frame(width: 80, alignment: .leading)
                             Stepper("\(NSNumber(value: value.q))", value: $value.q, in: 0...10) { _ in
+                                viewModel.tune()
                             }
                         }
                     }

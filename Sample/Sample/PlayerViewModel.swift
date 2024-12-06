@@ -9,47 +9,10 @@
 import SwiftUI
 import Combine
 
-struct MediaInfo {
-    let title: String?
-    let album: String?
-    let artist: String?
-    let creator: String?
-    let date: String?
-    let samplerate: UInt
-    let bitdepth: UInt
-    let channels: UInt
-    let duration: UInt
-    
-    init(title: String? = nil, album: String? = nil, artist: String? = nil, creator: String? = nil, date: String? = nil, samplerate: UInt? = nil, bitdepth: UInt? = nil, channels: UInt? = nil, duration: UInt?) {
-        self.title = title
-        self.album = album
-        self.artist = artist
-        self.creator = creator
-        self.date = date
-        self.samplerate = samplerate ?? 0
-        self.bitdepth = bitdepth ?? 0
-        self.channels = channels ?? 0
-        self.duration = duration ?? 0
-    }
-    
-    init(metadata: AudioMetadata?) {
-        let title = metadata?.title
-        let album = metadata?.album
-        let artist = metadata?.artist
-        let creator = metadata?.creator
-        let date = metadata?.date
-        let samplerate = metadata?.samplerate
-        let bitdepth = metadata?.bitdepth
-        let channels = metadata?.channels
-        let duration = metadata?.duration
-        
-        self.init(title: title, album: album, artist: artist, creator: creator, date: date, samplerate: samplerate, bitdepth: bitdepth, channels: channels, duration: duration)
-    }
-}
-
 class PlayerViewModel: ObservableObject {
     private var player = AudioPlayer()
-    
+    private var playlist = Playlist()
+
     @Published var state: AudioPlayer.State = .initialized
     @Published var error: Error?
     @Published var mediaInfo: MediaInfo?
@@ -57,14 +20,14 @@ class PlayerViewModel: ObservableObject {
     @Published var duration: Double = 0
         
     var isEditSeeking: Bool = false
-    var playlist: [any AudioPlayable]? {
-        didSet {
-            insert()
-        }
-    }
     var playingIndex: Int = 0
     var subscriptions = Set<AnyCancellable>()
-    @Published var equalizer: AudioEqualizer = AudioEqualizer(values: AudioEqualizerValue.defaultBands10)
+    
+    private var equalizer: AudioEqualizer = AudioEqualizer(values: AudioEqualizerValue.defaultBands10)
+    
+    var tracks: [Track] {
+        return playlist.tracklist as? [Track] ?? []
+    }
     
     var isEqualizerEnabled: Bool {
         set {
@@ -75,6 +38,8 @@ class PlayerViewModel: ObservableObject {
             UserDefaults.standard.bool(forKey: "isEqualizerEnabled")
         }
     }
+    
+    lazy var equalizerValues: [AudioEqualizerValue] = equalizer.values
     
     init() {
         player.duration.sink { duration in
@@ -111,16 +76,34 @@ class PlayerViewModel: ObservableObject {
         player.equalizer = equalizer
         player.equalizer?.on = isEqualizerEnabled
     }
-    
-    private func insert() {
-        if playingIndex < (playlist?.count ?? 0),
-           let track = playlist?[playingIndex] {
+            
+    func setPlaylist(_ tracks: [Track]) {
+        playlist.setPlaylist(tracks)
+        if let track = playlist.nowPlayingTrack {
             player.insertTrack(track)
         }
     }
-        
+    
     func play() {
-        try? player.play()
+        switch state {
+        case .stopped:
+            if let track = playlist.nowPlayingTrack {
+                player.insertTrack(track)
+                try? player.play()
+            }
+            break
+
+        case .finished:
+            if let track = playlist.nextTrack {
+                player.insertTrack(track)
+                try? player.play()
+            }
+            break
+            
+        default:
+            try? player.play()
+            break
+        }
     }
     
     func resume() {
@@ -135,32 +118,36 @@ class PlayerViewModel: ObservableObject {
         player.stop()
     }
     
-    func next() {
+    func skipNext() {
         let state = self.state
-        if playingIndex < (playlist?.count ?? 0) - 1 {
-            playingIndex += 1
-            player.stop()
-        }
-        insert()
-        if state == .playing {
-            play()
+        player.stop()
+        
+        if let track = playlist.skipNextTrack() {
+            player.insertTrack(track)
+            if state == .playing {
+                play()
+            }
         }
     }
     
-    func prev() {
+    func skipPrev() {
         let state = self.state
         player.stop()
-        if duration < 3  && playingIndex >= 1 {
-            playingIndex -= 1
-        }
-        insert()
-        if state == .playing {
-            play()
+        
+        if let track = playlist.skipPrevTrack() {
+            player.insertTrack(track)
+            if state == .playing {
+                play()
+            }
         }
     }
     
     func seek(to target: TimeInterval) {
         player.seek(to: target)
+    }
+    
+    func tune() {
+        equalizer.tune()
     }
 }
 

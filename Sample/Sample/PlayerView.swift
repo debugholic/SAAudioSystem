@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-struct Track: AudioPlayable {
-    let url: String
-}
-
 struct Button: View {
     let action: (() -> Void)
     let imageName: String
@@ -30,23 +26,24 @@ struct Button: View {
 struct PlayerView: View {
     @ObservedObject var viewModel = {
         let viewModel = PlayerViewModel()
-        var playlist = [Track]()
+        
+        var tracks = [Track]()
         if let path = Bundle.main.path(forResource: "Pavane for Dead Princess", ofType: "mp3") {
-            playlist.append(Track(url: path))
+            tracks.append(Track(path))
         }
         if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
-            playlist.append(Track(url: path))
+            tracks.append(Track(path))
         }
         if let path = Bundle.main.path(forResource: "Nocturne in C# minor", ofType: "mp3") {
-            playlist.append(Track(url: path))
+            tracks.append(Track(path))
         }
         if let path = Bundle.main.path(forResource: "Carmen Habanera", ofType: "mp3") {
-            playlist.append(Track(url: path))
+            tracks.append(Track(path))
         }
         if let path = Bundle.main.path(forResource: "Minuet in G", ofType: "mp3") {
-            playlist.append(Track(url: path))
+            tracks.append(Track(path))
         }
-        viewModel.playlist = playlist
+        viewModel.setPlaylist(tracks)
         return viewModel
     }()
     
@@ -121,7 +118,7 @@ struct PlayerControlView: View {
                 
                 HStack(spacing: 36) {
                     Button(action: {
-                        viewModel.prev()
+                        viewModel.skipPrev()
                     }, imageName: "reverse")
                     .frame(width: 50, height: 50)
                     
@@ -150,8 +147,8 @@ struct PlayerControlView: View {
                     .frame(width: 50, height: 50)
                     
                     Button(action: {
-                        viewModel.next()
-                        
+                        viewModel.skipNext()
+
                     }, imageName: "forward")
                     .frame(width: 50, height: 50)
                 }
@@ -165,10 +162,10 @@ struct PlayerControlView: View {
 struct NavigationBar: View {
     var body: some View {
         HStack {
-            Button(action: { }, imageName: "musicfile")
-            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-            Spacer()
+            EmptyView()
         }
+        .frame(height: 50)
+
     }
 }
 
@@ -184,13 +181,16 @@ struct BottomBar: View {
                     .padding(5)
                     .frame(width: 50, height: 50)
             }
-            .simultaneousGesture(TapGesture().onEnded{
-                print("tapped")
-            })
             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             Spacer()
-            Button(action: { }, imageName: "playlist")
-                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            NavigationLink(destination: PlaylistView(viewModel: viewModel)) {
+                Image("playlist")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(5)
+                    .frame(width: 50, height: 50)
+            }
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
         }
     }
 }

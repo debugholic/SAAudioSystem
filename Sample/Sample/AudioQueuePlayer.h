@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, AudioQueuePlayerState) {
     AudioQueuePlayerStatePlaying,
     AudioQueuePlayerStatePaused,
     AudioQueuePlayerStateStopped,
+    AudioQueuePlayerStateFinished
 };
 
 @class AudioQueuePlayer;

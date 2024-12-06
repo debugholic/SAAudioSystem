@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol AudioPlayable {
-    var url: String { get }
+    var path: String { get }
 }
 
 final class AudioPlayer: NSObject {
@@ -21,6 +21,7 @@ final class AudioPlayer: NSObject {
         case playing
         case paused
         case stopped
+        case finished
     }
     
     private lazy var player: AudioQueuePlayer = {
@@ -42,7 +43,7 @@ final class AudioPlayer: NSObject {
     
     func insertTrack(_ track: any AudioPlayable) {
         var error: NSError?
-        player.insertTrack(track.url, withError: &error)
+        player.insertTrack(track.path, withError: &error)
         metadata.send(player.metadata())
         albumArt.send(player.albumArt())
         self.error.send(error)
@@ -77,15 +78,6 @@ final class AudioPlayer: NSObject {
         player.seek(toTarget: Int64(ceil(target)), withError: &error)
         self.error.send(error)
     }
-        
-//    - (void)seekToTarget:(int64_t)targetTime withError:(NSError *_Nullable *_Nonnull)error;
-//    func setEqualizerOn(_ isOn: Bool) {
-//        player.equalizer
-//    player.equalizer.isOn
-        
-//    }
-//    - (void)terminateWithError:(NSError *_Nullable *_Nonnull)error;
-
 }
 
 extension AudioPlayer: AudioQueuePlayerDelegate {
@@ -101,8 +93,9 @@ extension AudioPlayer: AudioQueuePlayerDelegate {
         case .playing: self.state.send(.playing)
         case .paused: self.state.send(.paused)
         case .stopped: self.state.send(.stopped)
+        case .finished: self.state.send(.finished)
         @unknown default: break
-        }
+        }        
     }
     
     func audioPlayer(_ audioPlayer: AudioQueuePlayer, didTrackReadingProgress progress: Float64) {

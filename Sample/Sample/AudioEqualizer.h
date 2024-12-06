@@ -19,6 +19,6 @@
 
 - (instancetype _Nonnull)initWithValues:(NSArray <AudioEqualizerValue *> * _Nonnull)values;
 - (int)filter:(void *_Nullable)data length:(size_t)length;
-- (int)changeFilter;
+- (int)tune;
 
 @end
