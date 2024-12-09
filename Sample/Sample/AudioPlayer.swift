@@ -11,6 +11,8 @@ import Combine
 
 protocol AudioPlayable {
     var path: String { get }
+    var mediaInfo: MediaInfo? { get }
+    var albumArt: UIImage? { get }
 }
 
 final class AudioPlayer: NSObject {
@@ -37,15 +39,13 @@ final class AudioPlayer: NSObject {
     var state = PassthroughSubject<State, Never>()
     var duration = PassthroughSubject<Double, Never>()
     var progress = PassthroughSubject<Double, Never>()
-    var metadata = PassthroughSubject<AudioMetadata, Never>()
-    var albumArt = PassthroughSubject<UIImage?, Never>()
+    var nowPlaying = PassthroughSubject<(any AudioPlayable), Never>()
     var error = PassthroughSubject<Error?, Never>()
     
     func insertTrack(_ track: any AudioPlayable) {
         var error: NSError?
         player.insertTrack(track.path, withError: &error)
-        metadata.send(player.metadata())
-        albumArt.send(player.albumArt())
+        nowPlaying.send(track)
         self.error.send(error)
     }
     

@@ -220,14 +220,13 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
 
     _dataFormat.mBytesPerFrame = (_dataFormat.mBitsPerChannel / 8) * _dataFormat.mChannelsPerFrame;
     _dataFormat.mBytesPerPacket = _dataFormat.mBytesPerFrame * _dataFormat.mFramesPerPacket;
-    
-    _metadata = [MetadataExtractor metadataWithFormatContext:_formatContext];
-    _albumArt = [AlbumArtExtractor albumArtWithFormatContext:_formatContext];
-    
+        
     _frameRemainderIndex = 0;
     _frameRemainderSize = 0;
     
     _timeBase_den = _formatContext->streams[_audioStreamIndex]->time_base.den;
+    _duration = _formatContext->streams[_audioStreamIndex]->duration / _timeBase_den;
+
     _stopRead = NO;
 }
 
@@ -253,7 +252,6 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
         avformat_close_input(&_formatContext);      // Close container.
         avformat_free_context(_formatContext);      // Release container.
     }
-    _metadata = nil;
 }
 
 - (void)read {
@@ -304,14 +302,14 @@ NSString * const AudioDecoderErrorDomain = @"com.sidekick.academy.error.audio.de
                 }
             }
         }
-        int64_t duration = (int64_t)_metadata.duration * _timeBase_den;
+        int64_t duration = (int64_t)_duration * _timeBase_den;
         if (packet.pts < duration && packet.pts > _packetQueue.pts) {
             packet_queue_put_packet(&_packetQueue, &packet);
         }
         loop++;
         
-        if (_delegate && _metadata) {
-             Float64 progress = (Float64) _packetQueue.pts / _metadata.duration;
+        if (_delegate && _duration) {
+             Float64 progress = (Float64) _packetQueue.pts / _duration;
             [_delegate audioDecoder:self didTrackReadingProgress:progress];
         }
         

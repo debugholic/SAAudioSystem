@@ -15,10 +15,7 @@ struct Track: AudioPlayable {
     
     init(_ path: String) {
         self.path = path
-        
-        let metadata = MetadataExtractor.metadata(withPath: path)
-        self.mediaInfo = MediaInfo(metadata: metadata)
-        
+        self.mediaInfo = MediaInfo(metadata: MetadataExtractor.metadata(withPath: path))
         self.albumArt = AlbumArtExtractor.albumArt(withPath: path)
     }
 }
@@ -60,60 +57,3 @@ struct MediaInfo {
         self.init(title: title, album: album, artist: artist, creator: creator, date: date, samplerate: samplerate, bitdepth: bitdepth, channels: channels, duration: duration)
     }
 }
-//
-//
-//
-//
-//- (instancetype)initWithFile:(NSString *)filePath {
-//    self = [self init];
-//    if (self) {
-//        BOOL isDirectory = NO;
-//        [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory];
-//        NSString *fileName = filePath.lastPathComponent;
-//        if (isDirectory) {
-//            self.itemTitle = fileName;
-//            self.storageResourceURLString = filePath;
-//            self.objectClass = UPnPObjectClass.STORAGE_FOLDER;
-//            self.playable = YES;
-//        } else {
-//            if (DoesFileHasSupportedExtension(fileName)) {
-//                self.itemTitle = fileName;
-//                self.storageResourceURLString = filePath;
-//                self.objectClass = UPnPObjectClass.MUSIC_TRACK;
-//                self.editable = YES;
-//                UPPMediaItemResource *resource = [[UPPMediaItemResource alloc] init];
-//                resource.protocolInfo = [AKCProtocolInfoHelper protocolInfoFromExtension:nil];
-//                self.resources = @[resource];
-//                
-//                dispatch_queue_t parseQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-//                dispatch_async(parseQueue, ^{
-//                    // PARSE IT AND INSERT IT TO DB
-//                    NSDictionary *metadata = [IRVMetadataExtractor extractMetadataWithPath:filePath];
-//                    NSString *album = metadata[@"album"];
-//                    if (!album) {
-//                        album = NSLocalizedString(AKCLocalizedStringItemUnknownAlbumKey, nil);
-//                    }
-//                    self.albumTitle = album;
-//                    
-//                    NSString *artist = metadata[@"artist"];
-//                    if (!artist) {
-//                        artist = NSLocalizedString(AKCLocalizedStringItemUnknownArtistKey, nil);
-//                    }
-//                    self.artist = artist;
-//                    
-//                    NSString *genre = metadata[@"genre"];
-//                    if (!genre) {
-//                        genre = NSLocalizedString(AKCLocalizedStringItemUnknownGenreKey, nil);
-//                    }
-//                    self.genre = genre;
-//                    
-//                    self.creator = metadata[@"composer"];
-//                    self.date = metadata[@"TYER"];
-//                    self.trackNumber = metadata[@"track"];
-//                    self.playable = YES;
-//                });
-//            }
-//        }
-//    }
-//    return self;
-//}

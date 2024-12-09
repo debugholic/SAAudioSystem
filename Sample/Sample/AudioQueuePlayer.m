@@ -8,6 +8,7 @@
 
 #import "AudioQueuePlayer.h"
 #import "AudioDecoder.h"
+#import "MetadataExtractor.h"
 #import <libavformat/avformat.h>
 
 @interface AudioQueuePlayer() <AudioDecoderDelegate>
@@ -55,7 +56,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
     _decoder.delegate = self;
     [_decoder open:path error:error];
 
-    _equalizer.metadata = self.metadata;
+    _equalizer.metadata = [MetadataExtractor metadataWithPath:path];
     [_equalizer tune];
     _decoder.equalizer = _equalizer;
     
@@ -172,7 +173,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
         return;
     }
     
-    Float64 duration = _decoder.metadata.duration;
+    Float64 duration = _decoder.duration;
     if (duration - (Float64)_timeStamp/_timeBase < 1) {
         self.finished = YES;
         [self stopWithError:nil];
@@ -375,7 +376,7 @@ UInt32 const PLAYBACK_BUFFERS = 3;
         return;
     }
 
-    Float64 duration = _decoder.metadata.duration;
+    Float64 duration = _decoder.duration;
     if (duration - (Float64)_timeStamp/_timeBase < 1) {
         self.finished = YES;
         [self stopWithError:nil];
@@ -429,13 +430,13 @@ UInt32 const PLAYBACK_BUFFERS = 3;
 }
 
 - (void)endFile {
-    Float64 duration = _decoder.metadata.duration * self.timeBase;
+    Float64 duration = _decoder.duration * self.timeBase;
     self.timeStamp += PLAYBACK_TIME * self.timeBase;
     _state = AudioQueuePlayerStateFinished;
     [self.delegate audioPlayer:self didChangeState:_state];
     
     if (abs((int)(duration - self.timeStamp)) < PLAYBACK_TIME * self.timeBase) {
-        [self.delegate audioPlayer:self didTrackPlayingForDuration:_decoder.metadata.duration];
+        [self.delegate audioPlayer:self didTrackPlayingForDuration:_decoder.duration];
         self.finished = YES;
         [self stopWithError:nil];
         return;
@@ -519,14 +520,6 @@ static void AQOutputCallback(void * __nullable inUserData, AudioQueueRef inAQ, A
         }
         return;
     }
-}
-
-- (AudioMetadata *)metadata {
-    return _decoder.metadata;
-}
-
-- (UIImage *)albumArt {
-    return _decoder.albumArt;
 }
 
 - (void)audioDecoder:(AudioDecoder *)audioDecoder didTrackReadingProgress:(Float64)progress {

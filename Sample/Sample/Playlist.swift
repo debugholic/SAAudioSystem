@@ -14,25 +14,38 @@ struct Playlist {
         case random
     }
     
-    var nowPlayingTrack: (any AudioPlayable)? {
-        switch playingMode {
-        case .single, .loop:
-            return tracklist[trackIndex]
-        case .random:
-            if let index = shuffled?[trackIndex] { return tracklist[index] } else { return nil }
+    var currentTrack: (any AudioPlayable)? {
+        if playingMode == .random {
+            if let shuffled { return trackIndex < shuffled.count ? tracklist[shuffled[trackIndex]] : nil } else { return nil }
+       
+        } else {
+            return trackIndex < tracklist.count ? tracklist[trackIndex] : nil
         }
     }
-    
+        
     var nextTrack: (any AudioPlayable)? {
         switch playingMode {
         case .single:
             return tracklist[trackIndex]
-        case .loop, .random:
+            
+        case .loop:
             var trackIndex = trackIndex + 1
             if trackIndex > tracklist.count - 1 {
                 trackIndex = 0
             }
-            return nowPlayingTrack
+            return tracklist[trackIndex]
+            
+        case .random:
+            var trackIndex = trackIndex + 1
+            if let shuffled {
+                if trackIndex > shuffled.count - 1 {
+                    trackIndex = 0
+                }
+                return tracklist[shuffled[trackIndex]]
+
+            } else {
+                return nil
+            }
         }
     }
     
@@ -94,17 +107,43 @@ struct Playlist {
     
     mutating func skipNextTrack() -> (any AudioPlayable)? {
         trackIndex += 1
-        if trackIndex > tracklist.count - 1 {
-            trackIndex = 0
+        if playingMode == .random {
+            if let shuffled {
+                if trackIndex > shuffled.count - 1 {
+                    trackIndex = 0
+                }
+                return tracklist[shuffled[trackIndex]]
+                
+            } else {
+                return nil
+            }
+            
+        } else {
+            if trackIndex > tracklist.count - 1 {
+                trackIndex = 0
+            }
+            return tracklist[trackIndex]
         }
-        return nowPlayingTrack
     }
     
     mutating func skipPrevTrack() -> (any AudioPlayable)? {
         trackIndex -= 1
-        if trackIndex < 0 {
-            trackIndex = tracklist.count - 1
+        if playingMode == .random {
+            if let shuffled {
+                if trackIndex < 0 {
+                    trackIndex = shuffled.count - 1
+                }
+                return tracklist[shuffled[trackIndex]]
+                
+            } else {
+                return nil
+            }
+            
+        } else {
+            if trackIndex < 0 {
+                trackIndex = tracklist.count - 1
+            }
+            return tracklist[trackIndex]
         }
-        return nowPlayingTrack
     }
 }

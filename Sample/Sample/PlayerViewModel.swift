@@ -15,8 +15,8 @@ class PlayerViewModel: ObservableObject {
 
     @Published var state: AudioPlayer.State = .initialized
     @Published var error: Error?
-    @Published var mediaInfo: MediaInfo?
-    @Published var albumArt: UIImage?
+    
+    @Published var nowPlaying: Track?
     @Published var duration: Double = 0
         
     var isEditSeeking: Bool = false
@@ -56,18 +56,12 @@ class PlayerViewModel: ObservableObject {
             }
         }.store(in: &subscriptions)
         
-        player.metadata.sink { metadata in
+        player.nowPlaying.sink { track in
             DispatchQueue.main.async {
-                self.mediaInfo = MediaInfo(metadata: metadata)
+                self.nowPlaying = track as? Track
             }
         }.store(in: &subscriptions)
 
-        player.albumArt.sink { albumArt in
-            DispatchQueue.main.async {
-                self.albumArt = albumArt
-            }
-        }.store(in: &subscriptions)
-        
         player.error.sink { error in
             DispatchQueue.main.async {
                 self.error = error
@@ -79,23 +73,27 @@ class PlayerViewModel: ObservableObject {
             
     func setPlaylist(_ tracks: [Track]) {
         playlist.setPlaylist(tracks)
-        if let track = playlist.nowPlayingTrack {
-            player.insertTrack(track)
+        if let track = playlist.currentTrack as? Track {
+            insertTrack(track)
         }
+    }
+    
+    func insertTrack(_ track: Track) {
+        player.insertTrack(track)
     }
     
     func play() {
         switch state {
         case .stopped:
-            if let track = playlist.nowPlayingTrack {
-                player.insertTrack(track)
+            if let track = playlist.currentTrack as? Track {
+                insertTrack(track)
                 try? player.play()
             }
             break
 
         case .finished:
-            if let track = playlist.nextTrack {
-                player.insertTrack(track)
+            if let track = playlist.nextTrack as? Track {
+                insertTrack(track)
                 try? player.play()
             }
             break
@@ -122,8 +120,8 @@ class PlayerViewModel: ObservableObject {
         let state = self.state
         player.stop()
         
-        if let track = playlist.skipNextTrack() {
-            player.insertTrack(track)
+        if let track = playlist.skipNextTrack() as? Track {
+            insertTrack(track)
             if state == .playing {
                 play()
             }
@@ -134,8 +132,8 @@ class PlayerViewModel: ObservableObject {
         let state = self.state
         player.stop()
         
-        if let track = playlist.skipPrevTrack() {
-            player.insertTrack(track)
+        if let track = playlist.skipPrevTrack() as? Track {
+            insertTrack(track)
             if state == .playing {
                 play()
             }

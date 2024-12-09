@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C197514224FCD0C0071223C /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C197513224FCD0C0071223C /* Track.m */; };
 		0C197516225114F80071223C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C197515225114F80071223C /* Assets.xcassets */; };
 		0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */; };
 		0C60D3B52C807E7900CC67A8 /* PacketQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C60D3A82C807E7300CC67A8 /* PacketQueue.m */; };
@@ -22,11 +21,8 @@
 		0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97AD8C2CDC6461002204BF /* EqualizerView.swift */; };
 		0CB207E82CFFE0F400D59B9A /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB207E72CFFE0ED00D59B9A /* Playlist.swift */; };
 		0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */; };
-		0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B0224B7BCA0026D657 /* ViewController.m */; };
-		0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B2224B7BCA0026D657 /* Main.storyboard */; };
 		0CBDC9B9224B7BCC0026D657 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */; };
 		0CBDC9BC224B7BCC0026D657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9BB224B7BCC0026D657 /* main.m */; };
-		0CBDC9C5224B83090026D657 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9C4224B83090026D657 /* Player.m */; };
 		0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3A62C815F770018C375 /* AudioPlayer.swift */; };
 		0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* PlayerView.swift */; };
 		0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */; };
@@ -42,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		0C197512224FCD0C0071223C /* Track.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
-		0C197513224FCD0C0071223C /* Track.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		0C197515225114F80071223C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumArtExtractor.h; sourceTree = "<group>"; };
 		0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioDecoder.m; sourceTree = "<group>"; };
@@ -66,14 +61,9 @@
 		0CBDC9A9224B7BCA0026D657 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0CBDC9AF224B7BCA0026D657 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0CBDC9B0224B7BCA0026D657 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0CBDC9B3224B7BCA0026D657 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0CBDC9B8224B7BCC0026D657 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0CBDC9BA224B7BCC0026D657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CBDC9BB224B7BCC0026D657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0CBDC9C3224B83090026D657 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		0CBDC9C4224B83090026D657 /* Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0CDFE3A62C815F770018C375 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		0CDFE3AA2C8164450018C375 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -137,12 +127,8 @@
 				0C60D3B32C807E7900CC67A8 /* MetadataExtractor.m */,
 				0C60D3B12C807E7700CC67A8 /* PacketQueue.h */,
 				0C60D3A82C807E7300CC67A8 /* PacketQueue.m */,
-				0CBDC9C3224B83090026D657 /* Player.h */,
-				0CBDC9C4224B83090026D657 /* Player.m */,
 				0CBDC9AC224B7BCA0026D657 /* AppDelegate.h */,
 				0CBDC9AD224B7BCA0026D657 /* AppDelegate.m */,
-				0CBDC9AF224B7BCA0026D657 /* ViewController.h */,
-				0CBDC9B0224B7BCA0026D657 /* ViewController.m */,
 				0CDFE3A62C815F770018C375 /* AudioPlayer.swift */,
 				0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */,
 				0C8E76DD2D02E1FC001D855B /* Track.swift */,
@@ -151,12 +137,10 @@
 				0CDFE3AA2C8164450018C375 /* PlayerView.swift */,
 				0C97AD8C2CDC6461002204BF /* EqualizerView.swift */,
 				0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */,
-				0CBDC9B2224B7BCA0026D657 /* Main.storyboard */,
 				0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */,
 				0C197515225114F80071223C /* Assets.xcassets */,
 				0CBDC9BA224B7BCC0026D657 /* Info.plist */,
 				0CBDC9BB224B7BCC0026D657 /* main.m */,
-				0C197513224FCD0C0071223C /* Track.m */,
 				0CED1466225E153500849BB8 /* Sample music */,
 				0C197512224FCD0C0071223C /* Track.h */,
 				0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */,
@@ -254,7 +238,6 @@
 				0CED1463225E152E00849BB8 /* Pavane for Dead Princess.mp3 in Resources */,
 				0CED1464225E152E00849BB8 /* Carmen Habanera.mp3 in Resources */,
 				0CED1462225E152E00849BB8 /* Nocturne in C# minor.mp3 in Resources */,
-				0CBDC9B4224B7BCA0026D657 /* Main.storyboard in Resources */,
 				0CED1465225E152E00849BB8 /* Canon in D.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,20 +249,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CBDC9C5224B83090026D657 /* Player.m in Sources */,
 				0C60D3B82C807E7900CC67A8 /* AudioEqualizer.m in Sources */,
 				0CE685C72CEAD3480064EECC /* AudioEqualizerValue.m in Sources */,
 				0C60D3BA2C807E7900CC67A8 /* MetadataExtractor.m in Sources */,
 				0CB207E82CFFE0F400D59B9A /* Playlist.swift in Sources */,
 				0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */,
-				0CBDC9B1224B7BCA0026D657 /* ViewController.m in Sources */,
 				0CBDC9BC224B7BCC0026D657 /* main.m in Sources */,
 				0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */,
 				0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */,
 				0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */,
 				0CF7E71A2C8EEEE400CE0B62 /* PlayerViewModel.swift in Sources */,
 				0C60D3B72C807E7900CC67A8 /* AlbumArtExtractor.m in Sources */,
-				0C197514224FCD0C0071223C /* Track.m in Sources */,
 				0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */,
 				0CBDC9AE224B7BCA0026D657 /* AppDelegate.m in Sources */,
 				0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */,
@@ -293,14 +273,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0CBDC9B2224B7BCA0026D657 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0CBDC9B3224B7BCA0026D657 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

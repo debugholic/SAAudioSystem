@@ -24,14 +24,13 @@
 
 @property (strong, nonatomic, nullable) id <AudioDecoderDelegate> delegate;
 @property (strong, nonatomic, readonly, nullable) NSString *sourcePath;
-@property (strong, nonatomic, readonly, nullable) AudioMetadata *metadata;
-@property (strong, nonatomic, readonly, nullable) UIImage *albumArt;
 @property (assign, nonatomic, readonly) AudioStreamBasicDescription dataFormat;
-@property (nonatomic, readonly) int64_t timeBase_den;
-@property (nonatomic, readonly) int64_t timeStamp;
-@property (assign, nonatomic) BOOL readFinished;
-@property (assign, nonatomic) BOOL endOfFile;
-@property (assign, nonatomic) Float32 readProgress;
+@property (assign, nonatomic, readonly) int64_t timeBase_den;
+@property (assign, nonatomic, readonly) int64_t timeStamp;
+@property (assign, nonatomic, readonly) NSUInteger duration;
+@property (assign, nonatomic, readonly) BOOL readFinished;
+@property (assign, nonatomic, readonly) BOOL endOfFile;
+@property (assign, nonatomic, readonly) Float32 readProgress;
 @property (strong, nonatomic, nullable) AudioEqualizer *equalizer;
 
 - (void)open:(NSString * _Nonnull)path error:(NSError *_Nullable *_Nonnull)error;

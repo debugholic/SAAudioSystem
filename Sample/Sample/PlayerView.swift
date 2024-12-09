@@ -31,18 +31,23 @@ struct PlayerView: View {
         if let path = Bundle.main.path(forResource: "Pavane for Dead Princess", ofType: "mp3") {
             tracks.append(Track(path))
         }
+        
         if let path = Bundle.main.path(forResource: "Canon in D", ofType: "mp3") {
             tracks.append(Track(path))
         }
+        
         if let path = Bundle.main.path(forResource: "Nocturne in C# minor", ofType: "mp3") {
             tracks.append(Track(path))
         }
+        
         if let path = Bundle.main.path(forResource: "Carmen Habanera", ofType: "mp3") {
             tracks.append(Track(path))
         }
+        
         if let path = Bundle.main.path(forResource: "Minuet in G", ofType: "mp3") {
             tracks.append(Track(path))
         }
+        
         viewModel.setPlaylist(tracks)
         return viewModel
     }()
@@ -69,7 +74,7 @@ struct PlayerControlView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Image(uiImage: viewModel.albumArt ?? UIImage())
+                Image(uiImage: viewModel.nowPlaying?.albumArt ?? UIImage())
                     .resizable()
                     .frame(width: min(geometry.size.width, geometry.size.height),
                            height: min(geometry.size.width, geometry.size.height))
@@ -77,7 +82,7 @@ struct PlayerControlView: View {
                     .cornerRadius(16)
                     .scaledToFill()
                 
-                Slider(value: $viewModel.duration, in: 0...Double(viewModel.mediaInfo?.duration ?? 0)) {
+                Slider(value: $viewModel.duration, in: 0...Double(viewModel.nowPlaying?.mediaInfo?.duration ?? 0)) {
                     viewModel.isEditSeeking = $0
                     if !$0 {
                         viewModel.seek(to: viewModel.duration)
@@ -87,13 +92,13 @@ struct PlayerControlView: View {
                     Text(viewModel.duration.dateFormatted())
                         .font(.system(size: 12))
                     Spacer()
-                    Text(Double(viewModel.mediaInfo?.duration ?? 0).dateFormatted())
+                    Text(Double(viewModel.nowPlaying?.mediaInfo?.duration ?? 0).dateFormatted())
                         .font(.system(size: 12))
                 }
                 .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                 
                 HStack(spacing: 4) {
-                    if let bitdepth = viewModel.mediaInfo?.bitdepth {
+                    if let bitdepth = viewModel.nowPlaying?.mediaInfo?.bitdepth {
                         Text("\(bitdepth)bit")
                     } else {
                         Text("-")
@@ -101,7 +106,7 @@ struct PlayerControlView: View {
 
                     Text("/")
 
-                    if let samplerate = viewModel.mediaInfo?.samplerate {
+                    if let samplerate = viewModel.nowPlaying?.mediaInfo?.samplerate {
                         Text((samplerate > 1000 ? String(format: "%.1fk", Double(samplerate)/Double(1000)) : "\(samplerate)") + "Hz")
                     } else {
                         Text("-")
@@ -109,11 +114,11 @@ struct PlayerControlView: View {
                 }
                 .padding(EdgeInsets(top: 32, leading: 8, bottom: 16, trailing: 8))
                 
-                Text(viewModel.mediaInfo?.title ?? "Title")
+                Text(viewModel.nowPlaying?.mediaInfo?.title ?? "Title")
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(viewModel.mediaInfo?.artist ?? "Artist")
+                Text(viewModel.nowPlaying?.mediaInfo?.artist ?? "Artist")
                     .font(.title3)
                 
                 HStack(spacing: 36) {
@@ -165,7 +170,6 @@ struct NavigationBar: View {
             EmptyView()
         }
         .frame(height: 50)
-
     }
 }
 
@@ -198,5 +202,3 @@ struct BottomBar: View {
 #Preview {
     PlayerView()
 }
-
-

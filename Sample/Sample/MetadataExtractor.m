@@ -24,6 +24,8 @@
         return nil;
     }
 
+    avformat_find_stream_info(formatContext, NULL);
+
     AudioMetadata *metadata = [MetadataExtractor metadataWithFormatContext:formatContext];
     if (formatContext != NULL) {
         avformat_close_input(&formatContext);
@@ -74,14 +76,13 @@
         if (!value) {
             value = str;
         }
-        
         [metadata setObject:value forKey:key];
     }
     
     AVCodecParameters *codecParams;
     int timeBase_den = 0;
     int64_t duration = 0;
-    
+      
     for (int i = 0; i < fmt_ctx->nb_streams; i++) {
         if (fmt_ctx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
             codecParams = fmt_ctx->streams[i]->codecpar;

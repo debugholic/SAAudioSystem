@@ -48,7 +48,5 @@ typedef NS_ENUM(NSUInteger, AudioQueuePlayerState) {
 - (void)resumeWithError:(NSError *_Nullable *_Nonnull)error;
 - (void)seekToTarget:(int64_t)targetTime withError:(NSError *_Nullable *_Nonnull)error;
 - (void)terminateWithError:(NSError *_Nullable *_Nonnull)error;
-- (AudioMetadata *_Nonnull)metadata;
-- (UIImage *_Nullable)albumArt;
 
 @end
