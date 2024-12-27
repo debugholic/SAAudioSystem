@@ -39,10 +39,10 @@ final class AudioPlayer: NSObject {
     var state = PassthroughSubject<State, Never>()
     var duration = PassthroughSubject<Double, Never>()
     var progress = PassthroughSubject<Double, Never>()
-    var nowPlaying = PassthroughSubject<(any AudioPlayable), Never>()
+    var nowPlaying = PassthroughSubject<AudioPlayable, Never>()
     var error = PassthroughSubject<Error?, Never>()
     
-    func insertTrack(_ track: any AudioPlayable) {
+    func insertTrack(_ track: AudioPlayable) {
         var error: NSError?
         player.insertTrack(track.path, withError: &error)
         nowPlaying.send(track)

@@ -2,7 +2,7 @@
 //  Untitled.h
 //  Sample
 //
-//  Created by 김영훈 on 11/18/24.
+//  Created by debugholic on 11/18/24.
 //  Copyright © 2024 Sidekick-Academy. All rights reserved.
 //
 

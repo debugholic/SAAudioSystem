@@ -14,7 +14,7 @@ struct Playlist {
         case random
     }
     
-    var currentTrack: (any AudioPlayable)? {
+    var currentTrack: AudioPlayable? {
         if playingMode == .random {
             if let shuffled { return trackIndex < shuffled.count ? tracklist[shuffled[trackIndex]] : nil } else { return nil }
        
@@ -23,7 +23,7 @@ struct Playlist {
         }
     }
         
-    var nextTrack: (any AudioPlayable)? {
+    var nextTrack: AudioPlayable? {
         switch playingMode {
         case .single:
             return tracklist[trackIndex]
@@ -49,7 +49,7 @@ struct Playlist {
         }
     }
     
-    var tracklist = [any AudioPlayable]()
+    var tracklist = [AudioPlayable]()
     
     private var shuffled: [Int]?
     private var trackIndex = 0
@@ -99,13 +99,13 @@ struct Playlist {
         }
     }
     
-    mutating func setPlaylist(_ tracks: [any AudioPlayable]) {
+    mutating func setPlaylist(_ tracks: [AudioPlayable]) {
         tracklist.removeAll()
         tracklist.append(contentsOf: tracks)
         trackIndex = 0
     }
     
-    mutating func skipNextTrack() -> (any AudioPlayable)? {
+    mutating func skipNextTrack() -> AudioPlayable? {
         trackIndex += 1
         if playingMode == .random {
             if let shuffled {
@@ -126,7 +126,7 @@ struct Playlist {
         }
     }
     
-    mutating func skipPrevTrack() -> (any AudioPlayable)? {
+    mutating func skipPrevTrack() -> AudioPlayable? {
         trackIndex -= 1
         if playingMode == .random {
             if let shuffled {
