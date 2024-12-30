@@ -21,7 +21,6 @@
 		0C97AD8D2CDC646D002204BF /* EqualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97AD8C2CDC6461002204BF /* EqualizerView.swift */; };
 		0CB207E82CFFE0F400D59B9A /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB207E72CFFE0ED00D59B9A /* Playlist.swift */; };
 		0CBDC9B9224B7BCC0026D657 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */; };
-		0CBDC9BC224B7BCC0026D657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBDC9BB224B7BCC0026D657 /* main.m */; };
 		0CDFE3A72C815F770018C375 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3A62C815F770018C375 /* AudioPlayer.swift */; };
 		0CDFE3AC2C8164450018C375 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AA2C8164450018C375 /* PlayerView.swift */; };
 		0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFE3AB2C8164450018C375 /* MyAudioPlayerApp.swift */; };
@@ -60,7 +59,6 @@
 		0CBDC9A9224B7BCA0026D657 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CBDC9B8224B7BCC0026D657 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0CBDC9BA224B7BCC0026D657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0CBDC9BB224B7BCC0026D657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0CDFE3A62C815F770018C375 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		0CDFE3AA2C8164450018C375 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -87,11 +85,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C9D45C32D1512E90035C31B /* New Group */ = {
+		0C342DF42D22FCF50087736B /* FFmpegWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */,
+				0C60D3AC2C807E7500CC67A8 /* AlbumArtExtractor.m */,
+				0C60D3B02C807E7700CC67A8 /* AudioDecoder.h */,
+				0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */,
+				0C60D3A92C807E7300CC67A8 /* AudioEqualizer.h */,
+				0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */,
+				0CE685C52CEAD14C0064EECC /* AudioEqualizerValue.h */,
+				0CE685C62CEAD33C0064EECC /* AudioEqualizerValue.m */,
+				0C60D3AE2C807E7600CC67A8 /* AudioMetadata.h */,
+				0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */,
+				0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */,
+				0C60D3AB2C807E7500CC67A8 /* AudioQueuePlayer.m */,
+				0C60D3B22C807E7800CC67A8 /* AudioSystemError.h */,
+				0C60D3AA2C807E7400CC67A8 /* MetadataExtractor.h */,
+				0C60D3B32C807E7900CC67A8 /* MetadataExtractor.m */,
+				0C60D3B12C807E7700CC67A8 /* PacketQueue.h */,
+				0C60D3A82C807E7300CC67A8 /* PacketQueue.m */,
 			);
-			path = "New Group";
+			path = FFmpegWrapper;
 			sourceTree = "<group>";
 		};
 		0CBDC9A0224B7BCA0026D657 = {
@@ -114,24 +129,7 @@
 		0CBDC9AB224B7BCA0026D657 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				0C60D3A42C807E7100CC67A8 /* AlbumArtExtractor.h */,
-				0C60D3AC2C807E7500CC67A8 /* AlbumArtExtractor.m */,
-				0C60D3B02C807E7700CC67A8 /* AudioDecoder.h */,
-				0C60D3A62C807E7200CC67A8 /* AudioDecoder.m */,
-				0C60D3A92C807E7300CC67A8 /* AudioEqualizer.h */,
-				0C60D3AD2C807E7600CC67A8 /* AudioEqualizer.m */,
-				0CE685C52CEAD14C0064EECC /* AudioEqualizerValue.h */,
-				0CE685C62CEAD33C0064EECC /* AudioEqualizerValue.m */,
-				0C60D3AE2C807E7600CC67A8 /* AudioMetadata.h */,
-				0C60D3AF2C807E7700CC67A8 /* AudioMetadata.m */,
-				0C60D3A72C807E7200CC67A8 /* AudioQueuePlayer.h */,
-				0C60D3AB2C807E7500CC67A8 /* AudioQueuePlayer.m */,
-				0C60D3B22C807E7800CC67A8 /* AudioSystemError.h */,
-				0C60D3AA2C807E7400CC67A8 /* MetadataExtractor.h */,
-				0C60D3B32C807E7900CC67A8 /* MetadataExtractor.m */,
-				0C60D3B12C807E7700CC67A8 /* PacketQueue.h */,
-				0C60D3A82C807E7300CC67A8 /* PacketQueue.m */,
-				0C9D45C32D1512E90035C31B /* New Group */,
+				0C342DF42D22FCF50087736B /* FFmpegWrapper */,
 				0CDFE3A62C815F770018C375 /* AudioPlayer.swift */,
 				0CF7E7192C8EEEE400CE0B62 /* PlayerViewModel.swift */,
 				0C8E76DD2D02E1FC001D855B /* Track.swift */,
@@ -143,7 +141,6 @@
 				0CBDC9B7224B7BCC0026D657 /* LaunchScreen.storyboard */,
 				0C197515225114F80071223C /* Assets.xcassets */,
 				0CBDC9BA224B7BCC0026D657 /* Info.plist */,
-				0CBDC9BB224B7BCC0026D657 /* main.m */,
 				0CED1466225E153500849BB8 /* Sample music */,
 				0C197512224FCD0C0071223C /* Track.h */,
 				0CDFE3A52C815F770018C375 /* Sample-Bridging-Header.h */,
@@ -257,7 +254,6 @@
 				0C60D3BA2C807E7900CC67A8 /* MetadataExtractor.m in Sources */,
 				0CB207E82CFFE0F400D59B9A /* Playlist.swift in Sources */,
 				0C60D3B62C807E7900CC67A8 /* AudioQueuePlayer.m in Sources */,
-				0CBDC9BC224B7BCC0026D657 /* main.m in Sources */,
 				0CDFE3AD2C8164450018C375 /* MyAudioPlayerApp.swift in Sources */,
 				0C60D3B42C807E7900CC67A8 /* AudioDecoder.m in Sources */,
 				0C60D3B92C807E7900CC67A8 /* AudioMetadata.m in Sources */,
@@ -404,7 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E4AL5J8YVZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,7 +421,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E4AL5J8YVZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
